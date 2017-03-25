@@ -1,5 +1,14 @@
 h1 {
-	color: green;
-	background-color: black;
+	color: blue;
 	display: inline-block;
+	border-style: solid;
+	border-width: 2px;
+}
+ul li {
+	display: inline;
+}
+
+#main {
+	height: 100px;
+	background-color: green;
 }
