@@ -1,22 +1,54 @@
 body{
-	background-image: url(../images/background.png);
+	background-image: url(../images/#######);
 }
 
 h1 {
 	color: blue;
-	display: inline-block;
-	
-
+	display:inline-block;
+	background: red;
+	padding: 10px 20px 10px 20px;
 }
-ul{
+ul {
 	display: inline-block;
-
 }
 ul li {
 	display: inline;
 }
 
-#main {
-	height: 100px;
+/* ~~~~~~~~~~~~~~~~MAIN-DIV~~~~~~~~~~~~~~~~ */
+
+#main{
+	border: 2px solid black ;
+	text-align: center;
 }
 
+#profileLinks {
+	width: auto;
+	text-align: center;
+	
+}
+
+#siteLinks{
+	width: auto;
+
+	background-color: lightgreen;
+}
+h2{
+	text-align: center;
+}
+
+#about p {
+	padding-top: 15px;
+	text-align: center;
+	width: 75%;
+	margin: 0 auto;
+}
+
+#about{
+	border: 2px solid green;
+
+}
+
+#connect{
+	border: 2px solid yellow;
+}
