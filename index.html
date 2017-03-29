@@ -5,12 +5,15 @@
 	<link rel="stylesheet" type="text/css" href="assets/css/reset.css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
-	<script type="text/javascript" src="assets/js/app.js"></script>
+	<script
+  src="https://code.jquery.com/jquery-3.2.1.min.js"
+  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+  crossorigin="anonymous"></script>
 </head>
 <body>
-	<div id="portfolio" class="container-fluid">
+	<div id="about" class="container-fluid">
 
-		<div class="row">
+		<div id="nav" class="row">
 
 			<nav class="col-md-12">
 				<h1>Kevin Hubbard</h1>
@@ -30,7 +33,7 @@
 				<h2>About Me</h2>
 				
 				<img id="pic" class="img-responsive center-block img-rounded" src="assets/images/portfolio-pic.jpg">
-				<p>Welcome to my portfolio! I'm a web developer, passionate about everything computer science related. I plan on using heroku to host the apps I create and to collaborate with other like-minded developers. Currently residing in central Jersey, I attend the Rutgers Coding Bootcamp. If you like any of the projects I'm working on, feel free to fork the code hosted on git hub. But definitely contact me to let me know how I can make it better! This is forever a learning process and I love to see how many ways a problem can be solved. </p>
+				<p>Welcome to my portfolio! I'm a web developer, passionate about everything pertaining to the field of computer science. I plan on using heroku to host the apps I create and to collaborate with other like-minded developers. Currently residing in central Jersey, I attend the Rutgers Coding Bootcamp. If you like any of the projects I'm working on, feel free to fork the code hosted on git hub. But definitely contact me to let me know how I can make it better! This is forever a learning process and I love to see how many ways a problem can be solved. </p>
 			</div>
 
 			<div id="connect" class="col-md-4">
@@ -43,14 +46,38 @@
 					<li><a href="http://stackexchange.com/users/9813535/kevin-hubbard" target="_blank"><img src="assets/images/stackOverflow.png"></a></li>
 				</ul>
 			</div>
+
 		</div>
 
+		<div id="skills" class="row">
+			<h2>Skills</h2>
 
+				<div class="languages flip">
+					<h3>Languages</h3>
+					<div ><img class="front" src="assets/images/js.png"></div>
+				</div>
 
+				<div class="frontend">
+					<h3>Front-end Technologies</h3>
+					<img src="assets/images/html5.png">
+					<img src="assets/images/css3.png">
+					<img src="assets/images/bootstrap.png">
+					<img src="assets/images/jquery.png">
+				</div>
 
+				<div class="backend">
+					<h3>Back-end Technologies</h3>
+					<img src="assets/images/node.png">
+				</div>
+				
+
+			</div>
 	</div>
-<!-- 	<footer>
-	<h6>&copy; Copyright 2017 Kevin Hubbard</h6>
-</footer> -->
+
+
+	<footer>
+	<br>
+		<h6>&copy; Copyright 2017 Kevin Hubbard</h6>
+	</footer>
 </body>
 </html>

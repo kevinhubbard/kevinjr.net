@@ -5,12 +5,17 @@
 	<link rel="stylesheet" type="text/css" href="assets/css/reset.css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
-	<script type="text/javascript" src="assets/js/app.js"></script>
+	<script
+  src="https://code.jquery.com/jquery-3.2.1.min.js"
+  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+  crossorigin="anonymous"></script>
+    <script src="https://www.gstatic.com/firebasejs/3.7.4/firebase.js"></script>
+    <script type="text/javascript" src="assets/js/app.js"></script>
 </head>
 <body>
-	<div id="portfolio" class="container-fluid">
+	<div id="contact" class="container-fluid">
 
-		<div class="row">
+		<div id="nav" class="row">
 
 			<nav class="col-md-12">
 				<h1>Kevin Hubbard</h1>
@@ -26,11 +31,23 @@
 		</div>
 		
 		<div id="main" class="row">
-			<div id="about" class="col-md-8">
-				<h2>About Me</h2>
-				
-				<img id="pic" class="img-responsive center-block img-rounded" src="assets/images/portfolio-pic.jpg">
-				<p>Welcome to my portfolio! I'm a web developer, passionate about everything computer science related. I plan on using heroku to host the apps I create and to collaborate with other like-minded developers. Currently residing in central Jersey, I attend the Rutgers Coding Bootcamp. If you like any of the projects I'm working on, feel free to fork the code hosted on git hub. But definitely contact me to let me know how I can make it better! This is forever a learning process and I love to see how many ways a problem can be solved. </p>
+			<div id="form" class="col-md-8">
+				<h2>Contact Me</h2>
+				<form>
+					<div class="form-group">
+						<label for="nameInput">Name</label>
+						<input type="text" class="form-control" id="nameInput" placeholder="John Smith">
+					</div>
+					<div class="form-group">
+						<label for="emailInput">Email</label>
+						<input type="text" class="form-control" id="emailInput" placeholder="example@email.com">
+					</div>
+					<div class="form-group">
+						<label for="msgInput">Message</label>
+						<textarea class="form-control" id="msgInput" rows="4"></textarea>
+					</div>
+					<button type="button" class="btn btn-primary">Submit</button>
+				</form>
 			</div>
 
 			<div id="connect" class="col-md-4">
@@ -49,8 +66,9 @@
 
 
 	</div>
-<!-- 	<footer>
-	<h6>&copy; Copyright 2017 Kevin Hubbard</h6>
-</footer> -->
+	<footer>
+		<br>
+		<h6>&copy; Copyright 2017 Kevin Hubbard</h6>
+	</footer>
 </body>
 </html>
