@@ -27,7 +27,9 @@
   },
   "homepage": "https://github.com/kevinhubbard/New-Portfolio#readme",
   "dependencies": {
+    "bootstrap": "^3.3.7",
     "express": "^4.15.2",
-    "express-handlebars": "^3.0.0"
+    "express-handlebars": "^3.0.0",
+    "jquery": "^3.2.1"
   }
 }

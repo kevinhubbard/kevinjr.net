@@ -1,12 +1,15 @@
 //PACKAGES REQUIRED FOR EXPRESS SERVER AND HANDLEBARS TEMPLATING 
 var express = require('express');
 var exphbs = require('express-handlebars');
+var path = require('path');
 
 //DEFINES APP METHOD
 var app = express();
 
 //LETS EXPRESS USE STATIC FILES
-app.use(express.static('assets'));
+app.use(express.static('node_modules'));
+
+app.use(express.static(path.join(__dirname, 'assets')));
 
 //DEFINES PORT
 var PORT = process.env.PORT || 8080;
