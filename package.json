@@ -1,0 +1,33 @@
+{
+  "name": "kevin-hubbards-portfolio",
+  "version": "1.0.0",
+  "engines": {
+    "node": "6.10.1"
+  },
+  "description": "My Portfolio",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kevinhubbard/New-Portfolio.git"
+  },
+  "keywords": [
+    "node.js",
+    "express",
+    "handlebars",
+    "heroku"
+  ],
+  "author": "Kevin Hubbard",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kevinhubbard/New-Portfolio/issues"
+  },
+  "homepage": "https://github.com/kevinhubbard/New-Portfolio#readme",
+  "dependencies": {
+    "express": "^4.15.2",
+    "express-handlebars": "^3.0.0"
+  }
+}

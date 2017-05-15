@@ -1,5 +1,13 @@
 $(document).ready(function() {
 
+/*$('#card').flip('toggle');*/
+
+
+
+
+
+
+
 var $nameInput = $('#nameInput');
 var $emailInput = $('#emailInput');
 var $msgInput = $('#msgInput');
@@ -16,25 +24,25 @@ var $msgInput = $('#msgInput');
 var data = firebase.database();
 
 
-$(document).on('click', '.btn', function() {
-
-	event.preventDefault();
-	console.log($nameInput.val());
-	console.log($emailInput.val());
-	console.log($msgInput.val());
-
-	data.ref("users/" + $nameInput.val()).set({
+$(document).on('click', '.btn', function () {
+	var user = {
 		name: $nameInput.val(),
 		email: $emailInput.val(),
 		msg: $msgInput.val()
-	});
+	}
+	
+	var json = JSON.stringify(user);
 
+	data.ref('users/' + user.name).set(user);
 
+	clearUser();
+});
+
+function clearUser() {
 	$nameInput.val('');
 	$emailInput.val('');
 	$msgInput.val('');
-});
-
+}
 
 
 });
