@@ -36,6 +36,7 @@ p {
   font-family: Arial, Helvetica, sans-serif;
   font-size: 16px;
   line-height: 1.5;
+  letter-spacing: 1px;
   color: white;
 }
 
@@ -46,9 +47,6 @@ p {
   border-radius: 25px;
 }
 
-textarea {
-/*resize: none;*/
-}
 
 #connect{
   margin: 0 auto;
@@ -68,7 +66,7 @@ li{
 
 .project {
   display: inline-block;
-  padding-bottom: 10px;
+  margin-bottom: 10px;
   position: relative;
 }
 
@@ -80,4 +78,8 @@ li{
   font-weight: bold;
   background-color: grey;
   text-align: center;
+}
+
+img{
+  margin-bottom: 5px;
 }
