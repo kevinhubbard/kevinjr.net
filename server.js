@@ -43,7 +43,7 @@ MongoClient.connect(URI, function(err, db){
 	}
 });
 	
-	res.render('thankyou');
+	res.render('thankyou', {name: req.body.name, email: req.body.email});
 });
 
 //SETS HANDLEBARS AS OUR MAIN VIEW ENGINE AND USES MAIN AS DEFAULT LAYOUT
