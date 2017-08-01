@@ -32,6 +32,11 @@ h1, h2, h3, label{
 text-align: center;
 }
 
+.card {
+  display: block;
+  position: relative;
+}
+
 p {
   font-family: Arial, Helvetica, sans-serif;
   font-size: 16px;
