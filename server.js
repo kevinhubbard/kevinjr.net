@@ -18,33 +18,8 @@ var PORT = process.env.PORT || 8080;
 
 var urlencodedParser = bodyParser.urlencoded({ extended: false})
 
-//SETS UP DB CONNECTION
+//SETS DB CONNECTION URI STRING
 var URI = 'mongodb://heroku_3pj31sf1:73t6prtueeq1a9c40ljtit5s31@ds127883.mlab.com:27883/heroku_3pj31sf1';
-
-
-
-
-//TEST POST
-app.post('/thankyou', urlencodedParser, function(req, res){
-
-	console.log(req.body.name);
-	console.log(req.body.email);
-	console.log(req.body.msg);
-	console.log(req.body.role);
-
-//LOG USER INPUT TO DATABASE
-MongoClient.connect(URI, function(err, db){
-	if(err){
-		console.log(err);
-	} else {
-		var userInput = db.collection('userInput');
-		userInput.insertOne({name: req.body.name, email: req.body.email, msg: req.body.msg, role: req.body.role});
-		console.log('successfully submitted data to MONGODB');
-	}
-});
-	
-	res.render('thankyou', {name: req.body.name, email: req.body.email});
-});
 
 //SETS HANDLEBARS AS OUR MAIN VIEW ENGINE AND USES MAIN AS DEFAULT LAYOUT
 app.engine('handlebars', exphbs({ defaultLayout: 'main'}));
@@ -63,6 +38,33 @@ app.get('/contact', function (req, res) {
 //GETS PROJECTS ROUTE FOR PORTFOLIO
 app.get('/portfolio', function (req, res) {
 	res.render('portfolio');
+});
+
+//POST USER INFO FROM CONTACT PAGE
+app.post('/thankyou', urlencodedParser, function(req, res){
+
+	console.log(req.body.name);
+	console.log(req.body.email);
+	console.log(req.body.msg);
+	console.log(req.body.role);
+
+	//LOG USER INPUT TO DATABASE
+	MongoClient.connect(URI, function(err, db){
+		if(err){
+			console.log(err);
+		} else {
+			var userInput = db.collection('userInput');
+			userInput.insertOne({
+				name: req.body.name,
+				email: req.body.email,
+				msg: req.body.msg,
+				role:req.body.role
+			});
+			console.log('successfully submitted data to MONGODB');
+		}
+	});
+	
+	res.render('thankyou', {name: req.body.name, email: req.body.email});
 });
 
 //404 CATCH FOR PORTFOLIO
