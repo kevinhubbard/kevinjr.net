@@ -56,18 +56,7 @@ p {
 #connect{
   margin: 0 auto;
   text-align: center;
-
 }
-
-ul{
-  list-style: none;
-  display: inline;
-}
-li{
-    display: inline-block;
-    margin: 0 auto;
-}
-
 
 .project {
   display: inline-block;
@@ -87,4 +76,14 @@ li{
 
 img{
   margin-bottom: 5px;
+}
+
+
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ABOUT ME~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
+
+
+
+li{
+  color: white;
 }

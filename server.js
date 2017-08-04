@@ -30,6 +30,11 @@ app.get('/', function (req, res){
 	res.render('index');
 });
 
+//GETS ABOUT ME ROUTE
+app.get('/about', function(req, res){
+	res.render('about');
+});
+
 //GETS CONTACT ROUTE FOR PORTFOLIO
 app.get('/contact', function (req, res) {
 	res.render('contact');
@@ -38,6 +43,11 @@ app.get('/contact', function (req, res) {
 //GETS PROJECTS ROUTE FOR PORTFOLIO
 app.get('/portfolio', function (req, res) {
 	res.render('portfolio');
+});
+
+//GETS RESUME ROUTE
+app.get('/resume', function(req, res){
+	res.render('resume');
 });
 
 //POST USER INFO FROM CONTACT PAGE
