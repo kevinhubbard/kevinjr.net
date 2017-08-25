@@ -45,6 +45,10 @@ p {
   color: white;
 }
 
+#about{
+  color: black;
+}
+
 #portPic {
   display: block;
   margin: 0 auto;
