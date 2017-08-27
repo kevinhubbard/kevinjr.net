@@ -3,7 +3,8 @@ var express = require('express');
 var exphbs = require('express-handlebars');
 var path = require('path');
 var MongoClient = require('mongodb').MongoClient;
-var bodyParser = require('body-parser')
+var bodyParser = require('body-parser');
+var fs = require('fs');
 
 //DEFINES APP METHOD
 var app = express();
@@ -47,7 +48,11 @@ app.get('/portfolio', function (req, res) {
 
 //GETS RESUME ROUTE
 app.get('/resume', function(req, res){
-	res.render('resume');
+	var tempFile = '/assets/resume/KevinHubbard.pdf';
+	fs.readFile(__dirname + tempFile, function(err,data){
+		res.contentType('application/pdf');
+		res.send(data);
+	});
 });
 
 //POST USER INFO FROM CONTACT PAGE
