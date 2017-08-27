@@ -33,8 +33,10 @@ text-align: center;
 }
 
 .card {
-  display: block;
+  display: inline-block;
   position: relative;
+  width: 128px;
+  height: 128px;
 }
 
 p {
@@ -93,16 +95,3 @@ li{
 }
 
 
-#resume {
-  width: 50%;
-  margin: 0 auto;
-  padding-bottom: 20px;
-}
-
-
-
-
-.front{
-  width: 128px;
-  height: 128px;
-}
