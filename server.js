@@ -1,6 +1,7 @@
 //PACKAGES REQUIRED FOR EXPRESS SERVER AND HANDLEBARS TEMPLATING 
 var express = require('express');
 var exphbs = require('express-handlebars');
+var expressRobotsMiddleware = require('express-robots-middleware');
 var path = require('path');
 var MongoClient = require('mongodb').MongoClient;
 var bodyParser = require('body-parser');
@@ -17,7 +18,15 @@ app.use(express.static(path.join(__dirname, 'assets')));
 //DEFINES PORT
 var PORT = process.env.PORT || 8080;
 
-var urlencodedParser = bodyParser.urlencoded({ extended: false})
+var urlencodedParser = bodyParser.urlencoded({ extended: false});
+
+// ROBOTS.TXT MIDDLEWARE
+var robotsMiddleware = expressRobotsMiddleware([{
+	UserAgent: '*',
+	Disallow: ['/', '/thankyou'],
+	Allow: ['/about', '/contact', '/portfolio'],
+	CrawlDelay: '5'
+}]);
 
 //SETS DB CONNECTION URI STRING
 var URI = 'mongodb://heroku_3pj31sf1:73t6prtueeq1a9c40ljtit5s31@ds127883.mlab.com:27883/heroku_3pj31sf1';
@@ -25,6 +34,9 @@ var URI = 'mongodb://heroku_3pj31sf1:73t6prtueeq1a9c40ljtit5s31@ds127883.mlab.co
 //SETS HANDLEBARS AS OUR MAIN VIEW ENGINE AND USES MAIN AS DEFAULT LAYOUT
 app.engine('handlebars', exphbs({ defaultLayout: 'main'}));
 app.set('view engine', 'handlebars');
+
+// ROBOTS.TXT ROUTE
+app.get('/robots.txt', robotsMiddleware);
 
 //GETS OUR DEFAULT ROUTE FOR PORTFOLIO
 app.get('/', function (req, res){
