@@ -23,8 +23,8 @@ var urlencodedParser = bodyParser.urlencoded({ extended: false});
 // ROBOTS.TXT MIDDLEWARE
 var robotsMiddleware = expressRobotsMiddleware([{
 	UserAgent: '*',
-	Disallow: ['/', '/thankyou'],
-	Allow: ['/about', '/contact', '/portfolio'],
+	Disallow: ['/thankyou'],
+	Allow: ['/', '/about', '/contact', '/portfolio'],
 	CrawlDelay: '5'
 }]);
 
