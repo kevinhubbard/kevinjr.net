@@ -17,3 +17,15 @@ body {
   height: 60px;
 }
 
+.navbar-nav{
+  float:right;
+  height: 55px;
+}
+
+#navbar a:hover {
+  background: blue;
+  color: #FFF;
+  border: 3px outset #808081;
+}
+
+

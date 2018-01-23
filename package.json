@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www"
+    "start": "node ./bin/www"  
   },
   "dependencies": {
     "body-parser": "~1.17.1",
@@ -27,7 +27,6 @@
     "serve-favicon": "~2.4.2"
   },
   "description": "Personal Blog Site",
-  "main": "app.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/kevinhubbard/kevinjr.net.git"
