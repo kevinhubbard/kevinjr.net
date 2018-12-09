@@ -3,28 +3,12 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www"  
+    "start": "node app.js",
+    "compile": "babel public/javascripts --presets react,es2015 --out-dir public",
+    "watch": "babel public/javascripts --presets react,es2015 --out-dir public --watch"
   },
   "dependencies": {
-    "body-parser": "~1.17.1",
-    "bootstrap": "^3.3.7",
-    "connect-flash": "^0.1.1",
-    "cookie-parser": "~1.4.3",
-    "debug": "~2.6.3",
-    "express": "~4.15.2",
-    "express-messages": "^1.0.1",
-    "express-session": "^1.15.6",
-    "express-validator": "^4.3.0",
-    "hbs": "~4.0.1",
-    "jquery": "^3.2.1",
-    "mongodb": "^3.0.1",
-    "mongoose": "^4.13.9",
-    "morgan": "~1.8.1",
-    "multer": "^1.3.0",
-    "passport": "^0.4.0",
-    "passport-http": "^0.3.0",
-    "passport-local": "^1.0.0",
-    "serve-favicon": "~2.4.2"
+    "express": "^4.16.4"
   },
   "description": "Personal Blog Site",
   "repository": {
@@ -39,5 +23,12 @@
   "bugs": {
     "url": "https://github.com/kevinhubbard/kevinjr.net/issues"
   },
-  "homepage": "https://github.com/kevinhubbard/kevinjr.net#readme"
+  "homepage": "https://github.com/kevinhubbard/kevinjr.net#readme",
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "react": "^16.6.3",
+    "react-dom": "^16.6.3"
+  }
 }
