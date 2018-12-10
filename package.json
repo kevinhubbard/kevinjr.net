@@ -3,10 +3,9 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "start": "app.js",
+    "start": "node app.js",
     "compile": "babel public/javascripts --presets react,es2015 --out-dir public",
-    "watch": "babel public/javascripts --presets react,es2015 --out-dir public --watch",
-    "start": "node app.js"
+    "watch": "babel public/javascripts --presets react,es2015 --out-dir public --watch"
   },
   "dependencies": {
     "express": "^4.16.4"
