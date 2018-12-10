@@ -1,29 +1,63 @@
 var contentNode = document.getElementById('app');
 
-class Test extends React.Component{
+class Navbar extends React.Component{
 	render(){
-		return(<h1 id='first'>1st component</h1>);
+		return(<div><h1 id='navigation'>Navbar component</h1><br/></div>);
 	}
 } 
 
-class Test2 extends React.Component{
+class Bio extends React.Component{
 	render(){
-		return(<h1 id='second'>2nd component</h1>);
+		return(<div id='bio'><h1>Biography component</h1></div>);
 	}
 }
 
-class Test3 extends React.Component {
+class Social extends React.Component {
 	render(){
-		return(<h1 id='third'>3rd component</h1>);
+		return( <div id='social'>
+					<h3>Connect With Me</h3>
+					<ul>
+						<li className='link'><a href='https://www.linkedin.com/in/kevin-hubbard-jr'><img src='images/linkedIn.png'/></a></li>
+						<li className='link'><a href="https://github.com/kevinhubbard"><img src='images/gitHub.png'/></a></li>
+						<li className='link'><a href='https://stackoverflow.com'><img src='images/stackOverflow.png'/></a></li>
+					</ul>
+				</div>);
+	}
+}
+
+class Toolbox extends React.Component {
+	render(){
+		return(<div id='tools'><h2>Tool box</h2></div>);
+	}
+}
+
+class Mainbody extends React.Component {
+	render(){
+		return( <div id='bod' className='container'>
+					<div className='row'>
+						<Bio className='col-md'>
+							<p>bio bs will go here</p>
+						</Bio>
+						<Social className='col-md'/>
+					</div>
+					<div className='row'><Toolbox className='col-md' /></div>
+				</div>)
+	}
+}
+
+
+class Footer extends React.Component {
+	render(){
+		return(<footer>&copy;Kevin Jr {new Date().getFullYear()}</footer>)
 	}
 }
 
 class App extends React.Component {
 	render(){
 		return(<div>
-				<Test/>
-				<Test2/>
-				<Test3/>
+				<Navbar/>
+				<Mainbody/>
+				<Footer/>
 			   </div>);
 	}
 }

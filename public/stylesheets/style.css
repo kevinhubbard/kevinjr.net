@@ -1,11 +1,61 @@
-#first{
+html{
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+}
+
+#navigation {
+width: 100%;
+height: 75px;
+background-color: green;
+text-align: center;
+}
+
+#bod {
+  height: 500px;
   background-color: red;
 }
-
-#second{
-  background-color: green;
-}
-
-#third{
+#bio{
+  width: 60%;
   background-color: blue;
+  text-align: center;
+  display: inline-block;
 }
+
+#social {
+  margin: 0 auto;
+  width: 40%;
+  background-color: pink;
+  text-align: center;
+  display: inline-block;
+}
+
+ul {
+  text-align: center;
+}
+
+
+.link{
+  list-style-type: none;
+  padding-left: 5px;
+  display: inline;
+}
+
+#tools {
+  text-align: center;
+}
+
+footer {
+  text-align: center;
+  background-color: teal;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 60px;
+  line-height: 60px;
+
+}
+

@@ -10,77 +10,213 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 var contentNode = document.getElementById('app');
 
-var Test = function (_React$Component) {
-	_inherits(Test, _React$Component);
+var Navbar = function (_React$Component) {
+	_inherits(Navbar, _React$Component);
 
-	function Test() {
-		_classCallCheck(this, Test);
+	function Navbar() {
+		_classCallCheck(this, Navbar);
 
-		return _possibleConstructorReturn(this, (Test.__proto__ || Object.getPrototypeOf(Test)).apply(this, arguments));
+		return _possibleConstructorReturn(this, (Navbar.__proto__ || Object.getPrototypeOf(Navbar)).apply(this, arguments));
 	}
 
-	_createClass(Test, [{
+	_createClass(Navbar, [{
 		key: 'render',
 		value: function render() {
 			return React.createElement(
-				'h1',
-				{ id: 'first' },
-				'1st component'
+				'div',
+				null,
+				React.createElement(
+					'h1',
+					{ id: 'navigation' },
+					'Navbar component'
+				),
+				React.createElement('br', null)
 			);
 		}
 	}]);
 
-	return Test;
+	return Navbar;
 }(React.Component);
 
-var Test2 = function (_React$Component2) {
-	_inherits(Test2, _React$Component2);
+var Bio = function (_React$Component2) {
+	_inherits(Bio, _React$Component2);
 
-	function Test2() {
-		_classCallCheck(this, Test2);
+	function Bio() {
+		_classCallCheck(this, Bio);
 
-		return _possibleConstructorReturn(this, (Test2.__proto__ || Object.getPrototypeOf(Test2)).apply(this, arguments));
+		return _possibleConstructorReturn(this, (Bio.__proto__ || Object.getPrototypeOf(Bio)).apply(this, arguments));
 	}
 
-	_createClass(Test2, [{
+	_createClass(Bio, [{
 		key: 'render',
 		value: function render() {
 			return React.createElement(
-				'h1',
-				{ id: 'second' },
-				'2nd component'
+				'div',
+				{ id: 'bio' },
+				React.createElement(
+					'h1',
+					null,
+					'Biography component'
+				)
 			);
 		}
 	}]);
 
-	return Test2;
+	return Bio;
 }(React.Component);
 
-var Test3 = function (_React$Component3) {
-	_inherits(Test3, _React$Component3);
+var Social = function (_React$Component3) {
+	_inherits(Social, _React$Component3);
 
-	function Test3() {
-		_classCallCheck(this, Test3);
+	function Social() {
+		_classCallCheck(this, Social);
 
-		return _possibleConstructorReturn(this, (Test3.__proto__ || Object.getPrototypeOf(Test3)).apply(this, arguments));
+		return _possibleConstructorReturn(this, (Social.__proto__ || Object.getPrototypeOf(Social)).apply(this, arguments));
 	}
 
-	_createClass(Test3, [{
+	_createClass(Social, [{
 		key: 'render',
 		value: function render() {
 			return React.createElement(
-				'h1',
-				{ id: 'third' },
-				'3rd component'
+				'div',
+				{ id: 'social' },
+				React.createElement(
+					'h3',
+					null,
+					'Connect With Me'
+				),
+				React.createElement(
+					'ul',
+					null,
+					React.createElement(
+						'li',
+						{ className: 'link' },
+						React.createElement(
+							'a',
+							{ href: 'https://www.linkedin.com/in/kevin-hubbard-jr' },
+							React.createElement('img', { src: 'images/linkedIn.png' })
+						)
+					),
+					React.createElement(
+						'li',
+						{ className: 'link' },
+						React.createElement(
+							'a',
+							{ href: 'https://github.com/kevinhubbard' },
+							React.createElement('img', { src: 'images/gitHub.png' })
+						)
+					),
+					React.createElement(
+						'li',
+						{ className: 'link' },
+						React.createElement(
+							'a',
+							{ href: 'https://stackoverflow.com' },
+							React.createElement('img', { src: 'images/stackOverflow.png' })
+						)
+					)
+				)
 			);
 		}
 	}]);
 
-	return Test3;
+	return Social;
 }(React.Component);
 
-var App = function (_React$Component4) {
-	_inherits(App, _React$Component4);
+var Toolbox = function (_React$Component4) {
+	_inherits(Toolbox, _React$Component4);
+
+	function Toolbox() {
+		_classCallCheck(this, Toolbox);
+
+		return _possibleConstructorReturn(this, (Toolbox.__proto__ || Object.getPrototypeOf(Toolbox)).apply(this, arguments));
+	}
+
+	_createClass(Toolbox, [{
+		key: 'render',
+		value: function render() {
+			return React.createElement(
+				'div',
+				{ id: 'tools' },
+				React.createElement(
+					'h2',
+					null,
+					'Tool box'
+				)
+			);
+		}
+	}]);
+
+	return Toolbox;
+}(React.Component);
+
+var Mainbody = function (_React$Component5) {
+	_inherits(Mainbody, _React$Component5);
+
+	function Mainbody() {
+		_classCallCheck(this, Mainbody);
+
+		return _possibleConstructorReturn(this, (Mainbody.__proto__ || Object.getPrototypeOf(Mainbody)).apply(this, arguments));
+	}
+
+	_createClass(Mainbody, [{
+		key: 'render',
+		value: function render() {
+			return React.createElement(
+				'div',
+				{ id: 'bod', className: 'container' },
+				React.createElement(
+					'div',
+					{ className: 'row' },
+					React.createElement(
+						Bio,
+						{ className: 'col-md' },
+						React.createElement(
+							'p',
+							null,
+							'bio bs will go here'
+						)
+					),
+					React.createElement(Social, { className: 'col-md' })
+				),
+				React.createElement(
+					'div',
+					{ className: 'row' },
+					React.createElement(Toolbox, { className: 'col-md' })
+				)
+			);
+		}
+	}]);
+
+	return Mainbody;
+}(React.Component);
+
+var Footer = function (_React$Component6) {
+	_inherits(Footer, _React$Component6);
+
+	function Footer() {
+		_classCallCheck(this, Footer);
+
+		return _possibleConstructorReturn(this, (Footer.__proto__ || Object.getPrototypeOf(Footer)).apply(this, arguments));
+	}
+
+	_createClass(Footer, [{
+		key: 'render',
+		value: function render() {
+			return React.createElement(
+				'footer',
+				null,
+				'\xA9Kevin Jr ',
+				new Date().getFullYear()
+			);
+		}
+	}]);
+
+	return Footer;
+}(React.Component);
+
+var App = function (_React$Component7) {
+	_inherits(App, _React$Component7);
 
 	function App() {
 		_classCallCheck(this, App);
@@ -94,9 +230,9 @@ var App = function (_React$Component4) {
 			return React.createElement(
 				'div',
 				null,
-				React.createElement(Test, null),
-				React.createElement(Test2, null),
-				React.createElement(Test3, null)
+				React.createElement(Navbar, null),
+				React.createElement(Mainbody, null),
+				React.createElement(Footer, null)
 			);
 		}
 	}]);
