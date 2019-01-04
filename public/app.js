@@ -183,7 +183,8 @@ var Mainbody = function (_React$Component5) {
 					'div',
 					{ className: 'row' },
 					React.createElement(Toolbox, { className: 'col-md' })
-				)
+				),
+				React.createElement(Form, null)
 			);
 		}
 	}]);
@@ -191,8 +192,66 @@ var Mainbody = function (_React$Component5) {
 	return Mainbody;
 }(React.Component);
 
-var Footer = function (_React$Component6) {
-	_inherits(Footer, _React$Component6);
+var Form = function (_React$Component6) {
+	_inherits(Form, _React$Component6);
+
+	function Form() {
+		_classCallCheck(this, Form);
+
+		return _possibleConstructorReturn(this, (Form.__proto__ || Object.getPrototypeOf(Form)).apply(this, arguments));
+	}
+
+	_createClass(Form, [{
+		key: 'render',
+		value: function render() {
+			return React.createElement(
+				'form',
+				{ action: '/', method: 'POST' },
+				React.createElement(
+					'fieldset',
+					null,
+					React.createElement(
+						'legend',
+						null,
+						'Enter whatever wienerwobbler:'
+					),
+					React.createElement(
+						'label',
+						{ htmlFor: 'name' },
+						'Name:'
+					),
+					React.createElement('input', { name: 'name', id: 'name', type: 'text' }),
+					React.createElement('br', null),
+					React.createElement(
+						'label',
+						{ htmlFor: 'email' },
+						'Email:'
+					),
+					React.createElement('input', { name: 'email', id: 'email', type: 'email' }),
+					React.createElement('br', null),
+					React.createElement(
+						'label',
+						{ htmlFor: 'age' },
+						'Age:'
+					),
+					React.createElement('input', { name: 'age', id: 'age', type: 'number', min: '18', max: '99' }),
+					React.createElement('br', null),
+					React.createElement(
+						'label',
+						{ htmlFor: 'submit' },
+						' Submit:'
+					),
+					React.createElement('input', { id: 'submit', type: 'submit', value: 'Suck it Dick head' })
+				)
+			);
+		}
+	}]);
+
+	return Form;
+}(React.Component);
+
+var Footer = function (_React$Component7) {
+	_inherits(Footer, _React$Component7);
 
 	function Footer() {
 		_classCallCheck(this, Footer);
@@ -215,8 +274,8 @@ var Footer = function (_React$Component6) {
 	return Footer;
 }(React.Component);
 
-var App = function (_React$Component7) {
-	_inherits(App, _React$Component7);
+var App = function (_React$Component8) {
+	_inherits(App, _React$Component8);
 
 	function App() {
 		_classCallCheck(this, App);

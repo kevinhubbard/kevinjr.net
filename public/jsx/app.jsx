@@ -41,7 +41,29 @@ class Mainbody extends React.Component {
 						<Social className='col-md'/>
 					</div>
 					<div className='row'><Toolbox className='col-md' /></div>
+					<Form/>
 				</div>)
+	}
+}
+
+class Form extends React.Component {
+	render(){
+		return( <form action='/' method='POST'>
+					<fieldset>
+						<legend>Enter whatever wienerwobbler:</legend>
+							<label htmlFor='name'>Name:</label>
+							<input name='name' id='name' type='text'/><br/>
+
+							<label htmlFor='email'>Email:</label>
+							<input name='email' id='email' type='email'/><br/>
+
+							<label htmlFor='age'>Age:</label>
+							<input name='age' id='age' type='number' min='18' max='99'/><br/>
+
+							<label htmlFor='submit'> Submit:</label>
+							<input id='submit' type='submit' value='Suck it Dick head' />
+					</fieldset>
+				</form>)
 	}
 }
 

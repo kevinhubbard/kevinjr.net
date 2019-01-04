@@ -59,3 +59,9 @@ footer {
 
 }
 
+fieldset {
+  text-align: center;
+  display: inline block;
+  border: 2px solid;
+  width: 350px;
+}

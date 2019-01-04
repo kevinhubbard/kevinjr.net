@@ -1,14 +1,17 @@
 {
   "name": "kevinjr",
-  "version": "0.0.1",
+  "version": "1.0.1",
   "private": true,
   "scripts": {
     "start": "node app.js",
-    "compile": "babel public/javascripts --presets react,es2015 --out-dir public",
-    "watch": "babel public/javascripts --presets react,es2015 --out-dir public --watch"
+    "compile": "babel public/jsx --presets react,es2015 --out-dir public",
+    "watch": "babel public/jsx --presets react,es2015 --out-dir public --watch"
   },
   "dependencies": {
-    "express": "^4.16.4"
+    "body-parser": "^1.18.3",
+    "ee-first": "^1.1.1",
+    "express": "^4.16.4",
+    "mongoose": "^5.4.1"
   },
   "description": "Personal Blog Site",
   "repository": {
