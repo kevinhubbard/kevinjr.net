@@ -50,7 +50,7 @@ class Form extends React.Component {
 	render(){
 		return( <form action='/' method='POST'>
 					<fieldset>
-						<legend>Enter whatever wienerwobbler:</legend>
+						<legend>Basic Info:</legend>
 							<label htmlFor='name'>Name:</label>
 							<input name='name' id='name' type='text'/><br/>
 
@@ -61,7 +61,7 @@ class Form extends React.Component {
 							<input name='age' id='age' type='number' min='18' max='99'/><br/>
 
 							<label htmlFor='submit'> Submit:</label>
-							<input id='submit' type='submit' value='Suck it Dick head' />
+							<input id='submit' type='submit' value='Submit' />
 					</fieldset>
 				</form>)
 	}

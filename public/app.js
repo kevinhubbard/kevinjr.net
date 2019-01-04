@@ -213,7 +213,7 @@ var Form = function (_React$Component6) {
 					React.createElement(
 						'legend',
 						null,
-						'Enter whatever wienerwobbler:'
+						'Basic Info:'
 					),
 					React.createElement(
 						'label',
@@ -241,7 +241,7 @@ var Form = function (_React$Component6) {
 						{ htmlFor: 'submit' },
 						' Submit:'
 					),
-					React.createElement('input', { id: 'submit', type: 'submit', value: 'Suck it Dick head' })
+					React.createElement('input', { id: 'submit', type: 'submit', value: 'Submit' })
 				)
 			);
 		}
