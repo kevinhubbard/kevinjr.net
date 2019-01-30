@@ -1,37 +1,38 @@
 {
-  "name": "kevinjr",
-  "version": "1.0.1",
-  "private": true,
+  "name": "kevin-hubbards-portfolio",
+  "version": "1.0.0",
+  "engines": {
+    "node": "6.10.1"
+  },
+  "description": "My Portfolio",
+  "main": "server.js",
   "scripts": {
-    "start": "node app.js",
-    "compile": "babel public/jsx --presets react,es2015 --out-dir public",
-    "watch": "babel public/jsx --presets react,es2015 --out-dir public --watch"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
   },
-  "dependencies": {
-    "body-parser": "^1.18.3",
-    "ee-first": "^1.1.1",
-    "express": "^4.16.4",
-    "mongoose": "^5.4.1"
-  },
-  "description": "Personal Blog Site",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/kevinhubbard/kevinjr.net.git"
+    "url": "git+https://github.com/kevinhubbard/New-Portfolio.git"
   },
   "keywords": [
-    "Full-Stack"
+    "node.js",
+    "express",
+    "handlebars",
+    "heroku"
   ],
-  "author": "Kevin H",
+  "author": "Kevin Hubbard",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/kevinhubbard/kevinjr.net/issues"
+    "url": "https://github.com/kevinhubbard/New-Portfolio/issues"
   },
-  "homepage": "https://github.com/kevinhubbard/kevinjr.net#readme",
-  "devDependencies": {
-    "babel-cli": "^6.26.0",
-    "babel-preset-es2015": "^6.24.1",
-    "babel-preset-react": "^6.24.1",
-    "react": "^16.6.3",
-    "react-dom": "^16.6.3"
+  "homepage": "https://github.com/kevinhubbard/New-Portfolio#readme",
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "bootstrap": "^3.3.7",
+    "express": "^4.15.2",
+    "express-handlebars": "^3.0.0",
+    "express-robots-middleware": "^1.0.1",
+    "jquery": "^3.2.1",
+    "mongodb": "^2.2.30"
   }
 }
