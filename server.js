@@ -59,12 +59,12 @@ app.get('/portfolio', function (req, res) {
 });
 
 //GETS RESUME ROUTE
-app.get('/resume', function(req, res){
-	var tempFile = '/assets/resume/KevinHubbard.pdf';
-	fs.readFile(__dirname + tempFile, function(err,data){
-		res.contentType('application/pdf');
+app.get('/resume', function (req, res) {
+	var resume = './assets/resume/KevinHubbard.pdf';
+	fs.readFile(resume, function(err,data) {
+		res.setHeader('Content-type', 'application/pdf');
 		res.send(data);
-	});
+	})
 });
 
 //POST USER INFO FROM CONTACT PAGE
