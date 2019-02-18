@@ -3,7 +3,10 @@ $(document).ready(function() {
 var $nameInput = $('#nameInput');
 var $emailInput = $('#emailInput');
 var $msgInput = $('#msgInput');
+var $foot = $('#foot');
+var year = new Date().getFullYear();
 
+$foot.append(year);
 
 
 function clearUser() {
@@ -17,7 +20,6 @@ $(".card").flip({
   axis: 'x',
   trigger: 'hover'
 });
-console.log('app.js loaded');
 
 
 });
