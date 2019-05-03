@@ -96,3 +96,13 @@ li{
 }
 
 
+/* ~~~~~~~~~~~~~~~~~~~~~~/admin~~~~~~~~~~~~~~~~~~~~~~~~~ */
+.blogInput{
+  display: block;
+}
+
+#blogForm{
+  width: 750px;
+  height: 400px;
+  margin: 0 auto;
+}

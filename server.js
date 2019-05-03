@@ -4,8 +4,11 @@ var exphbs = require('express-handlebars');
 var expressRobotsMiddleware = require('express-robots-middleware');
 var path = require('path');
 var MongoClient = require('mongodb').MongoClient;
+var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
 var fs = require('fs');
+var Contact = require('./assets/js/models/contactModel.js');
+var Blog = require('./assets/js/models/blogModel.js');
 
 //DEFINES APP METHOD
 var app = express();
@@ -28,8 +31,6 @@ var robotsMiddleware = expressRobotsMiddleware([{
 	CrawlDelay: '5'
 }]);
 
-//SETS DB CONNECTION URI STRING
-var URI = 'mongodb://heroku_3pj31sf1:73t6prtueeq1a9c40ljtit5s31@ds127883.mlab.com:27883/heroku_3pj31sf1';
 
 //SETS HANDLEBARS AS OUR MAIN VIEW ENGINE AND USES MAIN AS DEFAULT LAYOUT
 app.engine('handlebars', exphbs({ defaultLayout: 'main'}));
@@ -43,9 +44,28 @@ app.get('/', function (req, res){
 	res.render('index');
 });
 
-//GETS ABOUT ME ROUTE
-app.get('/about', function(req, res){
-	res.render('about');
+//GETS ADMIN ROUTE
+app.get('/admin', function(req, res){
+	res.render('admin');
+});
+
+app.post('/admin', urlencodedParser, function(req,res){
+
+	var post = new Blog({
+		title: req.body.title,
+		author: req.body.author,
+		body: req.body.body,
+		date: Date.now()
+	});
+
+	post.save(function(err){
+		if (err) return handleError(err);
+		res.render('admin');
+ 	});
+});
+//GETS BLOG ROUTE
+app.get('/blog', function(req, res){
+	res.render('blog');
 });
 
 //GETS CONTACT ROUTE FOR PORTFOLIO
@@ -70,28 +90,18 @@ app.get('/resume', function (req, res) {
 //POST USER INFO FROM CONTACT PAGE
 app.post('/thankyou', urlencodedParser, function(req, res){
 
-	console.log(req.body.name);
-	console.log(req.body.email);
-	console.log(req.body.msg);
-	console.log(req.body.role);
+	var info = new Contact({
+		name: req.body.name,
+		email: req.body.email,
+		msg: req.body.msg,
+		role: req.body.role,
+		date: Date.now()
+	}); 
 
-	//LOG USER INPUT TO DATABASE
-	MongoClient.connect(URI, function(err, db){
-		if(err){
-			console.log(err);
-		} else {
-			var userInput = db.collection('userInput');
-			userInput.insertOne({
-				name: req.body.name,
-				email: req.body.email,
-				msg: req.body.msg,
-				role:req.body.role
-			});
-			console.log('successfully submitted data to MONGODB');
-		}
+	info.save(function(err){
+		if (err) return handleError(err);
+		res.render('thankyou', {name: req.body.name, email: req.body.email});
 	});
-	
-	res.render('thankyou', {name: req.body.name, email: req.body.email});
 });
 
 //404 CATCH FOR PORTFOLIO
