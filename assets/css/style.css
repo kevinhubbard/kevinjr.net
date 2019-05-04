@@ -1,8 +1,7 @@
+/* ~~~~~~~~~~~~~~~~~~~~~~/mainLayout~~~~~~~~~~~~~~~~~~~~~ */
 html {
   position: relative;
   min-height: 100%;
-
-
 }
 body {
   /* Margin bottom by footer height */
@@ -19,6 +18,7 @@ body {
   height: 60px;
   background-color: #f5f5f5;
 }
+
 footer p{
   color: black;
 }
@@ -27,10 +27,55 @@ footer{
   margin: 50px 0px 0px 0px;
 }
 
-h1, h2, h3, label{
-	text-decoration: underline;
+/* ~~~~~~~~~~~~~~~~~~~~~~/index~~~~~~~~~~~~~~~~~~~~~~~~~ */
+.headline{
+  color: white;
+  text-decoration: underline;
+}
+
+#about {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  letter-spacing: 1px;
   color: white;
 }
+/* ~~~~~~~~~~~~~~~~~~~~~~/admin~~~~~~~~~~~~~~~~~~~~~~~~~ */
+.formLabel{
+  display: block;
+  color: white;
+}
+
+#blogForm{
+  width: 750px;
+  height: 750px;
+  margin: 0 auto;
+}
+
+.ck-content{
+  min-height: 150px;
+}
+/* ~~~~~~~~~~~~~~~~~~~~~~/blog~~~~~~~~~~~~~~~~~~~~~~~~~ */
+#blogPage{
+  color: white;
+}
+
+#postEntry{
+  color:white;
+  width: 750px;
+  height: 100%;
+  margin: 0 auto;
+}
+
+.post{
+  border: 2px solid white;
+  padding-left: 5px;
+}
+
+.postTitle{
+  line-height: 1em;
+}
+/* ~~~~~~~~~~~~~~~~~~~~~~/other~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
 .skills{
 text-align: center;
@@ -44,17 +89,6 @@ text-align: center;
   margin-bottom: 5px;
 }
 
-p {
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 16px;
-  line-height: 1.5;
-  letter-spacing: 1px;
-  color: white;
-}
-
-#about{
-  color: black;
-}
 
 #portPic {
   display: block;
@@ -62,7 +96,6 @@ p {
   margin-bottom: 20px;
   border-radius: 25px;
 }
-
 
 #connect{
   margin: 0 auto;
@@ -91,18 +124,3 @@ p {
   text-decoration: none;
 }
 
-li{
-  color: white;
-}
-
-
-/* ~~~~~~~~~~~~~~~~~~~~~~/admin~~~~~~~~~~~~~~~~~~~~~~~~~ */
-.blogInput{
-  display: block;
-}
-
-#blogForm{
-  width: 750px;
-  height: 400px;
-  margin: 0 auto;
-}

@@ -63,9 +63,13 @@ app.post('/admin', urlencodedParser, function(req,res){
 		res.render('admin');
  	});
 });
+
 //GETS BLOG ROUTE
-app.get('/blog', function(req, res){
-	res.render('blog');
+app.get('/blog', urlencodedParser, function(req, res){
+
+	Blog.find({}).sort({date: 'descending'}).exec(function(err, posts){
+		res.render('blog', {posts: posts});
+	});
 });
 
 //GETS CONTACT ROUTE FOR PORTFOLIO
