@@ -5,7 +5,7 @@ My portfolio/blog was made using the MERN stack.
 Follows the MVC architecture.
 
 
-Some of the required packages include:
+### Some of the required packages include:
 * Bootstrap
 * JQuery
 * Body Parser
