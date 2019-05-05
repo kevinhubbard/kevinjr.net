@@ -1,20 +1,16 @@
-
-
 <div id="blogPage">
 	<h1 id="blogHeader">Blog</h1>
 	<p>Thank you for taking a look at my blog. Here I post random things that are going on in my life. </p>
 </div>
 
 <div id="postEntry">
-	
 	{{#each posts}}
 		<div class="post">
-			<h1 class="postTitle">Title: {{this.title}}</h1>
+			<h1 class="postTitle">{{this.title}}</h1>
 			<h4 class="postAuthor">Author: {{this.author}}</h4>
 			<h6 class="postDate">Date: {{this.date}}</h6>
 			<p class="postBody">{{{this.body}}}</p>
 		</div>
 		<hr>
-	{{/each}}
-	
+	{{/each}}	
 </div>

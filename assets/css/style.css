@@ -51,13 +51,18 @@ footer{
   height: 750px;
   margin: 0 auto;
 }
-
 .ck-content{
   min-height: 150px;
 }
 /* ~~~~~~~~~~~~~~~~~~~~~~/blog~~~~~~~~~~~~~~~~~~~~~~~~~ */
+#blogHeader{
+  text-align: center;
+}
 #blogPage{
   color: white;
+  width: 550px;
+  margin: 0 auto;
+  margin-bottom: 50px;
 }
 
 #postEntry{
@@ -71,10 +76,16 @@ footer{
   border: 2px solid white;
   padding-left: 5px;
 }
-
-.postTitle{
-  line-height: 1em;
+.postAuthor{
+  line-height: 3px;
 }
+.postTitle{
+  padding-bottom: 10px;
+}
+.postBody{
+  padding-top: 5px;
+}
+
 /* ~~~~~~~~~~~~~~~~~~~~~~/other~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
 .skills{
