@@ -28,13 +28,13 @@
   "homepage": "https://github.com/kevinhubbard/New-Portfolio#readme",
   "dependencies": {
     "@ckeditor/ckeditor5-build-classic": "^12.1.0",
-    "body-parser": "^1.18.3",
+    "body-parser": "^1.19.0",
     "bootstrap": "^3.4.1",
     "express": "^4.15.2",
-    "express-handlebars": "^3.0.0",
+    "express-handlebars": "^3.0.2",
     "express-robots-middleware": "^1.0.1",
     "jquery": "^3.4.1",
-    "mongodb": "^2.2.30",
+    "mongodb": "^2.2.36",
     "mongoose": "^5.5.5"
   },
   "devDependencies": {
