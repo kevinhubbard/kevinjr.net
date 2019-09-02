@@ -4,6 +4,7 @@ var exphbs = require('express-handlebars');
 var expressRobotsMiddleware = require('express-robots-middleware');
 var path = require('path');
 var bodyParser = require('body-parser');
+var multer = require('multer');
 
 
 // DEFINES APP METHOD
@@ -41,6 +42,7 @@ app.use('/contact', require('./routes/contact'));
 app.use('/portfolio', require('./routes/portfolio'));
 app.use('/resume', require('./routes/resume'));
 app.use('/thankyou', require('./routes/thankyou'));
+app.use('/login', require('./routes/login'));
 
 
 // 404 CATCH

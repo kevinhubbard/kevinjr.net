@@ -11,5 +11,30 @@ $(document).ready(function() {
 	  trigger: 'hover'
 	});
 
+
+
+/*var createPost = document.getElementById('createPost');
+var editPost = document.getElementById('editPost');
+
+var blogForm = document.getElementById('blogForm');
+var editBlog = document.getElementById('editBlog');
+
+editBlog.style.display = "none";
+
+
+function showEditPost(){
+	blogForm.style.display = "none";
+	editBlog.style.display = "block";
+}
+
+function showCreatePost(){
+	editBlog.style.display = "none";
+	blogForm.style.display = "block";
+}
+editPost.addEventListener('click', showEditPost, false );
+createPost.addEventListener('click', showCreatePost, false );*/
+
+
+
 });
 

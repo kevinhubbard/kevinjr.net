@@ -54,6 +54,13 @@ footer{
 .ck-content{
   min-height: 150px;
 }
+
+#editBlog{
+  width: 750px;
+  height: 750px;
+  margin: 0 auto;
+}
+
 /* ~~~~~~~~~~~~~~~~~~~~~~/blog~~~~~~~~~~~~~~~~~~~~~~~~~ */
 #blogHeader{
   text-align: center;
