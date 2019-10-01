@@ -36,9 +36,9 @@ app.get('/robots.txt', robotsMiddleware);
 
 // ROUTES
 app.use('/', require('./routes/index'));
-app.use('/admin', require('./routes/admin'));
+/*app.use('/admin', require('./routes/admin'));
 app.use('/blog', require('./routes/blog'));
-app.use('/contact', require('./routes/contact'));
+*/app.use('/contact', require('./routes/contact'));
 app.use('/portfolio', require('./routes/portfolio'));
 app.use('/resume', require('./routes/resume'));
 app.use('/thankyou', require('./routes/thankyou'));

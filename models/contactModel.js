@@ -4,7 +4,7 @@ var config = require('../config/config.js');
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
-var db = mongoose.createConnection(config.uri, {useNewUrlParser: true});
+mongoose.connect(MONGODB_URI, {useUnifiedTopology: true, useNewUrlParser: true});
 
 var contactSchema = new Schema({
 	name: String,
@@ -14,6 +14,15 @@ var contactSchema = new Schema({
 	date: {type: Date, default: Date.now} 
 });
 
-var Contact = db.model('Contact', contactSchema);
+var db = mongoose.connection;
 
-module.exports = Contact;
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', function() {
+  var Contact = model('Contact', contactSchema);
+  module.exports = Contact;
+});
+
+
+
+
+
