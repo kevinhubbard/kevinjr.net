@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
-mongoose.connect(MONGODB_URI, {useUnifiedTopology: true, useNewUrlParser: true});
+mongoose.connect(process.env.MONGODB_URI, {useUnifiedTopology: true, useNewUrlParser: true});
 
 var contactSchema = new Schema({
 	name: String,
