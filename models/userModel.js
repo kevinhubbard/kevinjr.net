@@ -1,4 +1,3 @@
-var config = require('../config/config.js');
 var mongoose = require('mongoose');
 var bcrypt = require('bcrypt');
 
