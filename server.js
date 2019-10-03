@@ -35,14 +35,14 @@ var robotsMiddleware = expressRobotsMiddleware([{
 app.get('/robots.txt', robotsMiddleware);
 
 // ROUTES
-app.use('/', require('./routes/index'));
+app.use('/', require('./controllers/index'));
 /*app.use('/admin', require('./routes/admin'));
 app.use('/blog', require('./routes/blog'));
-*/app.use('/contact', require('./routes/contact'));
-app.use('/portfolio', require('./routes/portfolio'));
-app.use('/resume', require('./routes/resume'));
-app.use('/thankyou', require('./routes/thankyou'));
-app.use('/login', require('./routes/login'));
+*/app.use('/contact', require('./controllers/contact'));
+app.use('/portfolio', require('./controllers/portfolio'));
+app.use('/resume', require('./controllers/resume'));
+app.use('/thankyou', require('./controllers/thankyou'));
+app.use('/login', require('./controllers/login'));
 
 
 // 404 CATCH

@@ -126,6 +126,10 @@ text-align: center;
   position: relative;
 }
 
+#apps{
+  text-align: center;
+}
+
 .text{
   position: absolute;
   top: 75%;
