@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
-mongoose.connect(process.env.MONGODB_URI, {useUnifiedTopology: true, useNewUrlParser: true});
+mongoose.connect('mongodb://heroku_g8cnkqnz:dvskprbp3ss4brfc50fq15c8pf@ds235658.mlab.com:35658/heroku_g8cnkqnz', { useNewUrlParser: true, useUnifiedTopology: true});
 
 var contactSchema = new Schema({
 	name: String,
@@ -11,14 +11,9 @@ var contactSchema = new Schema({
 	date: {type: Date, default: Date.now} 
 });
 
-var db = mongoose.connection;
+var Contact = mongoose.model('Contact', contactSchema);
 
-db.on('error', console.error.bind(console, 'connection error:'));
-db.once('open', function() {
-  var Contact = model('Contact', contactSchema);
-  module.exports = Contact;
-});
-
+module.exports = Contact;
 
 
 

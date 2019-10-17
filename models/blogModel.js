@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
-var db = mongoose.createConnection(process.env.MONGODB_URI, {useUnifiedTopology: true, useNewUrlParser: true});
+mongoose.connect('mongodb://heroku_g8cnkqnz:dvskprbp3ss4brfc50fq15c8pf@ds235658.mlab.com:35658/heroku_g8cnkqnz', { useNewUrlParser: true, useUnifiedTopology: true });
 
 var blogSchema = new Schema({
 	title: String,
@@ -10,6 +10,6 @@ var blogSchema = new Schema({
 	date: {type: Date, default: Date.now}
 });
 
-var Blog = db.model('Blog', blogSchema);
+var Blog = mongoose.model('Blog', blogSchema);
 
 module.exports = Blog;
