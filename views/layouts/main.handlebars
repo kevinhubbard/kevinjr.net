@@ -17,7 +17,7 @@
   <link rel="stylesheet" type="text/css" href="/css/style.css">
 </head>
 <body>
-<!-- Fixed navbar -->
+<!-- Fixed navbar
  <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container">
         <div class="navbar-header">
@@ -35,7 +35,7 @@
             <li><a href="/portfolio">Portfolio</a></li>
             <li><a href="/contact">Contact</a></li>
             <li><a href="/resume">Resume</a></li>
-            <!-- <li><a href="/blog">Blog</a></li> -->
+            <li><a href="/blog">Blog</a></li>
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Apps<span class="caret"></span></a>
               <ul class="dropdown-menu">
@@ -48,9 +48,24 @@
               </ul>
             </li>
           </ul>
-        </div><!--/.nav-collapse -->
+        </div>/.nav-collapse
     </div>
-</nav>
+</nav> -->
+<div id="openNav">
+  <div class="hamburgerMenu"></div>
+  <div class="hamburgerMenu"></div>
+  <div class="hamburgerMenu"></div>
+</div>
+
+<div id="sideNav" class="sideNav">
+  <span id="closeNav">Close</span>
+  <ul>
+    <li><a href="/">Home</a></li>
+    <li><a href="/portfolio">Portfolio</a></li>
+    <li><a href="/contact">Contact</a></li>
+    <li><a href="/resume">Resume</a></li>
+  </ul>
+</div>
 {{{body}}}
 <br>
 <footer class="footer">
@@ -59,5 +74,27 @@
       <p id="foot">Kevin Hubbard &copy;</p>
    </div>
 </footer>
+
+<script type="text/javascript">
+  document.getElementById('sideNav').style.display = 'none';
+  var sideNav = document.getElementById('sideNav');
+
+  document.getElementById('closeNav').addEventListener('click', (e)=>{
+    
+    if(sideNav.style.display === 'block'){
+      sideNav.style.display = 'none';
+    }
+  });
+
+  document.getElementById('openNav').addEventListener('click', (e) =>{
+    e.preventDefault();
+
+    if(sideNav.style.display === 'none') {
+      sideNav.style.display = 'block';
+    } else {
+      sideNav.style.display = 'none';
+    }
+  });
+</script>
 </body>
 </html>

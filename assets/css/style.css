@@ -3,6 +3,40 @@ html {
   position: relative;
   min-height: 100%;
 }
+
+.hamburgerMenu {
+  width: 35px;
+  height: 5px;
+  background-color: black;
+  margin: 6px; 0
+}
+
+#sideNav{
+  background-color: blue;
+  height: 90%;
+  width: 10%;
+  position: fixed;
+  z-index: 2;
+  top: 0;
+  left: 0;
+}
+#sideNav ul {
+  margin-top: 100%;
+}
+#sideNav ul li {
+  margin-top: 50%;
+}
+
+#sideNav ul li {
+  list-style-type: none;
+}
+
+#closeNav{
+  padding-top: 10px;
+  padding-right: 15px;
+  float:right;
+}
+
 body {
   /* Margin bottom by footer height */
   margin-bottom: 60px;
