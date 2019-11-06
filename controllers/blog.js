@@ -8,7 +8,10 @@ var urlencodedParser = bodyParser.urlencoded({ extended: false});
 router.get('/', urlencodedParser, function(req, res){
 
 	Blog.find({}).sort({date: 'descending'}).exec(function(err, posts){
-		res.render('blog', {posts: posts});
+		res.render('blog', {
+			posts: posts,
+			css: ['blog.css']
+		});
 	});
 });
 

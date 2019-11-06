@@ -4,44 +4,62 @@ html {
   min-height: 100%;
 }
 
+body {
+  margin-bottom: 60px;
+  padding-top: 65px;
+  background: url(../images/background.png);
+}
+
+#openNav {
+  display: inline-block;
+  width: auto;
+  margin-left: 2%;
+}
 .hamburgerMenu {
   width: 35px;
   height: 5px;
-  background-color: black;
-  margin: 6px; 0
+  background-color: white;
+  margin: 6px;
 }
 
-#sideNav{
+#sideMenu{
   background-color: blue;
-  height: 90%;
+  height: 100%;
   width: 10%;
-  position: fixed;
+  position: absolute;
   z-index: 2;
   top: 0;
   left: 0;
 }
+
+#sideNav{
+  background-color: pink;
+}
+
 #sideNav ul {
-  margin-top: 100%;
+  padding: 0;
+  list-style-type: none;
+
 }
 #sideNav ul li {
   margin-top: 50%;
+  text-align: center;
+  padding: 10px 0px 10px 0px;
 }
 
-#sideNav ul li {
-  list-style-type: none;
+#sideNav a {
+  font-size: 25px;
+  color: white;
 }
 
-#closeNav{
-  padding-top: 10px;
-  padding-right: 15px;
-  float:right;
+.headline{
+  color: white;
+  text-decoration: underline;
 }
 
-body {
-  /* Margin bottom by footer height */
-  margin-bottom: 60px;
-  padding-top: 65px;
-  background: url(../images/background.png);
+#connect{
+  margin: 0 auto;
+  text-align: center;
 }
 
 .footer {
@@ -60,123 +78,3 @@ footer p{
 footer{
   margin: 50px 0px 0px 0px;
 }
-
-/* ~~~~~~~~~~~~~~~~~~~~~~/index~~~~~~~~~~~~~~~~~~~~~~~~~ */
-.headline{
-  color: white;
-  text-decoration: underline;
-}
-
-#about {
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 16px;
-  line-height: 1.5;
-  letter-spacing: 1px;
-  color: white;
-}
-/* ~~~~~~~~~~~~~~~~~~~~~~/admin~~~~~~~~~~~~~~~~~~~~~~~~~ */
-.formLabel{
-  display: block;
-  color: white;
-}
-
-#blogForm{
-  width: 750px;
-  height: 750px;
-  margin: 0 auto;
-}
-.ck-content{
-  min-height: 150px;
-}
-
-#editBlog{
-  width: 750px;
-  height: 750px;
-  margin: 0 auto;
-}
-
-/* ~~~~~~~~~~~~~~~~~~~~~~/blog~~~~~~~~~~~~~~~~~~~~~~~~~ */
-#blogHeader{
-  text-align: center;
-}
-#blogPage{
-  color: white;
-  width: 550px;
-  margin: 0 auto;
-  margin-bottom: 50px;
-}
-
-#postEntry{
-  color:white;
-  width: 750px;
-  height: 100%;
-  margin: 0 auto;
-}
-
-.post{
-  border: 2px solid white;
-  padding-left: 5px;
-}
-.postAuthor{
-  line-height: 3px;
-}
-.postTitle{
-  padding-bottom: 10px;
-}
-.postBody{
-  padding-top: 5px;
-}
-
-/* ~~~~~~~~~~~~~~~~~~~~~~/other~~~~~~~~~~~~~~~~~~~~~~~~~ */
-
-.skills{
-text-align: center;
-}
-
-.card {
-  display: inline-block;
-  position: relative;
-  width: 128px;
-  height: 128px;
-  margin-bottom: 5px;
-}
-
-
-#portPic {
-  display: block;
-  margin: 0 auto;
-  margin-bottom: 20px;
-  border-radius: 25px;
-}
-
-#connect{
-  margin: 0 auto;
-  text-align: center;
-}
-
-.project {
-  display: inline-block;
-  margin-bottom: 10px;
-  position: relative;
-}
-
-#apps{
-  text-align: center;
-}
-
-.text{
-  position: absolute;
-  top: 75%;
-  width: 100%;
-  color: white;
-  font-weight: bold;
-  background-color: grey;
-  text-align: center;
-}
-
-.err404{
-  text-align: center;
-  color: black;
-  text-decoration: none;
-}
-

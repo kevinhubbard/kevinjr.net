@@ -3,7 +3,9 @@ var router = express.Router();
 
 //contact route
 router.get('/', function(req, res){
-	res.render('contact');
+	res.render('contact',{
+		css: ['style.css']
+	});
 });
 
 module.exports = router;

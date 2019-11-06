@@ -28,7 +28,9 @@ router.post('/', urlencodedParser, cpUpload,  function(req,res){
 
 	post.save(function(err){
 		if (err) return handleError(err);
-		res.render('admin');
+		res.render('admin',{
+			css: ['admin.css']
+		});
  	});
 });
 

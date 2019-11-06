@@ -8,13 +8,16 @@
   <link href="/images/khfavicon.ico" rel="shortcut icon">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Kevin Hubbard</title>
-	<link rel="stylesheet" type="text/css" href="/bootstrap/dist/css/bootstrap.min.css">
-	<script type="text/javascript" src='/jquery/dist/jquery.min.js'></script>
-	<script type="text/javascript" src='/bootstrap/dist/js/bootstrap.min.js'></script>
-  <script type="text/javascript" src='/js/jquery.flip.min.js'></script>
-  <script type="text/javascript" src='/js/app.js'></script>
-  <link rel="stylesheet" type="text/css" href="/css/style.css">
+  <title>Kevin Hubbard</title>
+  <link rel="stylesheet" type="text/css" href="/bootstrap/dist/css/bootstrap.min.css">
+  <script type="text/javascript" src='/jquery/dist/jquery.min.js'></script>
+  <script type="text/javascript" src='/bootstrap/dist/js/bootstrap.min.js'></script>
+  {{#each js}}
+    <script type="text/javascript" src='/js/{{this}}'></script>
+  {{/each}}
+  {{#each css}}
+    <link rel="stylesheet" type="text/css" href="/css/{{this}}">
+  {{/each}}
 </head>
 <body>
 <!-- Fixed navbar
@@ -51,21 +54,32 @@
         </div>/.nav-collapse
     </div>
 </nav> -->
+
 <div id="openNav">
   <div class="hamburgerMenu"></div>
   <div class="hamburgerMenu"></div>
   <div class="hamburgerMenu"></div>
 </div>
 
-<div id="sideNav" class="sideNav">
-  <span id="closeNav">Close</span>
-  <ul>
-    <li><a href="/">Home</a></li>
-    <li><a href="/portfolio">Portfolio</a></li>
-    <li><a href="/contact">Contact</a></li>
-    <li><a href="/resume">Resume</a></li>
-  </ul>
+
+<div id="sideMenu">
+  <div id="sideNav" >
+
+   <ul>
+      <li><a class="navLink" href="/">Home</a></li>
+      <li><a class="navLink" href="/portfolio">Portfolio</a></li>
+      <li><a class="navLink" href="/contact">Contact</a></li>
+      <li><a class="navLink" href="/resume">Resume</a></li>
+    </ul>
+  </div>
+
 </div>
+
+
+
+
+
+
 {{{body}}}
 <br>
 <footer class="footer">
@@ -76,25 +90,27 @@
 </footer>
 
 <script type="text/javascript">
-  document.getElementById('sideNav').style.display = 'none';
-  var sideNav = document.getElementById('sideNav');
+  var openNav = document.getElementById('openNav');
+  var sideMenu = document.getElementById('sideMenu');
+  sideMenu.style.display = 'none';
 
-  document.getElementById('closeNav').addEventListener('click', (e)=>{
-    
-    if(sideNav.style.display === 'block'){
-      sideNav.style.display = 'none';
-    }
-  });
-
-  document.getElementById('openNav').addEventListener('click', (e) =>{
+  openNav.addEventListener('click', (e) =>{
     e.preventDefault();
-
-    if(sideNav.style.display === 'none') {
-      sideNav.style.display = 'block';
+    if(sideMenu.style.display === 'none') {
+      sideMenu.style.display = 'block';
+      openNav.style.display = 'hidden';
     } else {
-      sideNav.style.display = 'none';
+      sideMenu.style.display = 'none';
+      openNav.style.display = 'inline-block';
     }
   });
+
+/*  sideMenu.addEventListener('mouseout', () =>{
+    sideMenu.style.display = 'none';
+    openNav.style.display = 'inline-block';
+  });*/
+
+
 </script>
 </body>
 </html>

@@ -1,0 +1,20 @@
+.project {
+  display: inline-block;
+  margin-bottom: 10px;
+  position: relative;
+}
+
+#apps{
+  text-align: center;
+}
+
+.appName{
+  position: absolute;
+  top: 75%;
+  width: 100%;
+  color: white;
+  font-weight: bold;
+  background-color: grey;
+  text-align: center;
+}
+
