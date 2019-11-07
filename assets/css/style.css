@@ -22,18 +22,16 @@ body {
   margin: 6px;
 }
 
-#sideMenu{
-  background-color: blue;
+
+
+#sideNav{
+    background-color: blue;
   height: 100%;
   width: 10%;
   position: absolute;
   z-index: 2;
   top: 0;
   left: 0;
-}
-
-#sideNav{
-  background-color: pink;
 }
 
 #sideNav ul {

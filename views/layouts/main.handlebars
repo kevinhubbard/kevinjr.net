@@ -62,25 +62,24 @@
 </div>
 
 
-<div id="sideMenu">
-  <div id="sideNav" >
 
-   <ul>
+  <div id="sideNav" >
+   <ul id='links'>
       <li><a class="navLink" href="/">Home</a></li>
-      <li><a class="navLink" href="/portfolio">Portfolio</a></li>
+      <li><a class="navLink" href="/portfolio">Projects</a></li>
       <li><a class="navLink" href="/contact">Contact</a></li>
       <li><a class="navLink" href="/resume">Resume</a></li>
     </ul>
   </div>
 
-</div>
 
 
 
 
 
-
+<div id="fart">
 {{{body}}}
+
 <br>
 <footer class="footer">
     <div class="container">
@@ -88,27 +87,28 @@
       <p id="foot">Kevin Hubbard &copy;</p>
    </div>
 </footer>
+</div>
 
 <script type="text/javascript">
   var openNav = document.getElementById('openNav');
-  var sideMenu = document.getElementById('sideMenu');
-  sideMenu.style.display = 'none';
+  var sideNav = document.getElementById('sideNav');
+  sideNav.style.display = 'none';
 
   openNav.addEventListener('click', (e) =>{
     e.preventDefault();
-    if(sideMenu.style.display === 'none') {
-      sideMenu.style.display = 'block';
+    if(sideNav.style.display === 'none') {
+      sideNav.style.display = 'block';
       openNav.style.display = 'hidden';
     } else {
-      sideMenu.style.display = 'none';
+      sideNav.style.display = 'none';
       openNav.style.display = 'inline-block';
     }
   });
 
-/*  sideMenu.addEventListener('mouseout', () =>{
-    sideMenu.style.display = 'none';
+  sideNav.addEventListener('mouseleave', () =>{
+    sideNav.style.display = 'none';
     openNav.style.display = 'inline-block';
-  });*/
+  });
 
 
 </script>
