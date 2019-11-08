@@ -20,40 +20,6 @@
   {{/each}}
 </head>
 <body>
-<!-- Fixed navbar
- <nav class="navbar navbar-default navbar-fixed-top">
-    <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="/">Kevin Hubbard</a>
-        </div>
-        <div id="navbar" class="collapse navbar-collapse">
-          <ul class="nav navbar-nav">
-            <li class="active"><a href="/">Home</a></li>
-            <li><a href="/portfolio">Portfolio</a></li>
-            <li><a href="/contact">Contact</a></li>
-            <li><a href="/resume">Resume</a></li>
-            <li><a href="/blog">Blog</a></li>
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Apps<span class="caret"></span></a>
-              <ul class="dropdown-menu">
-                <li><a href="https://golfcard.herokuapp.com/">Golfcard</a></li>
-                <li><a href="https://klipps-landscaping.herokuapp.com/">Klipps Landscaping</a></li>
-                <li><a href="https://east-windsor-deli.herokuapp.com/">East Windsor Deli</a></li>
-                <li><a href="https://github.com/kevinhubbard/liri-node-app">LIRI</a></li>
-                <li><a href="https://phone-file.herokuapp.com/">Send A Text</a></li>
-                <li><a href="https://github.com/kevinhubbard/folderSync">Folder Sync</a></li>
-              </ul>
-            </li>
-          </ul>
-        </div>/.nav-collapse
-    </div>
-</nav> -->
 
 <div id="openNav">
   <div class="hamburgerMenu"></div>
@@ -77,7 +43,7 @@
 
 
 
-<div id="fart">
+
 {{{body}}}
 
 <br>
@@ -87,26 +53,27 @@
       <p id="foot">Kevin Hubbard &copy;</p>
    </div>
 </footer>
-</div>
+
 
 <script type="text/javascript">
   var openNav = document.getElementById('openNav');
   var sideNav = document.getElementById('sideNav');
-  sideNav.style.display = 'none';
+ // sideNav.style.display = 'none';
 
-  openNav.addEventListener('click', (e) =>{
+  openNav.addEventListener('mouseover', (e) =>{
     e.preventDefault();
-    if(sideNav.style.display === 'none') {
+/*    if(sideNav.style.display === 'none') {
       sideNav.style.display = 'block';
       openNav.style.display = 'hidden';
     } else {
       sideNav.style.display = 'none';
       openNav.style.display = 'inline-block';
-    }
+    }*/
+    sideNav.style.width = '10%';
   });
 
   sideNav.addEventListener('mouseleave', () =>{
-    sideNav.style.display = 'none';
+    sideNav.style.width = '0';
     openNav.style.display = 'inline-block';
   });
 
