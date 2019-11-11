@@ -14,13 +14,32 @@ router.post('/', urlencodedParser, function(req, res){
 		email: req.body.email,
 		msg: req.body.msg,
 		role: req.body.role,
+		state: req.body.state,
 		date: Date.now()
 	}); 
 
-	info.save(function(err){
-		if (err) return handleError(err);
-		res.render('thankyou', {name: req.body.name, email: req.body.email});
-	});
+	if(info.state) {
+		res.render('thankyou', {
+			name: req.body.name,
+			email: req.body.email,
+			css: ['style.css']
+		});
+	} else {
+		info.save(function(err){
+			if (err) return handleError(err);
+			res.render('thankyou', {
+				name: req.body.name, 
+				email: req.body.email, 
+				css: ['style.css']
+			});
+		});
+
+	}
+
+
+
+
+
 });
 
 module.exports = router;

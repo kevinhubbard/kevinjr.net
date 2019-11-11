@@ -8,6 +8,7 @@ var contactSchema = new Schema({
 	email: String,
 	msg: String,
 	role: String,
+	state: String,
 	date: {type: Date, default: Date.now} 
 });
 
