@@ -46,6 +46,15 @@
     </ul>
   </div>
 
+<div id="loginDiv" style="visibility: hidden;">
+  <div id="close">X</div>
+  <form id="loginForm" >
+    <input placeholder="username" type="text" name="username">
+    <input placeholder="password" type="text" name="password">
+    <input type="submit" name="login" value="Login">
+  </form>
+</div>
+
 
 {{{body}}}
 
@@ -53,7 +62,11 @@
 <footer class="footer">
     <div class="container">
       <br>
-      <p id="foot">Kevin Hubbard &copy;</p>
+      
+      <ul id="footLinks">
+        <li><p id="foot">Kevin Hubbard &copy;</p></li>
+        <li><a href="#" id="admin">Login</a></li>
+      </ul>
    </div>
 </footer>
 
@@ -70,6 +83,30 @@
     sideNav.style.width = '0';
     openNav.style.display = 'inline-block';
   });
+
+
+  var admin = document.getElementById('admin');
+  admin.addEventListener('click', (e)=>{
+    e.preventDefault();
+    var login = document.getElementById('loginDiv');
+
+    if(login.style.visibility === 'hidden') {
+      login.style.visibility = 'visible';
+    } else {
+      login.style.visibility = 'hidden';
+    }
+
+  });
+
+  document.getElementById('close').addEventListener('click', (e)=>{
+    e.preventDefault();
+    document.getElementById('loginDiv').style.visibility = 'hidden';
+  });
+
+
+
+
+
 </script>
 
 </body>
