@@ -18,3 +18,5 @@ Follows the MVC architecture.
 * Adding login
 * Image Upload for blog
 * Edit/Delete Blog posts
+
+New things to come soon.
