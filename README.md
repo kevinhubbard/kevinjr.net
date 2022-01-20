@@ -19,4 +19,4 @@ Follows the MVC architecture.
 * Image Upload for blog
 * Edit/Delete Blog posts
 
-New things to come soon.
+working test
