@@ -9,13 +9,6 @@ var mongoose = require('mongoose');
 
 mongoose.connect(process.env.MONGODB_URI);
 
-const db = mongoose.connection;
-db.on('error', console.error.bind(console, 'connection error: '));
-db.once('open', function() {
-	console.log('connected successfully.');
-});
-
-
 // DEFINES APP METHOD
 var app = express();
 
@@ -45,13 +38,10 @@ app.get('/robots.txt', robotsMiddleware);
 
 // ROUTES
 app.use('/', require('./controllers/index'));
-/*app.use('/admin', require('./routes/admin'));
-app.use('/blog', require('./routes/blog'));
-*/app.use('/contact', require('./controllers/contact'));
+app.use('/contact', require('./controllers/contact'));
 app.use('/portfolio', require('./controllers/portfolio'));
 app.use('/resume', require('./controllers/resume'));
 app.use('/thankyou', require('./controllers/thankyou'));
-//app.use('/login', require('./controllers/login'));
 
 
 // 404 CATCH
