@@ -5,6 +5,17 @@ var expressRobotsMiddleware = require('express-robots-middleware');
 var path = require('path');
 var bodyParser = require('body-parser');
 var multer = require('multer');
+var mongoose = require('mongoose');
+
+mongoose.connect(process.env.MONGODB_URI || 'mongodb+srv://user:root@kevinjr.my9dq.mongodb.net/kjrProduction?retryWrites=true&w=majority', {
+	useNewUrlParser: true
+});
+
+const db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error: '));
+db.once('open', function() {
+	console.log('connected successfully.');
+});
 
 
 // DEFINES APP METHOD
