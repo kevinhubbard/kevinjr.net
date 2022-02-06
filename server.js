@@ -4,7 +4,6 @@ var exphbs = require('express-handlebars');
 var expressRobotsMiddleware = require('express-robots-middleware');
 var path = require('path');
 var bodyParser = require('body-parser');
-var multer = require('multer');
 var mongoose = require('mongoose');
 
 mongoose.connect(process.env.MONGODB_URI);
