@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var bodyParser = require('body-parser');
-//var Contact = require('../models/contactModel.js');
+var Contact = require('../models/contactModel.js');
 
 
 var urlencodedParser = bodyParser.urlencoded({ extended: false});
