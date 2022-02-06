@@ -42,7 +42,7 @@ app.use('/blog', require('./routes/blog'));
 app.use('/portfolio', require('./controllers/portfolio'));
 app.use('/resume', require('./controllers/resume'));
 app.use('/thankyou', require('./controllers/thankyou'));
-app.use('/login', require('./controllers/login'));
+//app.use('/login', require('./controllers/login'));
 
 
 // 404 CATCH

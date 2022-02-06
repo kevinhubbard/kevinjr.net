@@ -27,14 +27,14 @@
   },
   "homepage": "https://github.com/kevinhubbard/New-Portfolio#readme",
   "dependencies": {
-    "body-parser": "^1.19.0",
+    "body-parser": "^1.19.1",
     "bootstrap": "^3.4.1",
-    "express": "^4.17.1",
+    "express": "^4.17.2",
     "express-handlebars": "^3.1.0",
     "express-robots-middleware": "^1.0.1",
     "jquery": "^3.6.0",
-    "mongoose": "^6.1.7",
-    "multer": "^1.4.2",
+    "mongoose": "^6.2.0",
+    "multer": "^1.4.4",
     "passport-local": "^1.0.0"
   },
   "devDependencies": {

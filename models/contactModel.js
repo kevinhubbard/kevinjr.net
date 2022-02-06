@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
-mongoose.connect(process.env.MONGODB_URI);
+mongoose.connect('mongodb+srv://user:root@kevinjr.my9dq.mongodb.net/kjrProduction?retryWrites=true&w=majority');
 
 var contactSchema = new Schema({
 	name: String,
