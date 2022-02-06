@@ -7,11 +7,7 @@ var bodyParser = require('body-parser');
 var multer = require('multer');
 var mongoose = require('mongoose');
 
-var uri = 'mongodb+srv://user:root@kevinjr.my9dq.mongodb.net/kjrProduction?retryWrites=true&w=majority';
-
-mongoose.connect(uri, {
-	useNewUrlParser: true
-});
+mongoose.connect(process.env.MONGODB_URI);
 
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error: '));
