@@ -3,7 +3,7 @@ var bcrypt = require('bcrypt');
 
 var Schema = mongoose.Schema;
 
-mongoose.connect('mongodb://heroku_g8cnkqnz:dvskprbp3ss4brfc50fq15c8pf@ds235658.mlab.com:35658/heroku_g8cnkqnz');
+mongoose.connect(process.env.MONGODB_URI);
 
 var adminSchema = new Schema({
 	username: {
