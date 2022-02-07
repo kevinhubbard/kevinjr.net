@@ -1,7 +1,7 @@
 # Portfolio
 
 
-My portfolio/blog was made using the MERN stack.
+My portfolio/blog was made using Node, Express, Handlebars and MongoDb.  
 Follows the MVC architecture.
 
 
@@ -18,5 +18,3 @@ Follows the MVC architecture.
 * Adding login
 * Image Upload for blog
 * Edit/Delete Blog posts
-
-working test
