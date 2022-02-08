@@ -47,7 +47,6 @@ app.use('/portfolio', require('./controllers/portfolio'));
 app.use('/resume', require('./controllers/resume'));
 app.use('/thankyou', require('./controllers/thankyou'));
 
-
 // 404 CATCH
 app.use(function (req, res, next) {
 	res.status(404).render('404',{
