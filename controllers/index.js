@@ -9,14 +9,9 @@ router.get('/', function (req, res){
 	Hit.findOne({name: 'server'}, function(err, hit) {
 		var n = hit.number;
 		n++;
-		Hit.findOneAndUpdate({name: 'server'}, {number: n}, function() {
-		console.log('idk again');
+		Hit.findOneAndUpdate({name: 'server'}, {number: n});
 	});
-});
-
-
-
-
+	
 	res.render('index',{
 		css: ['style.css', 'index.css'],
 		js: ['jquery.flip.min.js','app.js']
