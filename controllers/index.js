@@ -1,16 +1,14 @@
 var express = require('express');
 var router = express.Router();
 var mongoose = require('mongoose');
-var Hit = require('../models/info.js');
+var Visit = require('../models/visit.js');
 
 //GETS INDEX ROUTE
-router.get('/', function (req, res){
+router.get('/', async function (req, res){
 
-	Hit.findOne({name: 'server'}, function(err, hit) {
-		var n = hit.number;
-		n++;
-		Hit.findOneAndUpdate({name: 'server'}, {number: n});
-	});
+	const doc = await Visit.findOne({name:'server'});
+	doc.number += 1;
+	await doc.save();
 	
 	res.render('index',{
 		css: ['style.css', 'index.css'],
