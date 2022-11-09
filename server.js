@@ -55,6 +55,9 @@ app.use(function (req, res, next) {
 });
 
 // START SERVER LISTENING
-app.listen(PORT, function () {
+/*app.listen(PORT, function () {
 	console.log('App listening on port: ' + PORT);
 });
+*/
+
+https.createServer(app).listen(PORT);
