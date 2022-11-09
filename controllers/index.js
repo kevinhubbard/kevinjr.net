@@ -4,11 +4,11 @@ var mongoose = require('mongoose');
 var Visit = require('../models/visit.js');
 
 //GETS INDEX ROUTE
-router.get('/', async function (req, res){
+router.get('/', function(req, res){
 
-	const doc = await Visit.findOne({name:'server'});
+	/*const doc = await Visit.findOne({name:'server'});
 	doc.number += 1;
-	await doc.save();
+	await doc.save();*/
 	
 	res.render('index',{
 		css: ['style.css', 'index.css'],
