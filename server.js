@@ -4,8 +4,6 @@ var exphbs = require('express-handlebars');
 var expressRobotsMiddleware = require('express-robots-middleware');
 var path = require('path');
 var bodyParser = require('body-parser');
-var mongoose = require('mongoose');
-
 
 // DEFINES APP METHOD
 var app = express();
@@ -20,7 +18,7 @@ app.use(bodyParser.urlencoded({extended: false}));
 var PORT = process.env.PORT || 3000;
 
 //SETS HANDLEBARS AS OUR MAIN VIEW ENGINE AND USES MAIN AS DEFAULT LAYOUT
-app.engine('handlebars', exphbs({ defaultLayout: 'main'}));
+app.engine('handlebars', exphbs.engine({ defaultLayout: 'main'}));
 app.set('view engine', 'handlebars');
 
 // ROBOTS.TXT MIDDLEWARE
@@ -40,6 +38,7 @@ app.use('/contact', require('./controllers/contact'));
 app.use('/portfolio', require('./controllers/portfolio'));
 app.use('/resume', require('./controllers/resume'));
 app.use('/thankyou', require('./controllers/thankyou'));
+app.use('/golfcard', require('./controllers/golfcard'));
 
 // 404 CATCH
 app.use(function (req, res, next) {
@@ -52,5 +51,3 @@ app.use(function (req, res, next) {
 app.listen(PORT, function () {
 	console.log('App listening on port: ' + PORT);
 });
-
-

@@ -1,4 +1,4 @@
-var mongoose = require('mongoose');
+/*var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var visitorSchema = new Schema({
@@ -8,4 +8,4 @@ var visitorSchema = new Schema({
 
 var Visitor = mongoose.model('Visit', visitorSchema);
 
-module.exports = Visitor;
+module.exports = Visitor;*/

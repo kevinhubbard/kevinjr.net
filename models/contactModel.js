@@ -1,4 +1,4 @@
-var mongoose = require('mongoose');
+/*var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var contactSchema = new Schema({
@@ -12,4 +12,4 @@ var contactSchema = new Schema({
 
 var Contact = mongoose.model('Contact', contactSchema);
 
-module.exports = Contact;
+module.exports = Contact;*/
