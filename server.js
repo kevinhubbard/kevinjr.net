@@ -39,6 +39,7 @@ app.use('/portfolio', require('./controllers/portfolio'));
 app.use('/resume', require('./controllers/resume'));
 app.use('/thankyou', require('./controllers/thankyou'));
 app.use('/golfcard', require('./controllers/golfcard'));
+app.use('/botw', require('./controllers/botw'));
 
 // 404 CATCH
 app.use(function (req, res, next) {
