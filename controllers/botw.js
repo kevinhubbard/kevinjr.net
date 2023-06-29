@@ -8,4 +8,12 @@ router.get('/', function(req,res){
 	});
 });
 
+router.post('/', function(req, res){
+	console.log(req.body);
+	res.render('botw',{
+		css: ['style.css', 'botw.css'],
+		js: ['botw.js']
+	});
+});
+
 module.exports = router;
