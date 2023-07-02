@@ -1,7 +1,6 @@
 var express = require('express');
 var router = express.Router();
 var mysql = require('mysql');
-var config = require('../config/config')
 var connection;
 
 
@@ -18,6 +17,7 @@ if (process.env.NODE_ENV === 'production') {
 		console.log('successful connection.');
 	});
 } else {
+	var config = require('../config/config')
 	connection = mysql.createConnection({
 		host: config.db.HOST,
 		user: config.db.USER,
