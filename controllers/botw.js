@@ -34,8 +34,6 @@ router.get('/', function(req,res){
 	connection.query('SELECT * FROM Ingredient', function(err, rows){
 		if (err) throw err;
 		console.log('the data returned was: \n', rows);
-		connection.end();
-		connection = null;
 	});
 
 	res.render('botw', {
