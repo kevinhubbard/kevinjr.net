@@ -3,7 +3,6 @@ var router = express.Router();
 var mysql = require('mysql');
 var connection;
 
-
 if (process.env.NODE_ENV === 'production') {
 	connection = mysql.createConnection({
 		host: process.env.HOST,
@@ -31,12 +30,11 @@ if (process.env.NODE_ENV === 'production') {
 	});
 }
 
-
 router.get('/', function(req,res){
 	connection.query('SELECT * FROM Ingredient', function(err, rows){
 		if (err) throw err;
 		console.log('the data returned was: \n', rows);
-		connection.end();
+		//connection.end();
 	});
 
 	res.render('botw', {
