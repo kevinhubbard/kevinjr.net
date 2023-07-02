@@ -1,18 +1,35 @@
 var express = require('express');
 var router = express.Router();
 var mysql = require('mysql');
+var config = require('../config/config')
+var connection;
 
-var connection = mysql.createConnection({
-	host: process.env.HOST,
-	user: process.env.USER,
-	password: process.env.PASSWORD,
-	database: process.env.DATABASE
-});
 
-connection.connect((err) => {
-	if (err) throw err;
-	console.log('successful connection.');
-});
+if (process.env.NODE_ENV === 'production') {
+	connection = mysql.createConnection({
+		host: process.env.HOST,
+		user: process.env.USER,
+		password: process.env.PASSWORD,
+		database: process.env.DATABASE
+	});
+
+	connection.connect((err) => {
+		if (err) throw err;
+		console.log('successful connection.');
+	});
+} else {
+	connection = mysql.createConnection({
+		host: config.db.HOST,
+		user: config.db.USER,
+		password: config.db.PASSWORD,
+		database: config.db.DATABASE
+	});
+
+	connection.connect((err) => {
+		if (err) throw err;
+		console.log('successful connection.');
+	});
+}
 
 
 router.get('/', function(req,res){
