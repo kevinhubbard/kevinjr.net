@@ -1,9 +1,33 @@
-var mysql = require('mysql');
+const {Sequelize, DataTypes } = require('sequelize');
+var config = require('../config/config');
+const sequelize = new Sequelize(config.db.DATABASE, config.db.USER, config.db.PASSWORD, {
+	host: config.db.HOST,
+	dialect: 'mysql'
+});
 
-var connection = mysql.createConnection(process.env.JAWSDB_MARIA_URL);
+const Ingredient = sequelize.define('Ingredient', {
+	ingredientName: {
+		type: DataTypes.STRING,
+		allowNull: false
+	},
+	ingredientHearts: {
+		type: DataTypes.INTEGER,
+		allowNull: false
+	},
+	ingredientPrice: {
+		type: DataTypes.INTEGER,
+		allowNull: false
+	},
+	ingredientTrait: {
+		type: DataTypes.STRING,
+		allowNull: false
+	},
+	ingredientDescription: {
+		type: DataTypes.STRING,
+		allowNull: true
+	}
+});
 
-//connection.connect();
+Ingredient.sync();
 
-//connection.end();
-
-module.exports = connection;
+module.exports = {Ingredient, sequelize};
