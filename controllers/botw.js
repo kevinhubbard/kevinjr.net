@@ -3,7 +3,14 @@ var router = express.Router();
 const { Sequelize } = require('sequelize');
 const {Ingredient, sequelize} = require('../models/botwModel.js');
 
-router.get('/', async function(req,res){
+router.get('/', function(req,res){
+	res.render('botw', {
+		css: ['style.css', 'botw.css'],
+		js: ['botw.js']
+	});
+});
+
+router.get('/data', async function(req, res){
 	try {
 		sequelize.authenticate();
 		console.log('Connection successfully established.');
@@ -13,11 +20,8 @@ router.get('/', async function(req,res){
 
 	const ingred = await Ingredient.findAll();
 	console.log(ingred);
-	res.render('botw', {
-		css: ['style.css', 'botw.css'],
-		js: ['botw.js']
-	});
-});
+	res.json(ingred);
+})
 
 router.post('/', function(req, res){
 	const ing = Ingredient.create({ingredientName: req.body.name, ingredientHearts: req.body.hearts, ingredientPrice: req.body.sellPrice, ingredientTrait: req.body.trait, ingredientDescription: req.body.desc});
