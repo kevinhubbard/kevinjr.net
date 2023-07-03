@@ -1,15 +1,32 @@
 <div id = 'mainBotw'>
-	<form action="/botw" method="post">
-		<label for="name">Name:</label>
-		<input type="text" name="name" id="name"><br>
-		<label for="hearts">Hearts:</label>
-		<input type="number" name="hearts" id="hearts"><br>
-		<label for="sellPrice">Sell Price:</label>
-		<input type="number" name="sellPrice" id="sellPrice"><br>
-		<label for="trait">Trait:</label>
-		<input type="text" name="trait" id="trait"><br>
-		<label for="desc">Description:</label>
-		<input type="textbox" name="desc" id="desc"><br>
-		<input type="submit" value="Submit">
-	</form>
+	<div id="postInfo">
+		<form action="/botw" method="post">
+			<label for="name">Name:</label>
+			<input type="text" name="name" id="name"><br>
+			<label for="hearts">Hearts:</label>
+			<input type="number" name="hearts" id="hearts"><br>
+			<label for="sellPrice">Sell Price:</label>
+			<input type="number" name="sellPrice" id="sellPrice"><br>
+			<label for="trait">Trait:</label>
+			<input type="text" name="trait" id="trait"><br>
+			<label for="desc">Description:</label>
+			<input type="textbox" name="desc" id="desc"><br>
+			<input type="submit" value="Submit">
+		</form>
+	</div>
+
+	<div id="getInfo">
+		<table>
+			<tr>
+				<th>Name</th>
+				<th>Hearts</th>
+				<th>Price</th>
+				<th>Trait</th>
+				<th>Description</th>
+			</tr>
+			
+		</table>
+		<p id="farts"></p>
+	</div>
+
 </div>
