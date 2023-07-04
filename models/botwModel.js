@@ -4,7 +4,8 @@ let sequelize;
 if (process.env.NODE_ENV === 'production') {
 	sequelize = new Sequelize(process.env.DATABASE, process.env.USER, process.env.PASSWORD, {
 		host: process.env.HOST,
-		dialect: 'mysql'});
+		dialect: 'mysql'
+	});
 } else {
 	var config = require('../config/config');
 	sequelize = new Sequelize(config.db.DATABASE, config.db.USER, config.db.PASSWORD, {

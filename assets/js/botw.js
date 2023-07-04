@@ -1,7 +1,7 @@
 window.addEventListener("DOMContentLoaded", (event) => {
 async function logJSONData() {
-	const URL = "http://kevinjr.net/botw/data"
-  const response = await fetch(URL);
+	const URL = "http://kevinjr.net/botw/data";
+  const response = await fetch(URL, {headers: 'Access-Control-Allow-Origin': '*'});
   console.log(response);
   const jsonData = await response.json();
   for(var i = 0; i<jsonData.length; i++){
