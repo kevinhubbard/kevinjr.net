@@ -1,16 +1,28 @@
 window.addEventListener("DOMContentLoaded", (event) => {
 async function logJSONData() {
-	const URL = "http://kevinjr.net/botw/data";
-  const response = await fetch(URL, {headers: 'Access-Control-Allow-Origin': '*'});
-  console.log(response);
-  const jsonData = await response.json();
-  for(var i = 0; i<jsonData.length; i++){
+    const res = await fetch("http://localhost:3000/botw/data");
+    const ingreds = await res.json();
+
+  for(var i = 0; i<ingreds.length; i++){
   	let thing = document.createElement('p');
-  	thing.innerText = jsonData[i].ingredientName;
+  	thing.innerText = ingreds[i].ingredientName;
   	document.getElementById('farts').appendChild(thing);
   }
 }
 
 logJSONData();
+
+document.getElementById('delbut').addEventListener("click", function(){
+    let n = document.getElementById("itd").value;
+    fetch('http://localhost:3000/botw', {
+        method: 'delete',
+        headers: { 'Content-Type': 'application/json'},
+        body: JSON.stringify({
+            name: n
+        })
+    }).then(res => {
+        if (res.ok) return res.json()
+    });
+});
 
 });

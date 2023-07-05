@@ -12,7 +12,7 @@ var app = express();
 app.use(express.static('node_modules'));
 app.use(express.static(path.join(__dirname, 'assets')));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.urlencoded({extended: true}));
 
 // DEFINES PORT
 var PORT = process.env.PORT || 3000;

@@ -31,4 +31,17 @@ router.post('/', function(req, res){
 	});
 });
 
+router.delete('/', function(req,res){
+	console.log(req.body.name);
+	Ingredient.destroy({
+		where: {
+			ingredientName: req.body.name
+		}
+	});
+	res.render('botw',{
+		css: ['style.css', 'botw.css'],
+		js: ['botw.js']
+	});
+});
+
 module.exports = router;
