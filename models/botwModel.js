@@ -1,7 +1,26 @@
 const {Sequelize, DataTypes } = require('sequelize');
-var connection = require('../database/dbConnection');
+var db = require('../config/config');
+var sequelize;
 
-const Ingredient = connection.define('Ingredient', {
+if (process.env.NODE_ENV === 'production') {
+	sequelize = new Sequelize(process.env.DATABASE, process.env.USER, process.env.PASSWORD, {
+		host: process.env.HOST,
+		dialect: 'mysql'
+	});
+} else {
+	sequelize = new Sequelize(db.DATABASE, db.USER, db.PASSWORD, {
+		host: db.HOST,
+		dialect: 'mysql'
+	});
+}
+
+try {
+	sequelize.authenticate();
+	console.log('Connection successfully established.');
+} catch (error) {
+	console.error('Unable to connect to database', error);
+}
+const Ingredient = sequelize.define('Ingredient', {
 	ingredientName: {
 		type: DataTypes.STRING,
 		allowNull: false
@@ -23,5 +42,7 @@ const Ingredient = connection.define('Ingredient', {
 		allowNull: true
 	}
 });
+
+Ingredient.sync();
 
 module.exports = Ingredient;
