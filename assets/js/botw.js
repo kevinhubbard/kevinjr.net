@@ -1,6 +1,6 @@
 window.addEventListener("DOMContentLoaded", (event) => {
 async function logJSONData() {
-    const res = await fetch("http://localhost:3000/botw/data");
+    const res = await fetch("http://kevinjr.net/botw/data");
     const ingreds = await res.json();
 
   for(var i = 0; i<ingreds.length; i++){
@@ -21,8 +21,12 @@ document.getElementById('delbut').addEventListener("click", function(){
             name: n
         })
     }).then(res => {
-        if (res.ok) return res.json()
-    });
+        if (res.ok) return res.json();
+                    document.getElementById('itd').value = '';
+        window.location.reload();
+    }).then(data => {
+
+    })
 });
 
 });
