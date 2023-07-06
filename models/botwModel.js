@@ -1,5 +1,4 @@
 const {Sequelize, DataTypes } = require('sequelize');
-var config = require('../config/config');
 var sequelize;
 
 if (process.env.NODE_ENV === 'production') {
@@ -8,6 +7,7 @@ if (process.env.NODE_ENV === 'production') {
 		dialect: 'mysql'
 	});
 } else {
+	var config = require('../config/config');
 	sequelize = new Sequelize(config.db.DATABASE, config.db.USER, config.db.PASSWORD, {
 		host: config.db.HOST,
 		dialect: 'mysql'
