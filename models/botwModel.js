@@ -1,5 +1,5 @@
 const {Sequelize, DataTypes } = require('sequelize');
-var connection = require('../config/config');
+var connection = require('../Database/dbConnection');
 
 const Ingredient = connection.define('Ingredient', {
 	ingredientName: {
