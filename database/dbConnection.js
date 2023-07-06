@@ -1,5 +1,4 @@
 var Sequelize = require('sequelize');
-var db = require('../config/config');
 var connection;
 
 if (process.env.NODE_ENV === 'production') {
@@ -8,6 +7,7 @@ if (process.env.NODE_ENV === 'production') {
 		dialect: 'mysql'
 	});
 } else {
+	var db = require('../config');
 	connection = new Sequelize(db.DATABASE, db.USER, db.PASSWORD, {
 		host: db.HOST,
 		dialect: 'mysql'
@@ -17,6 +17,7 @@ if (process.env.NODE_ENV === 'production') {
 try {
 	connection.authenticate();
 	console.log('Connection successfully established.');
+	connection.sync();
 } catch (error) {
 	console.error('Unable to connect to database', error);
 }
