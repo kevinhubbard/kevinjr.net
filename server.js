@@ -40,6 +40,7 @@ app.use('/resume', require('./controllers/resume'));
 app.use('/thankyou', require('./controllers/thankyou'));
 app.use('/golfcard', require('./controllers/golfcard'));
 app.use('/botw', require('./controllers/botw'));
+app.use('/brpaints', require('./controllers/brpaints'));
 
 // 404 CATCH
 app.use(function (req, res, next) {

@@ -17,11 +17,20 @@ window.addEventListener("DOMContentLoaded", function(event) {
 	startRound.addEventListener("click", function(){
 		console.log('starting round');
 		var courseName = document.getElementById('courseName').value;
-		//var holes = document.getElementsByName('holes').value;
-		console.log(courseName);
-		//console.log(holes);
+		var holes;
+		if (document.getElementById('9holes').checked) {
+			holes = '9'; 
+		} else if (document.getElementById('18holes').checked) {
+			holes = '18';
+		}
+
+		start(courseName, holes);
 	});
 
-
+	function start(name, holes) {
+		var round = [];
+		round.length = holes;
+		console.log(round.length);
+	}
 
 });
