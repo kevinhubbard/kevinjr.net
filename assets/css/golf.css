@@ -31,3 +31,13 @@ body{
 #showRound {
 	display: none;
 }
+
+#holeInfo {
+	display: none;
+}
+
+#gameProgress {
+	display: none;
+	border-style: solid;
+	border-width: 2px;
+}

@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-const Ingredient = require('../models/botwModel.js');
+const Ingredient = require('../models/botw.js');
 
 router.get('/', function(req,res){
 	res.render('botw', {
