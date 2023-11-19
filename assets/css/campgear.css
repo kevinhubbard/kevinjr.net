@@ -1,0 +1,15 @@
+#main {
+	width: 75%;
+	height: 750px;
+	background-color: white;
+	margin: 0 auto;
+	text-align: center;
+}
+
+#headline {
+	text-decoration: underline;
+}
+
+.list {
+	display: inline-block;
+}

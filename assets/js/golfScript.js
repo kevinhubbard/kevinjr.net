@@ -53,14 +53,11 @@ window.addEventListener("DOMContentLoaded", function(event) {
 	});
 
 	nextBtn.addEventListener("click", function() {
-			var holeObj = {
-		holeNum: 0,
-		holePar: 0,
-		holeStrokes: 0
-	};
-		holeObj.holeNum = curHole + 1;
-		holeObj.holePar = parseInt(document.getElementById('par').value);
-		holeObj.holeStrokes = parseInt(document.getElementById('strokes').textContent);
+		var holeObj = {
+			holeNum: curHole + 1,
+			holePar: parseInt(document.getElementById('par').value),
+			holeStrokes: parseInt(document.getElementById('strokes').textContent)
+		};
 		round.totalStrokes += holeStro;
 		round.hole.push(holeObj);
 		score += holeStro - document.getElementById('par').value;
@@ -83,5 +80,10 @@ window.addEventListener("DOMContentLoaded", function(event) {
 		document.getElementById('score').textContent = score;
 		console.log(round);
 	}
+
+document.getElementById('sw').textContent = window.innerWidth;
+document.getElementById('sh').textContent = window.innerHeight;
+	console.log("innerwidth = " + window.innerWidth);
+	console.log("height = " + window.innerHeight);
 
 });
