@@ -103,7 +103,7 @@ footer ul li {
 
 
 
-@media only screen and (max-width: 1000px) {
+/*@media only screen and (max-width: 1000px) {
   
   #openNav{
     display: none;
@@ -130,7 +130,7 @@ footer ul li {
   #mobileNav li a {
     font-size: 25px;
     color: white;
-  }
+  }*/
 
 
 }

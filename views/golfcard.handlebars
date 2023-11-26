@@ -1,47 +1,20 @@
-<div id="main">
-	<h1>Golfcard App</h1>
-	<h1 id="sw"></h1>
-	<h1 id="sh"></h1>
-	<div id="app">
-		<div id="options">
-			<button id="newRound">New Round</button>
-			<button id="lookupRound">Lookup Round</button>
-		</div>
-		<div id="gamePanel">
-
-			<div id="startInfo">
-				<label for="courseName">Course Name:</label>
-				<input type="text" id="courseName" name="courseName"><br>
-				<input type="radio" id="9holes" name="holes" value="9">
-				<label for="9holes">9 Holes</label><br>
-				<input type="radio" id="18holes" name="holes" value="18">
-				<label for="18holes">18 Holes</label><br>
-				<button id="startRound">Start Round</button>
-			</div>
-
-			<div id="gameProgress">
-				<h5 style="display: inline">Score: <span id="score"></span></h5>
-				<h5 style="display: inline">@</h5>
-				<h5 style="display: inline" id="course"></h5>
-			</div>
-
-			<div id="holeInfo">
-				<h5>Hole: <span id="holeNum"></span></h5>
-				<h5 id="ss">Stroke: <span id="strokes"></span></h5>
-				<label for="hn">Par:</label>
-				<select id="par">
-					<option value="3">3</option>
-					<option value="4">4</option>
-					<option value="5">5</option>
-				</select>
-				<button id="incStroke">Stroke</button>
-				<button id="nextHole">Next Hole</button>
-			</div>
-
-		</div>
-
-		<div id="showRound">
-			<p>show rounds</p>
-		</div>
-	</div>
+<div id="title"><h1>GolfCard</h1></div>
+<div id="app">
+	<p id="course">test</p>
+	<p id="score">E</p>
+	<br>
+	<p id="holeCss">Hole: <span id="hole"></span></p>
+	<label for="par">Par:</label>
+	<select id="par">
+		<option value="3">3</option>
+		<option value="4">4</option>
+		<option value="5">5</option>
+	</select><br>
+	<input class="inp" type="checkbox" id="fir" name="fir" value="fir">
+	<label class="inp" for="fir">Fairway in Regulation</label>
+	<input class="inp" type="checkbox" id="gir" name="gir" value="gir">
+	<label class="inp" for="gir">Green in Regulation</label>
+	<button>Stroke: <span id="stroke">0</span></button>
+	<button>Next Hole</button>
 </div>
+<div id="foot"><footer><a href="/">Kevin Jr</a></footer></div>

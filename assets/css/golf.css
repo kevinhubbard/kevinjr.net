@@ -1,45 +1,45 @@
-body{
-	background: none;
+*,html{
+	margin: 0;
+	padding: 0;
+}
+@media only screen and (max-width: 600px) {
+#title {
+	background-color: lightblue;
+	height:10vh;
+	margin: 0 auto;
+	position: relative;
+}
+#app {
 	background-color: green;
-}
-
-#main{
-	width: 750px;
-	height: 750px;
-	background-color: white;
+	height: 85vh;
 	text-align: center;
-	display: block;
+}
+#foot {
+	background-color: lightblue;
+	height: 5vh;
+	text-align: center;
+}
+h1 {
+	text-align: center;
+	position: absolute;
+	top: 15%;
+	left: 38%;
+}
+#score {
+	font-size: 72px;
+}
+button {
 	margin: 0 auto;
-}
-
-#app{
-	background-color: pink;
-	width: 550px;
-	height: 550px;
+	margin-top: 10px;
 	display: block;
-	margin: 0 auto;
+	width: 75%;
+	height: 15%;
+}
+#holeCss {
+	display: inline;
+}
+select {
+	margin-bottom: 10px;
 }
 
-#options{
-	background-color: red;
 }
-
-#gamePanel {
-	display: none;
-}
-
-#showRound {
-	display: none;
-}
-
-#holeInfo {
-	display: none;
-}
-
-#gameProgress {
-	display: none;
-	border-style: solid;
-	border-width: 2px;
-}
-
-@media screen and ()
