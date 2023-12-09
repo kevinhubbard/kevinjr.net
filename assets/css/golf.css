@@ -9,8 +9,22 @@
 	margin: 0 auto;
 	position: relative;
 }
+#courseInfo {
+	height: 85vh;
+	text-align: center;
+}
+#inside {
+	position: relative;
+	top: 25%;
+}
+#start {
+	width: 175px;
+}
+#courseName {
+	margin-bottom: 5px;
+}
 #app {
-	background-color: green;
+	background-color: lightgreen;
 	height: 85vh;
 	text-align: center;
 }
@@ -41,5 +55,7 @@ button {
 select {
 	margin-bottom: 10px;
 }
+
+
 
 }
