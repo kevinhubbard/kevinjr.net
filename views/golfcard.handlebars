@@ -1,6 +1,17 @@
 <div id="title"><h1>GolfCard</h1></div>
+<div id="courseInfo">
+	<div id="inside">
+		<select id="holes">
+			<option value="18">18 Holes</option>
+			<option value="9">9 Holes</option>
+	</select>
+	<input id="courseName" type="text" name="courseName" placeholder="Course Name">
+	<button id="start">Start Round</button>
+</div>
+
+</div>
 <div id="app">
-	<p id="course">test</p>
+	<p id="course"></p>
 	<p id="score">E</p>
 	<br>
 	<p id="holeCss">Hole: <span id="hole"></span></p>
@@ -14,7 +25,18 @@
 	<label class="inp" for="fir">Fairway in Regulation</label>
 	<input class="inp" type="checkbox" id="gir" name="gir" value="gir">
 	<label class="inp" for="gir">Green in Regulation</label>
-	<button>Stroke: <span id="stroke">0</span></button>
-	<button>Next Hole</button>
+	<button id="stroke">Stroke: <span id="strokes">0</span></button>
+	<button id="nextHole">Next Hole</button>
+	<table>
+		<tr id="holeRow">
+			<th>Hole</th>
+		</tr>
+		<tr id="parRow">
+			<th>Par</th>
+		</tr>
+		<tr id="scoreRow">
+			<th>Strokes</th>
+		</tr>
+	</table>
 </div>
 <div id="foot"><footer><a href="/">Kevin Jr</a></footer></div>
