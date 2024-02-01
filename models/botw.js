@@ -1,7 +1,7 @@
 const {Sequelize, DataTypes } = require('sequelize');
 var connection = require('../database/dbConnection');
 
-const Ingredient = connection.define('Ingredient', {
+/*const Ingredient = connection.define('Ingredient', {
 	ingredientName: {
 		type: DataTypes.STRING,
 		allowNull: false
@@ -24,4 +24,4 @@ const Ingredient = connection.define('Ingredient', {
 	}
 });
 
-module.exports = Ingredient;
+module.exports = Ingredient;*/

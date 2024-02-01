@@ -1,15 +1,21 @@
 <div id="title"><h1>GolfCard</h1></div>
-<div id="courseInfo">
-	<div id="inside">
-		<select id="holes">
-			<option value="18">18 Holes</option>
-			<option value="9">9 Holes</option>
-	</select>
-	<input id="courseName" type="text" name="courseName" placeholder="Course Name">
-	<button id="start">Start Round</button>
+<div id="options">
+	<button id="newRound">Play Now</button>
+	<button id="courses">Courses</button>
+	<button id="loadRound">Rounds</button>
 </div>
 
+<div id="courseInfo">
+	<div id="inside">
+		<select id="selectHoles">
+			<option value="18">18 Holes</option>
+			<option value="9">9 Holes</option>
+		</select>
+		<input id="selectCourse" type="text" name="courseName" placeholder="Course Name">
+		<button id="start">Start Round</button>
+	</div>
 </div>
+
 <div id="app">
 	<p id="course"></p>
 	<p id="score">E</p>
@@ -24,19 +30,21 @@
 	<input class="inp" type="checkbox" id="fir" name="fir" value="fir">
 	<label class="inp" for="fir">Fairway in Regulation</label>
 	<input class="inp" type="checkbox" id="gir" name="gir" value="gir">
-	<label class="inp" for="gir">Green in Regulation</label>
+	<label class="inp" for="gir">Green in Regulation</label> <br>
 	<button id="stroke">Stroke: <span id="strokes">0</span></button>
 	<button id="nextHole">Next Hole</button>
-	<table>
-		<tr id="holeRow">
-			<th>Hole</th>
-		</tr>
-		<tr id="parRow">
-			<th>Par</th>
-		</tr>
-		<tr id="scoreRow">
-			<th>Strokes</th>
-		</tr>
-	</table>
+	<div id="scoreCard">
+		<table>
+			<tr id="holeRow">
+				<th>Hole</th>
+			</tr>
+			<tr id="parRow">
+				<th>Par</th>
+			</tr>
+			<tr id="scoreRow">
+				<th>Strokes</th>
+			</tr>
+		</table>
+	</div>
 </div>
 <div id="foot"><footer><a href="/">Kevin Jr</a></footer></div>

@@ -2,60 +2,79 @@
 	margin: 0;
 	padding: 0;
 }
+
+#course {
+	display: inline-block;
+	border: 1px solid black;
+}
+
 @media only screen and (max-width: 600px) {
-#title {
-	background-color: lightblue;
-	height:10vh;
-	margin: 0 auto;
-	position: relative;
-}
-#courseInfo {
-	height: 85vh;
-	text-align: center;
-}
-#inside {
-	position: relative;
-	top: 25%;
-}
-#start {
-	width: 175px;
-}
-#courseName {
-	margin-bottom: 5px;
-}
-#app {
-	background-color: lightgreen;
-	height: 85vh;
-	text-align: center;
-}
-#foot {
-	background-color: lightblue;
-	height: 5vh;
-	text-align: center;
-}
-h1 {
-	text-align: center;
-	position: absolute;
-	top: 15%;
-	left: 38%;
-}
-#score {
-	font-size: 72px;
-}
-button {
-	margin: 0 auto;
-	margin-top: 10px;
-	display: block;
-	width: 75%;
-	height: 15%;
-}
-#holeCss {
-	display: inline;
-}
-select {
-	margin-bottom: 10px;
-}
+	#title {
+		display: block;
+		margin: 0 auto;
+		background-color: lightblue;
+		text-align: center;
+		width: 100%;
+		height: 10vh;
+	}
+
+	#courseInfo {
+		margin: auto;
+		display: block;
+		height: 85vh;
+		width: 50vw;
+		background-color: lightgreen;
+		border: 1px solid black;
+	}
+
+	#options button{
+		margin: 0 auto;
+		margin-top: 10px;
+		display: block;
+		width: 75%;
+		height: 15%;
+	}
+
+	#selectHoles {
+		display: block;
+		margin: auto;
+		margin-top: 50%;
+		margin-bottom: 5px;
+	}
+	#start {
+		width: 175px;
+		display: block;
+		margin: auto;
+	}
+
+	#selectCourse {
+		margin: auto;
+		margin-bottom: 5px;
+		display: block;
+
+	}
+
+	#app {
+		background-color: lightgreen;
+		height: 85vh;
+		text-align: center;
+	}
+	#foot {
+		background-color: lightblue;
+		height: 5vh;
+		text-align: center;
+	}
 
 
+	#score {
+		font-size: 72px;
+	}
 
+	#holeCss {
+		display: inline;
+	}
+
+	#scoreCard {
+		border: 1px solid black;
+	}
 }

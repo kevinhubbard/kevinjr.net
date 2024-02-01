@@ -9,6 +9,25 @@ window.addEventListener("DOMContentLoaded", function(event) {
 	let round = {};
 	
 	document.getElementById('app').style.display = 'none';
+	document.getElementById('courseInfo').style.display = 'none';
+
+	let newRound = document.getElementById('newRound');
+	newRound.addEventListener("click", function() {
+		document.getElementById("options").style.display = 'none';
+		document.getElementById('courseInfo').style.display = 'block';
+	});
+
+	let courses = document.getElementById('courses');
+		courses.addEventListener("click", function() {
+		//load golfcard/rounds
+		window.location.href = '/golfcard/courses';
+	});
+
+	let loadRound = document.getElementById('loadRound');
+	loadRound.addEventListener("click", function() {
+		//load golfcard/rounds
+		window.location.href = '/golfcard/rounds';
+	});
 	
 	let nextHole = document.getElementById('nextHole');
 	nextHole.addEventListener("click", function() {
@@ -29,8 +48,8 @@ window.addEventListener("DOMContentLoaded", function(event) {
 	startRound.addEventListener("click", function() {
 		nextHole.disabled = true;
 		document.getElementById('hole').innerText = holeNum;
-		courseName = document.getElementById('courseName').value;
-		holesPlayed = document.getElementById('holes').value;
+		courseName = document.getElementById('selectCourse').value;
+		holesPlayed = document.getElementById('selectHoles').value;
 		console.log("playing " + holesPlayed + " holes at " + courseName);
 		document.getElementById('course').innerText = courseName;
 		document.getElementById('courseInfo').style.display = 'none';
@@ -78,7 +97,25 @@ window.addEventListener("DOMContentLoaded", function(event) {
 		document.getElementById('parRow').appendChild(newParRow);
 
 		const newStrokeRow = document.createElement("TD");
+		newStrokeRow.style.width = '25px';
+		newStrokeRow.style.height = '25px';
 		newStrokeRow.innerText = holeStrokes;
+		if (parseInt(holeStrokes) < parseInt(par)) {
+			newStrokeRow.style.borderRadius = '50%';
+			newStrokeRow.style.color = 'green';
+			if (parseInt(holeStrokes ) < parseInt(par - 1)) {
+				newStrokeRow.style.border = '3px double black';
+			} else {
+				newStrokeRow.style.border = '1px solid black';
+			}
+		} else if (parseInt(holeStrokes) > parseInt(par)) {
+			newStrokeRow.style.color = 'red';
+			if (parseInt(holeStrokes -1) > parseInt(par)) {
+				newStrokeRow.style.border = '3px double black';
+			} else {
+				newStrokeRow.style.border = '1px solid black';
+			}
+		}
 		document.getElementById('scoreRow').appendChild(newStrokeRow);
 	}
 
@@ -86,6 +123,8 @@ window.addEventListener("DOMContentLoaded", function(event) {
 		holeNum++;
 		document.getElementById('hole').innerText = holeNum;
 		document.getElementById('strokes').innerText = 0;
+		document.getElementById('fir').checked = false;
+		document.getElementById('gir').checked = false;		
 		holeStrokes = 0;
 		nextHole.disabled = true;
 	}

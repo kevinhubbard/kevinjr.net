@@ -1,0 +1,14 @@
+<h1>Courses</h1>
+<button id="addCourse">Add</button>
+<button id="editCourse">Edit</button>
+{{#each crs}}
+	<div id = 'course'>
+		<p>ID: {{this.dataValues.courseID}}</p>
+		<p>Name: {{this.dataValues.courseName}}</p>
+		<p>Location: {{this.dataValues.township}}, {{this.dataValues.state}}</p>
+		<p>Par: {{this.dataValues.par}}</p>
+		<p>Yards: {{this.dataValues.yards}}</p>
+		<p>Rating: {{this.dataValues.rating}}</p>
+		<p>Slope: {{this.dataValues.slope}}</p>
+	</div>
+{{/each}}
