@@ -1,18 +1,15 @@
 *,html{
 	margin: 0;
 	padding: 0;
-	overflow: hidden;
 }
 
-#course {
+/*#course {
 	display: inline-block;
 	border: 1px solid black;
-}
+}*/
 
 @media only screen and (max-width: 600px) {
 	#title {
-		display: block;
-		margin: 0 auto;
 		background-color: lightblue;
 		text-align: center;
 		width: 100%;
@@ -21,28 +18,45 @@
 
 	#courseInfo {
 		margin: auto;
+		padding-top: 50px;
 		display: block;
-		height: 85vh;
 		background-color: lightgreen;
+		height: 85vh;
+		box-sizing: border-box;
 	}
 
 	#options {
+		margin: 0 auto;
 		display: block;
+		background-color: yellow;
 		height: 85vh;
+		font-size: 0;
 	}
 
 	#options button{
 		margin: 0 auto;
-		margin-top: 10px;
 		display: block;
+		width: 75%;	
+	}
+
+	#newRound {
+		margin-top: 20px;
+		width: 75%;
+	}
+
+	#courses {
+		margin-top: 20px;
+		width: 75%;
+	}
+
+	#loadRound {
+		margin-top: 20px;
 		width: 75%;
 	}
 
 	#selectHoles {
 		display: block;
 		margin: auto;
-		margin-top: 50%;
-		margin-bottom: 5px;
 	}
 	#start {
 		width: 175px;
@@ -52,6 +66,7 @@
 
 	#selectCourse {
 		margin: auto;
+		margin-top: 5px;
 		margin-bottom: 5px;
 		display: block;
 		text-align: center;

@@ -1,4 +1,7 @@
 window.addEventListener("DOMContentLoaded", function(event) {
+
+
+
 	let courseName;
 	let holesPlayed;
 	let holeNum = 1;
@@ -150,4 +153,8 @@ window.addEventListener("DOMContentLoaded", function(event) {
 		}
 		return summary;
 	}
+});
+
+window.addEventListener('beforeunload', (event) => {
+  event.returnValue = `Are you sure you want to leave?`;
 });
