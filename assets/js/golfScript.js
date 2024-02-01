@@ -13,7 +13,7 @@ window.addEventListener("DOMContentLoaded", function(event) {
 
 	let newRound = document.getElementById('newRound');
 	newRound.addEventListener("click", function() {
-		document.getElementById("options").style.display = 'none';
+		document.getElementById('options').style.display = 'none';
 		document.getElementById('courseInfo').style.display = 'block';
 	});
 

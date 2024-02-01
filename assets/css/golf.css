@@ -1,6 +1,7 @@
 *,html{
 	margin: 0;
 	padding: 0;
+	overflow: hidden;
 }
 
 #course {
@@ -22,9 +23,12 @@
 		margin: auto;
 		display: block;
 		height: 85vh;
-		width: 50vw;
 		background-color: lightgreen;
-		border: 1px solid black;
+	}
+
+	#options {
+		display: block;
+		height: 85vh;
 	}
 
 	#options button{
@@ -32,7 +36,6 @@
 		margin-top: 10px;
 		display: block;
 		width: 75%;
-		height: 15%;
 	}
 
 	#selectHoles {
