@@ -1,7 +1,4 @@
 window.addEventListener("DOMContentLoaded", function(event) {
-
-
-
 	let courseName;
 	let holesPlayed;
 	let holeNum = 1;
