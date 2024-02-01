@@ -51,7 +51,7 @@
 		margin: auto;
 		margin-bottom: 5px;
 		display: block;
-
+		text-align: center;
 	}
 
 	#app {
@@ -74,6 +74,20 @@
 		display: inline;
 	}
 
+	#stroke {
+		margin: auto;
+		margin-top: 10px;
+		width: 90%;
+		height: 50px;
+	}
+
+	#nextHole {
+		margin: auto;
+		margin-top: 10px;
+		margin-bottom: 10px;
+		width: 90%;
+		height: 50px;
+	}
 	#scoreCard {
 		border: 1px solid black;
 	}
