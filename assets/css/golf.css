@@ -114,8 +114,7 @@
 	}
 
 	#scoreCard {
-		width: 300px;
-		height: 100px;
+		width: 100%;
 	}
 
 	table {
@@ -127,6 +126,5 @@
 
 	td {
 		min-width: 25px;
-		text-overflow: ellipsis;
 	}
 }
