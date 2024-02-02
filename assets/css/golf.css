@@ -48,6 +48,7 @@
 		background-size: cover;
 		margin-top: 20px;
 		width: 75%;
+		padding-bottom: 60px;
 	}
 
 	#courses {
@@ -56,6 +57,7 @@
 		margin-top: 20px;
 		margin-bottom: 20px;
 		width: 75%;
+		padding-bottom: 60px;
 	}
 
 	#loadRound {
@@ -63,6 +65,7 @@
 		background-size: cover;
 		margin-top: 20px;
 		width: 75%;
+		padding-bottom: 60px;
 	}
 
 	#newRound:hover {
