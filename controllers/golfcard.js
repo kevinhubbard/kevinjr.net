@@ -6,7 +6,6 @@ router.get('/', async function(req, res){
 	//const course = await Course.findAll();
 
 	res.render('golfcard', {
-		layout: 'golf.handlebars',
 		css: ['style.css', 'golf.css'],
 		js: ['golfScript.js']
 	});
@@ -15,7 +14,6 @@ router.get('/', async function(req, res){
 router.get('/courses', async function(req, res){
 	const course = await Course.findAll();
 		res.render('course', {
-		layout: 'golf.handlebars',
 		css: ['style.css', 'golf.css'],
 		js: ['golfScript.js'],
 		crs: course
@@ -25,7 +23,6 @@ router.get('/courses', async function(req, res){
 router.get('/rounds', async function(req, res){
 	const round = await Round.findAll();
 		res.render('rounds', {
-		layout: 'golf.handlebars',
 		css: ['style.css', 'golf.css'],
 		js: ['golfScript.js'],
 		rnd: round
