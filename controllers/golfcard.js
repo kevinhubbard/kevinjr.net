@@ -1,24 +1,35 @@
 var express = require('express');
 var router = express.Router();
-var {Course, Round} = require('../models/golfcard.js');
+var {Course, Round, Hole} = require('../models/golfcard.js');
+const { QueryTypes } = require('sequelize');
 
 router.get('/', async function(req, res){
-	//const course = await Course.findAll();
+	const crs = await Course.findAll();
 
 	res.render('golfcard', {
 		css: ['style.css', 'golf.css'],
-		js: ['golfScript.js']
+		js: ['golfScript.js'],
+		crs: crs
 	});
 });
 
-router.get('/courses', async function(req, res){
+/*router.get('/api/courses', async function(req, res) {
+	const crs = await Course
+});*/
+
+router.get('/api/courses', async function(req, res){
 	const course = await Course.findAll();
-		res.render('course', {
-		css: ['style.css', 'golf.css'],
-		js: ['golfScript.js'],
-		crs: course
-	});
+		res.json(course);
 });
+
+router.get('/hls', async function(req, res) {
+	const hls = await Hole.findAll({
+		where: {
+			courseID: 1
+		}
+	});
+	console.log(hls);
+})
 
 router.get('/rounds', async function(req, res){
 	const round = await Round.findAll();
