@@ -2,7 +2,7 @@
 
 <div id="options">
 	<button id="newRound">Play Now</button>
-	<button id="courses">Courses</button>
+	{{!-- <button id="courses">Courses</button> --}}
 	<button id="loadRound">Rounds</button>
 </div>
 
@@ -11,7 +11,11 @@
 			<option value="18">18 Holes</option>
 			<option value="9">9 Holes</option>
 		</select>
-		<input id="selectCourse" type="text" name="courseName" placeholder="Course Name">
+		<select id="courses">
+			{{#each crs}}
+			<option value="{{this.dataValues.courseID}}">{{this.dataValues.courseName}}</option>
+			{{/each}}
+		</select>
 		<button id="start">Start Round</button>
 </div>
 

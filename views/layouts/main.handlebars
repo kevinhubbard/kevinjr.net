@@ -1,112 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="description" content="Kevin Hubbard's Portfolio">
-  <meta name="author" content="Kevin Hubbard Jr">
-  <meta name="keywords" content="kevin,hubbard,jr,full stack,web developer,coding,portfolio,HTML,CSS,Bootstrap,Jquery/AJAX,nodejs,handlebars,mongodb,git,github,heroku">
-  <link href="/images/khfavicon.ico" rel="shortcut icon">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Kevin Hubbard</title>
-  <link rel="stylesheet" type="text/css" href="/bootstrap/dist/css/bootstrap.min.css">
-  <script type="text/javascript" src='/jquery/dist/jquery.min.js'></script>
-  <script type="text/javascript" src='/bootstrap/dist/js/bootstrap.min.js'></script>
-  {{#each js}}
-    <script type="text/javascript" src='/js/{{this}}'></script>
-  {{/each}}
-  {{#each css}}
-    <link rel="stylesheet" type="text/css" href="/css/{{this}}">
-  {{/each}}
-</head>
-<body>
-<nav id="mobileNav" >
-      <ul>
-      <li><a href="/">Home</a></li>
-      <li><a href="/portfolio">Projects</a></li>
-      <li><a href="/contact">Contact</a></li>
-      <li><a href="/resume">Resume</a></li>
-    </ul>
-</nav>
+  <head>
+    <meta charset="utf-8">
+    <meta name="description" content="Kevin Hubbard's Portfolio">
+    <meta name="author" content="Kevin Hubbard Jr">
+    <meta name="keywords" content="kevin,hubbard,jr,full stack,web developer,coding,portfolio,HTML,CSS,Bootstrap,Jquery/AJAX,nodejs,handlebars,mongodb,git,github,heroku">
+    <link href="/images/khfavicon.ico" rel="shortcut icon">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Kevin Hubbard</title>
+    <link rel="stylesheet" type="text/css" href="/bootstrap/dist/css/bootstrap.min.css">
+    <script type="text/javascript" src='/jquery/dist/jquery.min.js'></script>
+    <script type="text/javascript" src='/bootstrap/dist/js/bootstrap.min.js'></script>
+    {{#each js}}
+      <script type="text/javascript" src='/js/{{this}}'></script>
+    {{/each}}
+    {{#each css}}
+      <link rel="stylesheet" type="text/css" href="/css/{{this}}">
+    {{/each}}
+  </head>
 
-<div id="openNav">
-  <div class="hamburgerMenu"></div>
-  <div class="hamburgerMenu"></div>
-  <div class="hamburgerMenu"></div>
-</div>
+  <body>
+    <div id="openNav">
+      <div class="hamburgerMenu"></div>
+      <div class="hamburgerMenu"></div>
+      <div class="hamburgerMenu"></div>
+    </div>
 
-
-
-  <div id="sideNav" >
-   <ul id='links'>
-      <li><a class="navLink" href="/">Home</a></li>
-      <li><a class="navLink" href="/portfolio">Projects</a></li>
-      <li><a class="navLink" href="/contact">Contact</a></li>
-      <li><a class="navLink" href="/resume">Resume</a></li>
-    </ul>
-  </div>
-
-{{!-- <div id="loginDiv" style="visibility: hidden;">
-  <div id="close">X</div>
-  <form id="loginForm" >
-    <input placeholder="username" type="text" name="username">
-    <input placeholder="password" type="text" name="password">
-    <input type="submit" name="login" value="Login">
-  </form>
-</div> --}}
-
-
-{{{body}}}
-
-<br>
-<footer class="footer">
-    <div class="container">
-      <br>
-      
-      <ul id="footLinks">
-        <li><p id="foot">Kevin Hubbard &copy;</p></li>
+    <div id="sideNav" >
+      <ul id='links'>
+        <li><a class="navLink" href="/">Home</a></li>
+        <li><a class="navLink" href="/portfolio">Projects</a></li>
+        <li><a class="navLink" href="/contact">Contact</a></li>
+        <li><a class="navLink" href="/resume">Resume</a></li>
       </ul>
-   </div>
-</footer>
+    </div>
 
-<script type="text/javascript">
-  var openNav = document.getElementById('openNav');
-  var sideNav = document.getElementById('sideNav');
+    {{{body}}}
 
-  openNav.addEventListener('mouseover', (e) =>{
-    e.preventDefault();
-    sideNav.style.width = '50%';
-  });
+    <br>
+    <footer class="footer">
+        <div class="container">
+          <br>
+          <ul id="footLinks">
+            <li><p id="foot">Kevin Hubbard &copy;</p></li>
+          </ul>
+       </div>
+    </footer>
 
-  sideNav.addEventListener('mouseleave', () =>{
-    sideNav.style.width = '0';
-    openNav.style.display = 'inline-block';
-  });
+    <script type="text/javascript">
+      var openNav = document.getElementById('openNav');
+      var sideNav = document.getElementById('sideNav');
 
+      openNav.addEventListener('mouseover', (e) =>{
+        e.preventDefault();
+        sideNav.style.width = '50%';
+      });
 
-  /*var admin = document.getElementById('admin');
-  admin.addEventListener('click', (e)=>{
-    e.preventDefault();
-    var login = document.getElementById('loginDiv');
-
-    if(login.style.visibility === 'hidden') {
-      login.style.visibility = 'visible';
-    } else {
-      login.style.visibility = 'hidden';
-    }
-
-  });
-
-  document.getElementById('close').addEventListener('click', (e)=>{
-    e.preventDefault();
-    document.getElementById('loginDiv').style.visibility = 'hidden';
-  });
-*/
-
-
-
-
-</script>
-
-</body>
+      sideNav.addEventListener('mouseleave', () =>{
+        sideNav.style.width = '0';
+        openNav.style.display = 'inline-block';
+      });
+    </script>
+  </body>
 </html>
