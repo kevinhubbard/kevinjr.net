@@ -1,4 +1,4 @@
-const {Sequelize, DataTypes } = require('sequelize');
+const {Sequelize, DataTypes, QueryTypes} = require('sequelize');
 var sequelize = require('../database/dbConnection');
 //sequelize.sync({alter: true});
 const Course = sequelize.define('Course', {
@@ -36,7 +36,10 @@ const Course = sequelize.define('Course', {
 			allowNull: true	
 		}
 }, {
-	tableName: 'Courses'
+	tableName: 'Courses',
+	timestamps: false,
+	createdAt: false,
+	updatedAt: false
 });
 
 const Round = sequelize.define('Round', {
@@ -94,7 +97,39 @@ const Round = sequelize.define('Round', {
 		}
 	}
 }, {
-	tableName: 'Rounds'
-})
+	tableName: 'Rounds',
+	timestamps: false,
+	createdAt: false,
+	updatedAt: false
+});
 
-module.exports = {Course, Round}
+const Hole = sequelize.define('Hole', {
+	holeID: {
+		type: DataTypes.SMALLINT,
+		autoIncrement: true,
+		primaryKey: true
+	},
+	courseID: {
+		type: DataTypes.SMALLINT,
+		allowNull: false
+	},
+	holeNumber: {
+		type: DataTypes.SMALLINT,
+		allowNull: false
+	},
+	par: {
+		type: DataTypes.SMALLINT,
+		allowNull: false
+	},
+	yards: {
+		type: DataTypes.SMALLINT,
+		allowNull: false
+	}
+	}, {
+		tableName: 'Holes',
+		timestamps: false,
+		createdAt: false,
+		updatedAt: false
+});
+
+module.exports = {Course, Round, Hole}
