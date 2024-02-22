@@ -17,11 +17,11 @@ window.addEventListener("DOMContentLoaded", function(event) {
 		document.getElementById('courseInfo').style.display = 'block';
 	});
 
-	let courses = document.getElementById('courses');
+/*	let courses = document.getElementById('courses');
 		courses.addEventListener("click", function() {
 		//load golfcard/rounds
 		window.location.href = '/golfcard/courses';
-	});
+	});*/
 
 	let loadRound = document.getElementById('loadRound');
 	loadRound.addEventListener("click", function() {
@@ -48,10 +48,7 @@ window.addEventListener("DOMContentLoaded", function(event) {
 	startRound.addEventListener("click", function() {
 		nextHole.disabled = true;
 		document.getElementById('hole').innerText = holeNum;
-		courseName = document.getElementById('selectCourse').value;
-		holesPlayed = document.getElementById('selectHoles').value;
-		console.log("playing " + holesPlayed + " holes at " + courseName);
-		document.getElementById('course').innerText = courseName;
+
 		document.getElementById('courseInfo').style.display = 'none';
 		document.getElementById('app').style.display = 'block';
 	});
