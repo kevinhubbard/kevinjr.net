@@ -13,6 +13,7 @@ app.use(express.static('node_modules'));
 app.use(express.static(path.join(__dirname, 'assets')));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
+app.use('/api', require('cors')());
 
 // DEFINES PORT
 var PORT = process.env.PORT || 3000;
