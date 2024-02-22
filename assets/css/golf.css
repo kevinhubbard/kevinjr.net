@@ -3,11 +3,6 @@
 	padding: 0;
 }
 
-/*#course {
-	display: inline-block;
-	border: 1px solid black;
-}*/
-
 @media only screen and (max-width: 600px) {
 	#title {
 		background-color: lightblue;
@@ -52,12 +47,13 @@
 	}
 
 	#courses {
-		background-image: url('/images/course.jpg');
-		background-size: cover;
-		margin-top: 20px;
-		margin-bottom: 20px;
-		width: 75%;
-		padding-bottom: 60px;
+		margin: auto;
+		margin-top: 5px;
+		margin-bottom: 5px;
+		display: block;
+		text-align: center;
+		width: 175px;
+		height: 75px;
 	}
 
 	#loadRound {
@@ -74,12 +70,6 @@
 		color: white;
 	}
 
-	#courses:hover {
-		font-size: 25px;
-		font-weight: bold;
-		color: white;
-	}
-
 	#loadRound:hover {
 		font-size: 25px;
 		font-weight: bold;
@@ -89,25 +79,25 @@
 	#selectHoles {
 		display: block;
 		margin: auto;
-		width: 175px;
+		width: 200px;
 		height: 75px;
 		text-align: center;
 	}
 	#start {
-		width: 175px;
+		width: 200px;
 		height: 75px;
 		display: block;
 		margin: auto;
 	}
 
-	#selectCourse {
-		margin: auto;
-		margin-top: 5px;
-		margin-bottom: 5px;
+	#courses {
 		display: block;
-		text-align: center;
-		width: 175px;
+		margin: auto;
+		width: 200px;
 		height: 75px;
+		text-align: center;
+		margin-top: 25px;
+		margin-bottom: 25px;
 	}
 
 	#app {
