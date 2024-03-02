@@ -47,7 +47,7 @@ window.addEventListener("DOMContentLoaded", function(event) {
 	let startRound = document.getElementById('start');
 	startRound.addEventListener("click", function() {
 		nextHole.disabled = true;
-		document.getElementById('hole').innerText = holeNum;
+		//document.getElementById('hole').innerText = holeNum;
 
 		document.getElementById('courseInfo').style.display = 'none';
 		document.getElementById('app').style.display = 'block';

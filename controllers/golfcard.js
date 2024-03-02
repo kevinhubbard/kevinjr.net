@@ -25,7 +25,7 @@ router.get('/api/courses', async function(req, res){
 router.get('/hls', async function(req, res) {
 	const hls = await Hole.findAll({
 		where: {
-			courseID: 1
+			courseID: 9
 		}
 	});
 	console.log(hls);

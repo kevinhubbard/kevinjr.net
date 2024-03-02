@@ -12,7 +12,7 @@ var app = express();
 app.use(express.static('node_modules'));
 app.use(express.static(path.join(__dirname, 'assets')));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.urlencoded({extended: false}));
 app.use('/api', require('cors')());
 
 // DEFINES PORT
@@ -43,6 +43,7 @@ app.use('/golfcard', require('./controllers/golfcard'));
 app.use('/botw', require('./controllers/botw'));
 app.use('/brpaints', require('./controllers/brpaints'));
 app.use('/campgear', require('./controllers/campgear'));
+app.use('/cal-counter', require('./controllers/cal-counter'));
 
 // 404 CATCH
 app.use(function (req, res, next) {

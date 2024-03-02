@@ -1,0 +1,32 @@
+html {
+	width: 100%;
+}
+
+#calApp {
+	margin: auto;
+	width: 1000px;
+	height: 1000px;
+	background-color: lightblue;
+	display: inline-block;
+}
+
+#addFood {
+	width: 32%;
+	height: 100%;
+	background-color: red;
+	display: inline-block;
+}
+
+#addCalorie {
+	width: 32%;
+	height: 100%;
+	background-color: green;
+	display: inline-block;
+}
+
+#totals {
+	width: 32%;
+	height: 100%;
+	background-color: blue;
+	display: inline-block;
+}
