@@ -1,4 +1,16 @@
+*, html {
+  margin: 0;
+  padding: 0;
+}
+
 .err404{
   text-align: center;
 }
 
+.container {
+  margin-top: 50px;
+}
+
+#openNav {
+  margin-top: 50px;
+}

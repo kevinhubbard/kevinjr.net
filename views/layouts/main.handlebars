@@ -21,7 +21,9 @@
   </head>
 
   <body>
-    <div id="openNav">
+<div class="wrapper">
+
+<div id="openNav">
       <div class="hamburgerMenu"></div>
       <div class="hamburgerMenu"></div>
       <div class="hamburgerMenu"></div>
@@ -36,17 +38,20 @@
       </ul>
     </div>
 
-    {{{body}}}
+{{!--    <div id="desktopNav">
+      <ul>
+        <li><a class="navLink" href="/">Home</a></li>
+        <li><a class="navLink" href="/portfolio">Projects</a></li>
+        <li><a class="navLink" href="/contact">Contact</a></li>
+        <li><a class="navLink" href="/resume">Resume</a></li>
+      </ul>
+    </div> --}}
 
-    
+    {{{body}}}
     <footer class="footer">
-        <div class="container">
-          <br>
-          <ul id="footLinks">
-            <li><p id="foot">Kevin Hubbard &copy;</p></li>
-          </ul>
-       </div>
+    <span>Kevin Hubbard &copy;</span>
     </footer>
+</div>
 
     <script type="text/javascript">
       var openNav = document.getElementById('openNav');
@@ -54,7 +59,7 @@
 
       openNav.addEventListener('mouseover', (e) =>{
         e.preventDefault();
-        sideNav.style.width = '50%';
+        sideNav.style.width = '15%';
       });
 
       sideNav.addEventListener('mouseleave', () =>{

@@ -1,3 +1,12 @@
+*,html {
+  margin: 0;
+  padding: 0;
+}
+
+.container, #openNav {
+  margin-top: 50px;
+}
+
 .project {
   display: inline-block;
   margin-bottom: 10px;
@@ -18,3 +27,7 @@
   text-align: center;
 }
 
+#apps img {
+  width: 275px;
+  height: 200px;
+}

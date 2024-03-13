@@ -2,10 +2,10 @@ var express = require('express');
 var router = express.Router();
 
 
-var Food = require('../models/cal-counter');
+var Food = require('../models/meals');
 
 router.get('/', function(req, res) {
-	res.render('cal-counter', {
+	res.render('meals', {
 		css: ['style.css', 'cal-counter.css'],
 		js: 'cal-counter.js'
 	});
@@ -46,7 +46,7 @@ router.post('/', async function(req, res) {
 	});
 
 	console.log(foodItem);
-	res.render('cal-counter', {
+	res.render('meals', {
 		css: ['style.css', 'cal-counter.css'],
 		js: ['cal-counter.js']
 	});
