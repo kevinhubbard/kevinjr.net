@@ -1,71 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="description" content="Kevin Hubbard's Portfolio">
-    <meta name="author" content="Kevin Hubbard Jr">
-    <meta name="keywords" content="kevin,hubbard,jr,full stack,web developer,coding,portfolio,HTML,CSS,Bootstrap,Jquery/AJAX,nodejs,handlebars,mongodb,git,github,heroku">
-    <link href="/images/khfavicon.ico" rel="shortcut icon">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Kevin Hubbard</title>
-    <link rel="stylesheet" type="text/css" href="/bootstrap/dist/css/bootstrap.min.css">
-    <script type="text/javascript" src='/jquery/dist/jquery.min.js'></script>
-    <script type="text/javascript" src='/bootstrap/dist/js/bootstrap.min.js'></script>
-    {{#each js}}
-      <script type="text/javascript" src='/js/{{this}}'></script>
-    {{/each}}
-    {{#each css}}
-      <link rel="stylesheet" type="text/css" href="/css/{{this}}">
-    {{/each}}
-  </head>
+	<head>
+		<meta charset="utf-8">
+		<meta name="description" content="Kevin Hubbard's Portfolio">
+		<meta name="author" content="Kevin Hubbard Jr">
+		<meta name="keywords" content="kevin,hubbard,jr,full stack,web developer,coding,portfolio,HTML,CSS,Bootstrap,Jquery/AJAX,nodejs,handlebars,mongodb,git,github,heroku">
+		<link href="/images/khfavicon.ico" rel="shortcut icon">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Kevin Jr</title>
+		<link rel="stylesheet" type="text/css" href="/bootstrap/dist/css/bootstrap.min.css">
+		<script type="text/javascript" src='/jquery/dist/jquery.min.js'></script>
+		<script type="text/javascript" src='/bootstrap/dist/js/bootstrap.min.js'></script>
+		{{#each js}}
+			<script type="text/javascript" src='/js/{{this}}'></script>
+		{{/each}}
+		{{#each css}}
+			<link rel="stylesheet" type="text/css" href="/css/{{this}}">
+		{{/each}}
+	</head>
 
-  <body>
-<div class="wrapper">
+	<body>
+	<div class="wrapper">
 
-<div id="openNav">
-      <div class="hamburgerMenu"></div>
-      <div class="hamburgerMenu"></div>
-      <div class="hamburgerMenu"></div>
-    </div>
+		<div id="openNav">
+			<div class="hamburgerMenu"></div>
+			<div class="hamburgerMenu"></div>
+			<div class="hamburgerMenu"></div>
+		</div>
 
-    <div id="sideNav" >
-      <ul id='links'>
-        <li><a class="navLink" href="/">Home</a></li>
-        <li><a class="navLink" href="/portfolio">Projects</a></li>
-        <li><a class="navLink" href="/contact">Contact</a></li>
-        <li><a class="navLink" href="/resume">Resume</a></li>
-      </ul>
-    </div>
+		<div id="sideNav" >
+			<ul id='links'>
+				<li><a class="navLink" href="/">Home</a></li>
+				<li><a class="navLink" href="/portfolio">Projects</a></li>
+				<li><a class="navLink" href="/contact">Contact</a></li>
+				<li><a class="navLink" href="/resume">Resume</a></li>
+			</ul>
+		</div>
 
-{{!--    <div id="desktopNav">
-      <ul>
-        <li><a class="navLink" href="/">Home</a></li>
-        <li><a class="navLink" href="/portfolio">Projects</a></li>
-        <li><a class="navLink" href="/contact">Contact</a></li>
-        <li><a class="navLink" href="/resume">Resume</a></li>
-      </ul>
-    </div> --}}
+		{{{body}}}
 
-    {{{body}}}
-    <footer class="footer">
-    <span>Kevin Hubbard &copy;</span>
-    </footer>
-</div>
-
-    <script type="text/javascript">
-      var openNav = document.getElementById('openNav');
-      var sideNav = document.getElementById('sideNav');
-
-      openNav.addEventListener('mouseover', (e) =>{
-        e.preventDefault();
-        sideNav.style.width = '15%';
-      });
-
-      sideNav.addEventListener('mouseleave', () =>{
-        sideNav.style.width = '0';
-        openNav.style.display = 'inline-block';
-      });
-    </script>
-  </body>
+		<footer class="footer">
+			<span>Kevin Hubbard &copy;</span>
+		</footer>
+	</div>
+	</body>
 </html>
