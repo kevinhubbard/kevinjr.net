@@ -1,13 +1,13 @@
 const {Sequelize, DataTypes} = require('sequelize');
 const sequelize = require('../database/dbConnection');
 
-const Food = sequelize.define('Food', {
-	foodID: {
+const Ingredient = sequelize.define('Ingredient', {
+	ingredientID: {
 		type: DataTypes.SMALLINT,
 		autoIncrement: true,
 		primaryKey: true
 	},
-	foodName: {
+	ingredientName: {
 		type: DataTypes.STRING,
 		allowNull: false
 	},
@@ -64,10 +64,10 @@ const Food = sequelize.define('Food', {
 		allowNull: false
 	},
 }, {
-	tableName: 'Foods',
+	tableName: 'Ingredients',
 	timestamps: false,
 	createdAt: false,
 	updatedAt: false
 });
 
-module.exports = Food;
+module.exports = Ingredient;
