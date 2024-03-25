@@ -5,7 +5,7 @@ var router = express.Router();
 router.get('/', function(req, res){
 	res.render('index',{
 		css: ['style.css', 'index.css'],
-		js: ['jquery.flip.min.js','indexScript.js']
+		js: ['jquery.flip.min.js','indexScript.js', 'menu.js']
 	});
 });
 

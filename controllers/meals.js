@@ -1,19 +1,25 @@
 var express = require('express');
 var router = express.Router();
+const { QueryTypes } = require('sequelize');
 
+var Ingredient = require('../models/meals.js');
 
-var Food = require('../models/meals');
+router.get('/api', async function (req, res) {
+	const ingredientList = await Ingredient.findAll();
+	res.json(ingredientList);
+});
 
-router.get('/', function(req, res) {
+router.get('/', async function(req, res) {
+	const ingredientList = await Ingredient.findAll();
 	res.render('meals', {
 		css: ['style.css', 'cal-counter.css'],
-		js: 'cal-counter.js'
+		js: ['mealList.js'],
+		iList: ingredientList
 	});
 });
 
 router.post('/', async function(req, res) {
-
-	const foodName = req.body.foodName;
+	const ingredientName = req.body.ingredientName;
 	const foodGroup = req.body.foodGroup;
 	const servingSize = req.body.servingSize;
 	const calories = req.body.calories;
@@ -26,10 +32,10 @@ router.post('/', async function(req, res) {
 	const fiber = req.body.fiber;
 	const sugar = req.body.sugar;
 	const protein = req.body.protein;
-	const imgLocation = '/assets/images/foods/' + req.body.foodName + '.jpg';	
+	const imgLocation = '/images/foods/' + req.body.ingredientName + '.jpg';	
 
-	const foodItem = await Food.create({
-		foodName: foodName,
+	const ingredient = await Ingredient.create({
+		ingredientName: ingredientName,
 		foodGroup: foodGroup,
 		servingSize: servingSize,
 		calories: calories,
@@ -38,17 +44,18 @@ router.post('/', async function(req, res) {
 		transFat: transFat,
 		cholesterol: cholesterol,
 		sodium: sodium,
-		totalCarbohydrates,
+		totalCarbohydrates: totalCarbohydrates,
 		fiber: fiber,
 		sugar: sugar,
 		protein: protein,
 		imgLocation: imgLocation
 	});
 
-	console.log(foodItem);
+	const ingredientList = await Ingredient.findAll();
 	res.render('meals', {
 		css: ['style.css', 'cal-counter.css'],
-		js: ['cal-counter.js']
+		js: ['mealList.js'],
+		iList: ingredientList
 	});
 });
 
