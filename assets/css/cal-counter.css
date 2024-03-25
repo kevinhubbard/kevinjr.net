@@ -3,6 +3,14 @@
 	padding: 0;
 }
 
+h1 {
+	text-decoration: underline;
+}
+
+.info {
+	font-size: 24px;
+}
+
 #openNav {
 	margin-top: 50px;
 }
@@ -16,17 +24,17 @@
 }
 
 #addFood {
-	background-color: red;
+	background-color: pink;
 	display: inline-block;
 	overflow: wrap;
 }
 
 #addCalorie {
-	background-color: green;
+	background-color: lightgreen;
 	display: inline-block;
 }
 
 #totals {
-	background-color: blue;
+	background-color: lightblue;
 	display: inline-block;
 }
