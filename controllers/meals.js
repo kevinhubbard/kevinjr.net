@@ -13,7 +13,7 @@ router.get('/', async function(req, res) {
 	const ingredientList = await Ingredient.findAll();
 	res.render('meals', {
 		css: ['style.css', 'cal-counter.css'],
-		js: ['mealList.js'],
+		js: ['mealList.js', 'menu.js'],
 		iList: ingredientList
 	});
 });

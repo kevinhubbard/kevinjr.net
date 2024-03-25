@@ -22,7 +22,8 @@ router.post('/', urlencodedParser, function(req, res){
 		res.render('thankyou', {
 			name: req.body.name,
 			email: req.body.email,
-			css: ['style.css']
+			css: ['style.css'],
+			js: ['menu.js']
 		});
 	} else {
 		info.save(function(err){
@@ -30,7 +31,8 @@ router.post('/', urlencodedParser, function(req, res){
 			res.render('thankyou', {
 				name: req.body.name, 
 				email: req.body.email, 
-				css: ['style.css']
+				css: ['style.css'],
+				js: ['menu.js']
 			});
 		});
 

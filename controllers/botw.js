@@ -5,7 +5,7 @@ const Ingredient = require('../models/botw.js');
 router.get('/', function(req,res){
 	res.render('botw', {
 		css: ['style.css', 'botw.css'],
-		js: ['botw.js']
+		js: ['botw.js', 'menu.js']
 	});
 });
 
