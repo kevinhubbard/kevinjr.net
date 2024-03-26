@@ -1,6 +1,10 @@
 window.addEventListener('DOMContentLoaded', () => {
 	const ing = document.getElementById('ingredients');
+	const addToMealBtn = document.getElementById('addToMeal');
+	const createMealBtn = document.getElementById('createMeal');
+
 	let iList = [];
+	let mealList = [];
 
 	getIngredients();
 	async function getIngredients() {
@@ -34,7 +38,7 @@ window.addEventListener('DOMContentLoaded', () => {
 				document.getElementById('sugarInfo').innerText = obj.sugar;
 				document.getElementById('proteinInfo').innerText = obj.protein;
 
-			})
+			});
 		}
 
 		for (let i = 0; i < ingredients.length; i++) {
@@ -43,6 +47,30 @@ window.addEventListener('DOMContentLoaded', () => {
 		}
 	}
 
-	
+	addToMealBtn.addEventListener('click', function(e) {
+		e.preventDefault();
+		let add = document.getElementById('nameInfo').innerText;
+		let obj = iList.find(o => o.ingredientName === add);
+		mealList.push(obj);
+		let pic = document.createElement("img");
+		let btn = document.createElement("button");
+		btn.className = 'mealIngredient';
+		pic.src = obj.imgLocation;
+		pic.width = 100;
+		pic.height = 100;
+		btn.append(pic);
 
+		btn.addEventListener('click', function(e) {
+			e.preventDefault();
+			console.log('keep working bro.');
+		});
+
+		document.getElementById('mealIngredients').append(btn);
+
+	});
+
+	createMealBtn.addEventListener('click', function(e) {
+		e.preventDefault();
+		console.log(mealList.length);
+	});
 });
