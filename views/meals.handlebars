@@ -3,50 +3,52 @@
 		<div id="addFood" class="col-4">
 			<h1>Add Ingredient</h1>
 			<form id="foodForm" name="foodFrm" method="post">
-				<label>Food Name:</label>
-				<input type="text" id="fName" name="ingredientName"><br>
+				<input type="text" id="fName" name="ingredientName">
+				<label>Food Name</label><br>
 				
-				<label for="foodGroup">Food Group:</label>
+				
 				<select name="foodGroup" id="foodGroup">
 					<option value="Fruits">Fruits</option>
 					<option value="Vegetables">Vegetables</option>
 					<option value="Grains">Grains</option>
 					<option value="Protein">Protein</option>
 					<option value="Dairy">Dairy</option>
-				</select><br>
+				</select><label for="foodGroup">Food Group</label><br>
 
-				<label>Serving Size:</label>
-				<input type="text"  id="servingSize" name="servingSize" placeholder="grams"><span>grams</span><br>
 				
-				<label>Calories:</label>
-				<input type="text" id="calories" name="calories"><br>
+				<input type="text"  id="servingSize" name="servingSize" placeholder="grams"><span>grams</span>
+				<label>Serving Size</label><br>
+				
+				
+				<input type="text" id="calories" name="calories">
+				<label>Calories</label><br>
 
-				<label>Total Fat:</label>
-				<input type="text"  id="totalFat" name="totalFat"><span>grams</span><br>
+				
+				<input type="text"  id="totalFat" name="totalFat" placeholder="grams">
+				<label>Total Fat</label><br>
 
-				<label>Saturated Fat:</label>
-				<input type="text"  id="saturatedFat" name="saturatedFat"><span>grams</span><br>
+				<input type="text"  id="saturatedFat" name="saturatedFat" placeholder="grams"><label>Saturated Fat</label><br>
 
-				<label>Trans Fat:</label>
-				<input type="text"  id="transFat" name="transFat"><span>grams</span><br>
+				<input type="text"  id="transFat" name="transFat" placeholder="grams">
+				<label>Trans Fat</label><br>
 
-				<label>Cholesterol:</label>
-				<input type="text"  id="cholesterol" name="cholesterol"><span>milligrams</span><br>
+				<input type="text"  id="cholesterol" name="cholesterol" placeholder="milligrams">
+				<label>Cholesterol</label><br>
 
-				<label>Sodium:</label>
-				<input type="text"  id="sodium" name="sodium"><span>milligrams</span><br>
+				<input type="text"  id="sodium" name="sodium" placeholder="milligrams">
+				<label>Sodium</label><br>
 
-				<label>Total Carbohydrates:</label>
-				<input type="text"  id="totalCarbohydrates" name="totalCarbohydrates"><span>grams</span><br>
+				<input type="text" id="totalCarbohydrates" name="totalCarbohydrates" placeholder="grams">
+				<label>Carbohydrates</label><br>
 
-				<label>Fiber:</label>
-				<input type="text"  id="fiber" name="fiber"><span>grams</span><br>
+				<input type="text"  id="fiber" name="fiber" placeholder="grams">
+				<label>Fiber</label><br>
 
-				<label>Sugar:</label>
-				<input type="text"  id="sugar" name="sugar"><span>grams</span><br>
+				<input type="text"  id="sugar" name="sugar" placeholder="grams">
+				<label>Sugar</label><br>
 
-				<label>Protein:</label>
-				<input type="text"  id="protein" name="protein"><span>grams</span><br>
+				<input type="text"  id="protein" name="protein" placeholder="grams">
+				<label>Protein</label><br>
 
 				<input type="submit" value="Submit">
 			</form>
@@ -76,6 +78,19 @@
 				<button id="editIngredient">Edit Ingredient</button>
 				<button id="addToMeal">Add To Meal</button>
 			</div>
+		</div>
+	</div>
+
+	<div class="row" id="mealInfo">
+		<div class="col-md-6">
+			<h1>Meal Ingredients</h1>
+			<div id="mealIngredients"></div>
+			<button id="removeIngredient">Remove Ingredient</button>
+			<button id="createMeal">Create Meal</button>
+		</div>
+		<div class="col-md-6">
+			<h1>Nutritional Info</h1>
+			<div id="mealNutrition" ></div>
 		</div>
 	</div>
 </div>
