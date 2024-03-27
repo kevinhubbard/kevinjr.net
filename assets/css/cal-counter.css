@@ -35,8 +35,10 @@ h1 {
 }
 
 #totals {
+	margin: 0 auto;
 	background-color: lightblue;
 	display: inline-block;
+	padding-bottom: 15px;
 }
 
 #mealIngredients {
@@ -56,4 +58,13 @@ h1 {
 #mealInfo {
 	margin-top: 25px;
 	background-color: lightblue;
+}
+
+.ingredientDV {
+	float: right;
+	margin-right: 100px;
+}
+
+.row {
+	padding-bottom: 15px;
 }
