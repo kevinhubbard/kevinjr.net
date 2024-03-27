@@ -2,9 +2,32 @@ window.addEventListener('DOMContentLoaded', () => {
 	const ing = document.getElementById('ingredients');
 	const addToMealBtn = document.getElementById('addToMeal');
 	const createMealBtn = document.getElementById('createMeal');
+	const dailyValues = {
+		calories: 2000,
+		totalFat: 78,
+		saturatedFat: 20,
+		transFat: 0,
+		cholesterol: 300,
+		sodium: 2300,
+		totalCarbohydrates: 275,
+		fiber: 28,
+		sugar: 50,
+		protein: 50
+	}
 
 	let iList = [];
 	let mealList = [];
+
+	function dvPercentage(iSize, dvTotal) {
+		let a = parseInt(iSize);
+		let b = parseInt(dvTotal);
+
+		if (a === 0 && b === 0) {
+			return 0;
+		}
+		console.log(a/b);
+		return ((a/b) * 100).toFixed(1);
+	}
 
 	getIngredients();
 	async function getIngredients() {
@@ -23,7 +46,7 @@ window.addEventListener('DOMContentLoaded', () => {
 			div.append(btn);
 			btn.addEventListener('click', (e) => {
 				let obj = iList.find(o => o.ingredientName === btn.id);
-				
+
 				document.getElementById('nameInfo').innerText = obj.ingredientName;
 				document.getElementById('foodGroupInfo').innerText = obj.foodGroup;
 				document.getElementById('servingSizeInfo').innerText = obj.servingSize;
@@ -37,6 +60,18 @@ window.addEventListener('DOMContentLoaded', () => {
 				document.getElementById('fiberInfo').innerText = obj.fiber;
 				document.getElementById('sugarInfo').innerText = obj.sugar;
 				document.getElementById('proteinInfo').innerText = obj.protein;
+
+
+				document.getElementById('caloriesDV').innerText = dvPercentage(obj.calories, dailyValues.calories) + "%";
+				document.getElementById('totalFatDV').innerText = dvPercentage(obj.totalFat, dailyValues.totalFat) + "%";
+				document.getElementById('saturatedFatDV').innerText = dvPercentage(obj.saturatedFat, dailyValues.saturatedFat) + "%";
+				document.getElementById('transFatDV').innerText = dvPercentage(obj.transFat, dailyValues.transFat) + "%";
+				document.getElementById('cholesterolDV').innerText = dvPercentage(obj.cholesterol, dailyValues.cholesterol) + "%";
+				document.getElementById('sodiumDV').innerText = dvPercentage(obj.sodium, dailyValues.sodium) + "%";
+				document.getElementById('totalCarbohydratesDV').innerText = dvPercentage(obj.totalCarbohydrates, dailyValues.totalCarbohydrates) + "%";
+				document.getElementById('fiberDV').innerText = dvPercentage(obj.fiber, dailyValues.fiber) + "%";
+				document.getElementById('sugarDV').innerText = dvPercentage(obj.sugar, dailyValues.sugar) + "%";
+				document.getElementById('proteinDV').innerText = dvPercentage(obj.protein, dailyValues.protein) + "%";
 
 			});
 		}
