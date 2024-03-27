@@ -6,7 +6,6 @@
 				<input type="text" id="fName" name="ingredientName">
 				<label>Food Name</label><br>
 				
-				
 				<select name="foodGroup" id="foodGroup">
 					<option value="Fruits">Fruits</option>
 					<option value="Vegetables">Vegetables</option>
@@ -14,15 +13,12 @@
 					<option value="Protein">Protein</option>
 					<option value="Dairy">Dairy</option>
 				</select><label for="foodGroup">Food Group</label><br>
-
 				
-				<input type="text"  id="servingSize" name="servingSize" placeholder="grams"><span>grams</span>
+				<input type="text"  id="servingSize" name="servingSize" placeholder="grams">
 				<label>Serving Size</label><br>
-				
 				
 				<input type="text" id="calories" name="calories">
 				<label>Calories</label><br>
-
 				
 				<input type="text"  id="totalFat" name="totalFat" placeholder="grams">
 				<label>Total Fat</label><br>
@@ -62,21 +58,21 @@
 		<div id="totals" class="col-4">
 			<h1>Ingredient Info</h1>
 			<div id="ingredientInfo">
-				<h6>Name: <span class="info" id="nameInfo">-</span></h6>
+				<h6>Name: <span class="info" id="nameInfo">-</span><span class="ingredientDV">%Daily Value</span></h6>
 				<h6>Food Group: <span class="info" id="foodGroupInfo">-</span></h6>
 				<h6>Serving Size: <span class="info" id="servingSizeInfo">-</span></h6>
-				<h6>Calories: <span class="info" id="caloriesInfo">-</span></h6>
-				<h6>Total Fat: <span class="info" id="totalFatInfo">-</span></h6>
-				<h6>Saturated Fat: <span class="info" id="saturatedFatInfo">-</span></h6>
-				<h6>Trans Fat: <span class="info" id="transFatInfo">-</span></h6>
-				<h6>Cholesterol: <span class="info" id="cholesterolInfo">-</span></h6>
-				<h6>Sodium: <span class="info" id="sodiumInfo">-</span></h6>
-				<h6>Total Carbohydrates: <span class="info" id="carbohydratesInfo">-</span></h6>
-				<h6>Fiber: <span class="info" id="fiberInfo">-</span></h6>
-				<h6>Sugar: <span class="info" id="sugarInfo">-</span></h6>
-				<h6>Protein: <span class="info" id="proteinInfo">-</span></h6>
-				<button id="editIngredient">Edit Ingredient</button>
-				<button id="addToMeal">Add To Meal</button>
+				<h6>Calories: <span class="info" id="caloriesInfo">-</span><span id="caloriesDV" class="ingredientDV"></span></h6>
+				<h6>Total Fat: <span class="info" id="totalFatInfo">-</span><span id="totalFatDV" class="ingredientDV"></span></h6>
+				<h6>Saturated Fat: <span class="info" id="saturatedFatInfo">-</span><span id="saturatedFatDV" class="ingredientDV"></span></h6>
+				<h6>Trans Fat: <span class="info" id="transFatInfo">-</span><span id="transFatDV" class="ingredientDV"></span></h6>
+				<h6>Cholesterol: <span class="info" id="cholesterolInfo">-</span><span id="cholesterolDV" class="ingredientDV"></span></h6>
+				<h6>Sodium: <span class="info" id="sodiumInfo">-</span><span id="sodiumDV" class="ingredientDV"></span></h6>
+				<h6>Total Carbohydrates: <span class="info" id="carbohydratesInfo">-</span><span id="totalCarbohydratesDV" class="ingredientDV"></span></h6>
+				<h6>Fiber: <span class="info" id="fiberInfo">-</span><span id="fiberDV" class="ingredientDV"></span></h6>
+				<h6>Sugar: <span class="info" id="sugarInfo">-</span><span id="sugarDV" class="ingredientDV"></span></h6>
+				<h6>Protein: <span class="info" id="proteinInfo">-</span><span id="proteinDV" class="ingredientDV"></span></h6>
+				<button  type="button" class="btn btn-warning" id="editIngredient">Edit Ingredient</button>
+				<button type="button" class="btn btn-primary" id="addToMeal">Add To Meal</button>
 			</div>
 		</div>
 	</div>
@@ -85,8 +81,8 @@
 		<div class="col-md-6">
 			<h1>Meal Ingredients</h1>
 			<div id="mealIngredients"></div>
-			<button id="removeIngredient">Remove Ingredient</button>
-			<button id="createMeal">Create Meal</button>
+			<button type="button" class="btn btn-danger" id="removeIngredient">Remove Ingredient</button>
+			<button type="button" class="btn btn-primary" id="createMeal">Create Meal</button>
 		</div>
 		<div class="col-md-6">
 			<h1>Nutritional Info</h1>
