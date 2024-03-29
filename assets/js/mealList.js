@@ -1,7 +1,14 @@
 window.addEventListener('DOMContentLoaded', () => {
-	const ing = document.getElementById('ingredients');
+	//const ing = document.getElementById('ingredients');
 	const addToMealBtn = document.getElementById('addToMeal');
 	const createMealBtn = document.getElementById('createMeal');
+
+			const fruitFoodGroup = document.getElementById('fruitFoodGroup');
+			const vegetableFoodGroup = document.getElementById('vegetableFoodGroup');
+			const grainFoodGroup = document.getElementById('grainFoodGroup');
+			const proteinFoodGroup = document.getElementById('proteinFoodGroup');
+			const dairyFoodGroup = document.getElementById('dairyFoodGroup');
+
 	const dailyValues = {
 		calories: 2000,
 		totalFat: 78,
@@ -35,15 +42,79 @@ window.addEventListener('DOMContentLoaded', () => {
 		const ingredients = await response.json();
 
 		for (let ingredient in ingredients) {
-			const div = document.getElementById('ingredients');
+
 			const img = document.createElement('img');
 			const btn = document.createElement('button');
-			btn.id = ingredients[ingredient].ingredientName;
-			img.src = ingredients[ingredient].imgLocation;
-			img.width = 100;
-			img.height = 100;
-			btn.append(img);
-			div.append(btn);
+
+			const fg = ingredients[ingredient].foodGroup.toLowerCase();
+
+/*			if (fg === 'fruit') {
+				console.log('fruit');
+			}
+						if (fg === 'vegetable') {
+				console.log('vegetable');
+			}
+						if (fg === 'grain') {
+								btn.id = ingredients[ingredient].ingredientName;
+				img.src = ingredients[ingredient].imgLocation;
+				img.width = 100;
+				img.height = 100;
+				btn.append(img);
+				grainFoodGroup.append(btn);
+			}
+						if (fg === 'protein') {
+				console.log('protein');
+			}
+						if (fg === 'dairy') {
+				console.log('dairy');
+			}
+*/
+			switch(fg) {
+			case 'fruit':
+				btn.id = ingredients[ingredient].ingredientName;
+				img.src = ingredients[ingredient].imgLocation;
+				img.width = 100;
+				img.height = 100;
+				btn.append(img);
+				fruitFoodGroup.append(btn);
+				break;
+			case 'vegetable':
+				btn.id = ingredients[ingredient].ingredientName;
+				img.src = ingredients[ingredient].imgLocation;
+				img.width = 100;
+				img.height = 100;
+				btn.append(img);
+				vegetableFoodGroup.append(btn);
+				break;
+			case 'grain':
+				btn.id = ingredients[ingredient].ingredientName;
+				img.src = ingredients[ingredient].imgLocation;
+				img.width = 100;
+				img.height = 100;
+				btn.append(img);
+				grainFoodGroup.append(btn);
+				break;
+			case 'protein':
+				btn.id = ingredients[ingredient].ingredientName;
+				img.src = ingredients[ingredient].imgLocation;
+				img.width = 100;
+				img.height = 100;
+				btn.append(img);
+				proteinFoodGroup.append(btn);
+				break;
+			case 'dairy':
+				btn.id = ingredients[ingredient].ingredientName;
+				img.src = ingredients[ingredient].imgLocation;
+				img.width = 100;
+				img.height = 100;
+				btn.append(img);
+				dairyFoodGroup.append(btn);
+				break;
+			default:
+				console.log('not a food group');
+			}
+
+
 			btn.addEventListener('click', (e) => {
 				let obj = iList.find(o => o.ingredientName === btn.id);
 
