@@ -32,12 +32,8 @@ router.get('/hls', async function(req, res) {
 })
 
 router.get('/rounds', async function(req, res){
-	const round = await Round.findAll();
-		res.render('rounds', {
-		css: ['style.css', 'golf.css'],
-		js: ['golfScript.js'],
-		rnd: round
-	});
+	const rnd = await Round.findAll();
+		res.json(rnd);
 });
 
 module.exports = router;
