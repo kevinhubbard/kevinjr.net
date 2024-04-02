@@ -7,6 +7,8 @@ window.addEventListener("DOMContentLoaded", function(event) {
 	let score = 0;
 	const hole = [];
 	let round = {};
+
+
 	
 	document.getElementById('app').style.display = 'none';
 	document.getElementById('courseInfo').style.display = 'none';
