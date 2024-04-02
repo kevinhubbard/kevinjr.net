@@ -3,7 +3,7 @@
 	padding: 0;
 }
 
-h1 {
+h3 {
 	text-decoration: underline;
 	text-align: center;
 }
@@ -32,6 +32,7 @@ h1 {
 #addCalorie {
 	background-color: lightgreen;
 	display: inline-block;
+	padding-bottom: 15px;
 }
 
 #totals {
@@ -57,6 +58,7 @@ h1 {
 
 #mealInfo {
 	margin-top: 25px;
+	margin-bottom: 75px;
 	background-color: lightblue;
 }
 
@@ -67,5 +69,17 @@ h1 {
 
 .row {
 	padding-bottom: 15px;
+}
+
+.test {
+	display: flex;
+	flex-wrap: nowrap;
+	overflow: auto;
+}
+
+
+
+.iLists {
+	flex: 0 0 auto;
 }
 

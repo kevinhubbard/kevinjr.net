@@ -3,7 +3,160 @@
 	padding: 0;
 }
 
+@media only screen and (min-width: 800px) {
+	#title {
+		background-color: lightblue;
+		text-align: center;
+		width: 65%;
+		height: 10vh;
+		margin: 0 auto;
+	}
+
+	#courseInfo {
+		margin: auto;
+		padding-top: 50px;
+		display: block;
+		background-color: lightgreen;
+		height: 85vh;
+		width: 65%;
+		box-sizing: border-box;
+	}
+
+	#options {
+		margin: 0 auto;
+		padding-top: 50px;
+		display: block;
+		background-color: yellow;
+		height: 85vh;
+		width: 65%;
+		font-size: 0;
+		box-sizing: border-box;
+	}
+
+	#options button{
+		margin: 0 auto;
+		display: block;
+		width: 50%;
+		margin-bottom: 20px;
+		height: 250px;
+	}
+
+	#newRound {
+		background-image: url('/images/play.jpg');
+		background-size: cover;
+		margin-top: 20px;
+		width: 75%;
+		padding-bottom: 60px;
+	}
+
+	#courses {
+		margin: auto;
+		margin-top: 5px;
+		margin-bottom: 5px;
+		display: block;
+		text-align: center;
+		width: 175px;
+		height: 75px;
+	}
+
+	#loadRound {
+		background-image: url('/images/score.jpg');
+		background-size: cover;
+		margin-top: 20px;
+		width: 75%;
+		padding-bottom: 60px;
+	}
+
+	#newRound:hover {
+		font-size: 25px;
+		font-weight: bold;
+		color: white;
+	}
+
+	#loadRound:hover {
+		font-size: 25px;
+		font-weight: bold;
+		color: white;
+	}
+
+
+
+
+#selectHoles {
+		display: block;
+		margin: auto;
+		width: 200px;
+		height: 75px;
+		text-align: center;
+	}
+	#start {
+		width: 200px;
+		height: 75px;
+		display: block;
+		margin: auto;
+	}
+
+	#courses {
+		display: block;
+		margin: auto;
+		width: 200px;
+		height: 75px;
+		text-align: center;
+		margin-top: 25px;
+		margin-bottom: 25px;
+	}
+
+	#app {
+		background-color: lightgreen;
+		height: 85vh;
+		text-align: center;
+		width: 65%;
+		margin: 0 auto;
+	}
+
+
+	#score {
+		font-size: 72px;
+	}
+
+	#holeCss {
+		display: inline;
+	}
+
+	#stroke {
+		margin: auto;
+		margin-top: 10px;
+		width: 90%;
+		height: 100px;
+	}
+
+	#nextHole {
+		margin: auto;
+		margin-top: 10px;
+		margin-bottom: 10px;
+		width: 90%;
+		height: 100px;
+	}
+
+	#scoreCard {
+		width: 100%;
+	}
+
+	table {
+		display: block;
+		overflow-x: auto;
+		white-space: nowrap;
+		table-layout: fixed;
+	}
+
+	td {
+		min-width: 25px;
+		min-height: 25px;
+	}
+}
+
 @media only screen and (max-width: 600px) {
+
 	#title {
 		background-color: lightblue;
 		text-align: center;
@@ -17,6 +170,7 @@
 		display: block;
 		background-color: lightgreen;
 		height: 85vh;
+		width: 100%;
 		box-sizing: border-box;
 	}
 
@@ -26,6 +180,7 @@
 		display: block;
 		background-color: yellow;
 		height: 85vh;
+		width: 100%;
 		font-size: 0;
 		box-sizing: border-box;
 	}
