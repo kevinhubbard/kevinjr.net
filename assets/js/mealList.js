@@ -2,6 +2,12 @@ window.addEventListener('DOMContentLoaded', () => {
 	//const ing = document.getElementById('ingredients');
 	const addToMealBtn = document.getElementById('addToMeal');
 	const createMealBtn = document.getElementById('createMeal');
+	const editIngred = document.getElementById('editIngred');
+	const cancelUpdate = document.getElementById('cancelUpdate');
+	const updateIngred = document.getElementById('updateIngred');
+	updateIngred.hidden = true;
+	editIngred.disabled = true;
+	cancelUpdate.hidden = true;
 
 			const fruitFoodGroup = document.getElementById('fruitFoodGroup');
 			const vegetableFoodGroup = document.getElementById('vegetableFoodGroup');
@@ -45,6 +51,7 @@ window.addEventListener('DOMContentLoaded', () => {
 		img.height = 75;
 		btn.append(img);
 		btn.addEventListener('click', (e) => {
+			document.getElementById('editIngred').disabled = false;
 			let obj = iList.find(o => o.ingredientName === btn.id);
 			//SET Ingredient Info
 			document.getElementById('nameInfo').innerText = obj.ingredientName;
@@ -103,7 +110,7 @@ window.addEventListener('DOMContentLoaded', () => {
 		}
 		for (let i = 0; i < ingredients.length; i++) {
 			iList.push(ingredients[i]);
-			console.log(iList.length);
+			//console.log(iList.length);
 		}
 	}
 
@@ -127,6 +134,55 @@ window.addEventListener('DOMContentLoaded', () => {
 
 		document.getElementById('mealIngredients').append(btn);
 
+	});
+
+	editIngred.addEventListener('click', function(e) {
+		e.preventDefault();
+		document.getElementById('addCalorie').style.pointerEvents = 'none';
+		editIngred.hidden = true;
+		addToMealBtn.hidden = true;
+		updateIngred.hidden = false;
+		cancelUpdate.hidden = false;
+
+
+		const info = document.getElementsByClassName('info');
+		for(i=0; i<info.length; i++) {
+			console.log(info[i]);
+			info[i].hidden = true;
+			const tb = document.createElement('input');
+			tb.className = "testCase";
+			if(info[i].id === 'nameInfo' || info[i].id === 'foodGroupInfo') {
+				tb.size = 8;
+			} else {
+				tb.size = 2;
+			}
+			tb.value = info[i].textContent;
+			tb.style.textAlign = 'center';
+			info[i].after(tb);
+		}
+
+
+	});
+
+	cancelUpdate.addEventListener('click', function(e) {
+		e.preventDefault();
+		document.getElementById('addCalorie').style.pointerEvents = 'auto';
+		let he = document.getElementsByClassName('info');
+		let eh = document.getElementsByClassName('testCase');
+		for(i=0; i<eh.length; i++) {
+			eh[i].hidden = true;
+		}
+		for(i=0; i<he.length; i++) {
+			he[i].hidden = false;
+		}
+		cancelUpdate.hidden = true;
+		editIngred.hidden = false;
+		addToMealBtn.hidden = false;
+		updateIngred.hidden = true;
+	});
+
+	updateIngred.addEventListener('click', function(e) {
+		e.preventDefault();
 	});
 
 	createMealBtn.addEventListener('click', function(e) {
