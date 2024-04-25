@@ -5,9 +5,11 @@ window.addEventListener('DOMContentLoaded', () => {
 	const editIngred = document.getElementById('editIngred');
 	const cancelUpdate = document.getElementById('cancelUpdate');
 	const updateIngred = document.getElementById('updateIngred');
+	const deleteIngred = document.getElementById('deleteIngred');
 	updateIngred.hidden = true;
 	editIngred.disabled = true;
 	cancelUpdate.hidden = true;
+	deleteIngred.hidden = true;
 
 			const fruitFoodGroup = document.getElementById('fruitFoodGroup');
 			const vegetableFoodGroup = document.getElementById('vegetableFoodGroup');
@@ -38,11 +40,10 @@ window.addEventListener('DOMContentLoaded', () => {
 		if (a === 0 && b === 0) {
 			return 0;
 		}
-		console.log(a/b);
 		return ((a/b) * 100).toFixed(1);
 	}
 
-	function buildButton(name, location) {
+	function buildButton(id, name, location) {
 		const img = document.createElement('img');
 		const btn = document.createElement('button');
 		btn.id = name;
@@ -55,6 +56,7 @@ window.addEventListener('DOMContentLoaded', () => {
 			let obj = iList.find(o => o.ingredientName === btn.id);
 			//SET Ingredient Info
 			document.getElementById('nameInfo').innerText = obj.ingredientName;
+			document.getElementById('nameInfo').setAttribute('data-id', id);
 			document.getElementById('foodGroupInfo').innerText = obj.foodGroup;
 			document.getElementById('servingSizeInfo').innerText = obj.servingSize;
 			document.getElementById('caloriesInfo').innerText = obj.calories;
@@ -90,19 +92,19 @@ window.addEventListener('DOMContentLoaded', () => {
 			const fg = ingredients[ingredient].foodGroup.toLowerCase();
 			switch(fg) {
 				case 'fruit':
-					fruitFoodGroup.append(buildButton(ingredients[ingredient].ingredientName, ingredients[ingredient].imgLocation));
+					fruitFoodGroup.append(buildButton(ingredients[ingredient].ingredientID, ingredients[ingredient].ingredientName, ingredients[ingredient].imgLocation));
 					break;
 				case 'vegetable':
-					vegetableFoodGroup.append(buildButton(ingredients[ingredient].ingredientName, ingredients[ingredient].imgLocation));
+					vegetableFoodGroup.append(buildButton(ingredients[ingredient].ingredientID, ingredients[ingredient].ingredientName, ingredients[ingredient].imgLocation));
 					break;
 				case 'grain':
-					grainFoodGroup.append(buildButton(ingredients[ingredient].ingredientName, ingredients[ingredient].imgLocation));
+					grainFoodGroup.append(buildButton(ingredients[ingredient].ingredientID, ingredients[ingredient].ingredientName, ingredients[ingredient].imgLocation));
 					break;
 				case 'protein':
-					proteinFoodGroup.append(buildButton(ingredients[ingredient].ingredientName, ingredients[ingredient].imgLocation));
+					proteinFoodGroup.append(buildButton(ingredients[ingredient].ingredientID, ingredients[ingredient].ingredientName, ingredients[ingredient].imgLocation));
 					break;
 				case 'dairy':
-					dairyFoodGroup.append(buildButton(ingredients[ingredient].ingredientName, ingredients[ingredient].imgLocation));
+					dairyFoodGroup.append(buildButton(ingredients[ingredient].ingredientID, ingredients[ingredient].ingredientName, ingredients[ingredient].imgLocation));
 					break;
 				default:
 					console.log('not a food group');
@@ -110,7 +112,6 @@ window.addEventListener('DOMContentLoaded', () => {
 		}
 		for (let i = 0; i < ingredients.length; i++) {
 			iList.push(ingredients[i]);
-			//console.log(iList.length);
 		}
 	}
 
@@ -143,14 +144,16 @@ window.addEventListener('DOMContentLoaded', () => {
 		addToMealBtn.hidden = true;
 		updateIngred.hidden = false;
 		cancelUpdate.hidden = false;
+		deleteIngred.hidden = false;
 
 
 		const info = document.getElementsByClassName('info');
 		for(i=0; i<info.length; i++) {
-			console.log(info[i]);
+			//console.log(info[i]);
 			info[i].hidden = true;
 			const tb = document.createElement('input');
 			tb.className = "testCase";
+			tb.id = 'updated' + info[i].id;
 			if(info[i].id === 'nameInfo' || info[i].id === 'foodGroupInfo') {
 				tb.size = 8;
 			} else {
@@ -179,10 +182,109 @@ window.addEventListener('DOMContentLoaded', () => {
 		editIngred.hidden = false;
 		addToMealBtn.hidden = false;
 		updateIngred.hidden = true;
+		deleteIngred.hidden = true;
 	});
 
 	updateIngred.addEventListener('click', function(e) {
 		e.preventDefault();
+		let updatedInfo = document.getElementsByClassName('testCase');
+		let dID = document.getElementById('nameInfo');
+		
+	let update = {
+		id: dID.dataset.id,
+		ingredientName: document.getElementById('updatednameInfo').value,
+		foodGroup: document.getElementById('updatedfoodGroupInfo').value,
+		servingSize: document.getElementById('updatedservingSizeInfo').value,
+		calories: document.getElementById('updatedcaloriesInfo').value,
+		totalFat: document.getElementById('updatedtotalFatInfo').value,
+		saturatedFat: document.getElementById('updatedsaturatedFatInfo').value,
+		transFat: document.getElementById('updatedtransFatInfo').value,
+		cholesterol: document.getElementById('updatedcholesterolInfo').value,
+		sodium: document.getElementById('updatedsodiumInfo').value,
+		totalCarbohydrates: document.getElementById('updatedcarbohydratesInfo').value,
+		fiber: document.getElementById('updatedfiberInfo').value,
+		sugar: document.getElementById('updatedsugarInfo').value,
+		protein: document.getElementById('updatedproteinInfo').value
+	}
+
+	const requestOptions = {
+		method: "POST",
+		headers: { "Content-Type": "application/json"},
+		body: JSON.stringify(update)
+	}
+
+	fetch('/meals/iup', requestOptions)
+		.then(data => {
+			if (!data.ok) {
+				throw Error(data.status);
+			}
+			return data.json();
+		}).then(update => {
+			console.log(update);
+		});
+	});
+
+	deleteIngred.addEventListener('click', function(e) {
+		e.preventDefault();
+		const bg = document.createElement('div');
+		bg.style.position = 'absolute';
+		bg.style.left = '0';
+		bg.style.top = '0';
+		bg.style.width = '100%';
+		bg.style.height = '100%';
+		bg.style.backgroundColor = 'rgba(255,255,255,0.5)';
+		bg.style.zindex = 5;
+		const modal = document.createElement('div');
+		modal.style.width = "250px";
+		modal.style.height = "250px";
+		modal.style.background = "red";
+		modal.style.position = 'fixed';
+		modal.style.left = ((window.innerWidth/2) - (250/2)) + 'px' ;
+		modal.style.top = ((window.innerHeight/2) - (250/2)) + 'px';
+		modal.style.zindex = '2';
+
+		const obToDel = {
+			id: document.getElementById('nameInfo').dataset.id
+		}
+
+		const bt = document.createElement('button');
+		bt.textContent = "YES delete ID: " + document.getElementById('nameInfo').dataset.id;
+		bt.addEventListener('click', function(e) {
+			e.preventDefault();
+			console.log('yes was clicked');
+			const reqOp = {
+				method: "DELETE",
+				headers: {"Content-Type": "application/json"},
+				body: JSON.stringify(obToDel)
+			}
+
+			fetch('/meals/delete', reqOp)
+				.then(data => {
+					if (!data.ok) {
+						throw Error(data.status);
+					}
+					return data.json();
+				}).then(update => {
+					console.log(update);
+				});
+			bg.hidden = true;
+		});
+		const btno = document.createElement('button');
+		btno.textContent = "NO";
+		btno.addEventListener('click', function(e) {
+			e.preventDefault();
+			console.log('no was clicked');
+			bg.hidden = true;
+		});
+
+		const alert = document.createElement('p');
+		const node = document.createTextNode("are you sure you want to delete?");
+		alert.append(node);
+		modal.append(alert);
+		modal.append(bt);
+		modal.append(btno);
+		bg.append(modal);
+		document.body.appendChild(bg);
 	});
 
 	createMealBtn.addEventListener('click', function(e) {
