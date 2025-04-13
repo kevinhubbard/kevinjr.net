@@ -13,10 +13,6 @@ router.get('/', async function(req, res){
 	});
 });
 
-/*router.get('/api/courses', async function(req, res) {
-	const crs = await Course
-});*/
-
 router.get('/courses', async function(req, res){
 	try {
 		const { courseID } = req.query;
@@ -51,9 +47,23 @@ router.get('/hls', async function(req, res) {
 	}
 });
 
-router.get('/rounds', async function(req, res){
-	const rnd = await Round.findAll();
-		res.json(rnd);
+router.get('/rounds', async function(req, res) {
+	const rounds = await Round.findAll();
+	res.json(rounds);
+});
+
+router.post('/rounds', async function(req, res){
+	try {
+		const {courseID, strokes} = req.body;
+		const newRound = await Round.create({
+			courseID: courseID,
+			strokes: strokes
+		});
+		res.json({message: 'Round Saved!', roundID: newRound.roundID});
+	} catch (err) {
+		console.error(err);
+		res.status(500).json({error:'failed to save round'});
+	}
 });
 
 router.get('/play', async function(req, res) {
