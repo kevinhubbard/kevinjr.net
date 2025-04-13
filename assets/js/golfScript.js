@@ -7,6 +7,8 @@ window.addEventListener("DOMContentLoaded", function(event) {
 	let score = 0;
 	const hole = [];
 	let round = {};
+	let holesData;
+	let courseData;
 
 
 	
@@ -33,8 +35,9 @@ window.addEventListener("DOMContentLoaded", function(event) {
 	
 	let nextHole = document.getElementById('nextHole');
 	nextHole.addEventListener("click", function() {
+		
 		strokes += holeStrokes;	
-		let par = document.getElementById('par').value;
+		let par = document.getElementById('par').innerText;
 		score += (holeStrokes - par);
 		document.getElementById('score').innerText = score;
 		checkScore(score);
@@ -42,18 +45,53 @@ window.addEventListener("DOMContentLoaded", function(event) {
 		const newHole = new Hole(holeNum, par, holeStrokes);
 		hole.push(newHole);
 		resetHole();
-		finishGameCheck(holeNum, holesPlayed);
-
+		if (finishGameCheck(holeNum, holesData.length)) {
+			document.getElementById('nextHole').disabled = true;
+			document.getElementById('stroke').disabled = true;
+		} else {
+			updatePageWithHoleInfo(holeNum - 1);
+		}
 	});
 
 	let startRound = document.getElementById('start');
-	startRound.addEventListener("click", function() {
+	startRound.addEventListener("click", async function() {
 		nextHole.disabled = true;
 		//document.getElementById('hole').innerText = holeNum;
-
 		document.getElementById('courseInfo').style.display = 'none';
 		document.getElementById('app').style.display = 'block';
+
+		const courseID = document.getElementById('courses').value;
+		console.log("course id is: " + courseID);
+		holesData = await fetchCourseHoles(courseID);
+		courseData = await fetchCourseInfo(courseID);
+
+		updatePageWithCourseInfo();
+		updatePageWithHoleInfo(0);
 	});
+
+	async function fetchCourseInfo(cID) {
+		try {
+			const response = await fetch(`/golfcard/courses?courseID=${cID}`);
+			if (!response.ok) throw new Error("failed to fetch courses.");
+			const course = await response.json();
+			return course;
+		} catch (error) {
+			console.error("there was an error", error);
+			return [];
+		}
+	}
+
+	async function fetchCourseHoles(cID) {
+		try {
+			const response = await fetch(`/golfcard/hls?courseID=${cID}`);
+			if (!response.ok) throw new Error("failed to fetch holes");
+			const holes = await response.json();
+			return holes;
+		} catch (error) {
+			console.error("Error fetching course holes:", error);
+			return [];
+		}
+	}
 
 	let stroke = document.getElementById('stroke');
 	stroke.addEventListener("click", function() {
@@ -62,17 +100,35 @@ window.addEventListener("DOMContentLoaded", function(event) {
 		nextHole.disabled = false;
 	});
 
+	function updatePageWithCourseInfo() {
+		document.getElementById('lcourseName').innerText = courseData[0].courseName;
+		document.getElementById('lcoursePar').innerText = courseData[0].par;
+		document.getElementById('lcourseYards').innerText = courseData[0].yards;
+	}
+
+	function updatePageWithHoleInfo(hNum) {
+			document.getElementById('par').innerText = holesData[hNum].par;
+			document.getElementById('hole').innerText = holesData[hNum].holeNumber;
+			document.getElementById('yards').innerText = holesData[hNum].yards;
+	}
+
 	function finishGameCheck(currentHole, totalHoles) {
+		console.log(`CurrentHole: ${currentHole}\nTotalHoles: ${totalHoles}`);
 		if (currentHole == totalHoles) {
 			document.getElementById('nextHole').innerText = 'Finish Game';
+			return false;
+		} else if (currentHole > totalHoles) {
+			return true;
 		}
-		if (currentHole>totalHoles) {
+		return false;
+
+		/*if (currentHole>totalHoles) {
 			console.log('games over.');
 			document.getElementById('nextHole').disabled = true;
 			document.getElementById('stroke').disabled = true;
 			round = new Round(courseName, holesPlayed, score, strokes, hole);
 			console.log(round.toString());
-		}
+		}*/
 	}
 
 	function checkScore(s) {

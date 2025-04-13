@@ -92,6 +92,7 @@ router.delete('/delete', async function(req, res) {
 			ingredientID: info.id
 		}
 	});
+	
 });
 
 module.exports = router;

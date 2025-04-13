@@ -6,10 +6,12 @@ window.addEventListener('DOMContentLoaded', () => {
 	const cancelUpdate = document.getElementById('cancelUpdate');
 	const updateIngred = document.getElementById('updateIngred');
 	const deleteIngred = document.getElementById('deleteIngred');
+	const removeIngred = document.getElementById('removeIngredient');
 	updateIngred.hidden = true;
 	editIngred.disabled = true;
 	cancelUpdate.hidden = true;
 	deleteIngred.hidden = true;
+	addToMealBtn.disabled = true;
 
 			const fruitFoodGroup = document.getElementById('fruitFoodGroup');
 			const vegetableFoodGroup = document.getElementById('vegetableFoodGroup');
@@ -32,6 +34,18 @@ window.addEventListener('DOMContentLoaded', () => {
 
 	let iList = [];
 	let mealList = [];
+	let mealTotals = {
+		calories: null,
+		totalFat: null,
+		saturatedFat: null,
+		transFat: null,
+		cholesterol: null,
+		sodium: null,
+		totalCarbohydrates: null,
+		fiber: null,
+		sugar: null,
+		protein: null
+	}
 
 	function dvPercentage(iSize, dvTotal) {
 		let a = parseInt(iSize);
@@ -52,7 +66,8 @@ window.addEventListener('DOMContentLoaded', () => {
 		img.height = 75;
 		btn.append(img);
 		btn.addEventListener('click', (e) => {
-			document.getElementById('editIngred').disabled = false;
+			editIngred.disabled = false;
+			addToMealBtn.disabled = false;
 			let obj = iList.find(o => o.ingredientName === btn.id);
 			//SET Ingredient Info
 			document.getElementById('nameInfo').innerText = obj.ingredientName;
@@ -115,28 +130,57 @@ window.addEventListener('DOMContentLoaded', () => {
 		}
 	}
 
+	function returnListLength() {
+		return mealList.length;
+	}
+
+	function found(id) {
+		let found = false;
+		for (i=0; i<mealList.length; i++) {
+			if (mealList[i] === id) {
+				found = true;
+			}
+		}
+		return found;
+	}
+	function picSearch(id) {
+		for (i = 0; i < iList.length; i++) {
+			if(iList[i].ingredientID === id) {
+				return iList[i].imgLocation;
+			}
+		}
+	}
+	function updateMeal(id) {
+		let img = document.createElement('img');
+		//search iList for ingredient pic
+		img.src = picSearch(id);
+		img.width = 75;
+		img.height = 75;
+		document.getElementById('mealIngredients').append(img);
+	}
+
+	//~~ ADD TO MEAL BUTTON
 	addToMealBtn.addEventListener('click', function(e) {
 		e.preventDefault();
-		let add = document.getElementById('nameInfo').innerText;
-		let obj = iList.find(o => o.ingredientName === add);
-		mealList.push(obj);
-		let pic = document.createElement("img");
-		let btn = document.createElement("button");
-		btn.className = 'mealIngredient';
-		pic.src = obj.imgLocation;
-		pic.width = 75;
-		pic.height = 75;
-		btn.append(pic);
+		let objectID = parseInt(document.getElementById('nameInfo').dataset.id);
 
-		btn.addEventListener('click', function(e) {
-			e.preventDefault();
-			console.log('keep working bro.');
-		});
+		if (returnListLength() === 0) {
+			mealList.push(objectID);
+			updateMeal(objectID);
+		} else if (found(objectID) === true) {
+			alert("Ingredient already in meal!");
+		} else {
+			mealList.push(objectID);
+			updateMeal(objectID);
+		}
 
-		document.getElementById('mealIngredients').append(btn);
+	
+
+
 
 	});
 
+	//~~ EDIT MEAL BUTTON
 	editIngred.addEventListener('click', function(e) {
 		e.preventDefault();
 		document.getElementById('addCalorie').style.pointerEvents = 'none';
@@ -167,6 +211,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
 	});
 
+	//~~ CANCEL EDIT INGREDIENT BUTTON
 	cancelUpdate.addEventListener('click', function(e) {
 		e.preventDefault();
 		document.getElementById('addCalorie').style.pointerEvents = 'auto';
@@ -185,45 +230,47 @@ window.addEventListener('DOMContentLoaded', () => {
 		deleteIngred.hidden = true;
 	});
 
+	//~~ UPDATE INGREDIENT BUTTON
 	updateIngred.addEventListener('click', function(e) {
 		e.preventDefault();
 		let updatedInfo = document.getElementsByClassName('testCase');
 		let dID = document.getElementById('nameInfo');
 		
-	let update = {
-		id: dID.dataset.id,
-		ingredientName: document.getElementById('updatednameInfo').value,
-		foodGroup: document.getElementById('updatedfoodGroupInfo').value,
-		servingSize: document.getElementById('updatedservingSizeInfo').value,
-		calories: document.getElementById('updatedcaloriesInfo').value,
-		totalFat: document.getElementById('updatedtotalFatInfo').value,
-		saturatedFat: document.getElementById('updatedsaturatedFatInfo').value,
-		transFat: document.getElementById('updatedtransFatInfo').value,
-		cholesterol: document.getElementById('updatedcholesterolInfo').value,
-		sodium: document.getElementById('updatedsodiumInfo').value,
-		totalCarbohydrates: document.getElementById('updatedcarbohydratesInfo').value,
-		fiber: document.getElementById('updatedfiberInfo').value,
-		sugar: document.getElementById('updatedsugarInfo').value,
-		protein: document.getElementById('updatedproteinInfo').value
-	}
+		let update = {
+			id: dID.dataset.id,
+			ingredientName: document.getElementById('updatednameInfo').value,
+			foodGroup: document.getElementById('updatedfoodGroupInfo').value,
+			servingSize: document.getElementById('updatedservingSizeInfo').value,
+			calories: document.getElementById('updatedcaloriesInfo').value,
+			totalFat: document.getElementById('updatedtotalFatInfo').value,
+			saturatedFat: document.getElementById('updatedsaturatedFatInfo').value,
+			transFat: document.getElementById('updatedtransFatInfo').value,
+			cholesterol: document.getElementById('updatedcholesterolInfo').value,
+			sodium: document.getElementById('updatedsodiumInfo').value,
+			totalCarbohydrates: document.getElementById('updatedcarbohydratesInfo').value,
+			fiber: document.getElementById('updatedfiberInfo').value,
+			sugar: document.getElementById('updatedsugarInfo').value,
+			protein: document.getElementById('updatedproteinInfo').value
+		}
 
-	const requestOptions = {
-		method: "POST",
-		headers: { "Content-Type": "application/json"},
-		body: JSON.stringify(update)
-	}
+		const requestOptions = {
+			method: "POST",
+			headers: { "Content-Type": "application/json"},
+			body: JSON.stringify(update)
+		}
 
-	fetch('/meals/iup', requestOptions)
-		.then(data => {
-			if (!data.ok) {
-				throw Error(data.status);
-			}
-			return data.json();
-		}).then(update => {
-			console.log(update);
+		fetch('/meals/iup', requestOptions)
+			.then(data => {
+				if (!data.ok) {
+					throw Error(data.status);
+				}
+				return data.json();
+			}).then(update => {
+				console.log(update);
+			});
 		});
-	});
 
+	//~~ DELETE INGREDIENT BUTTON
 	deleteIngred.addEventListener('click', function(e) {
 		e.preventDefault();
 		const bg = document.createElement('div');
@@ -249,25 +296,24 @@ window.addEventListener('DOMContentLoaded', () => {
 
 		const bt = document.createElement('button');
 		bt.textContent = "YES delete ID: " + document.getElementById('nameInfo').dataset.id;
-		bt.addEventListener('click', function(e) {
+		bt.addEventListener('click', async function(e) {
 			e.preventDefault();
 			console.log('yes was clicked');
-			const reqOp = {
+		const reqOp = {
 				method: "DELETE",
 				headers: {"Content-Type": "application/json"},
 				body: JSON.stringify(obToDel)
 			}
 
-			fetch('/meals/delete', reqOp)
-				.then(data => {
-					if (!data.ok) {
-						throw Error(data.status);
-					}
-					return data.json();
-				}).then(update => {
-					console.log(update);
-				});
-			bg.hidden = true;
+			await fetch('/meals/delete', reqOp).then(location.reload(true));
+			//bg.hidden = true;
+
+/*			$.ajax({
+				url: '/meals/delete',
+				type: 'DELETE',
+				body: obToDel
+			});*/
+
 		});
 		const btno = document.createElement('button');
 		btno.textContent = "NO";
@@ -287,8 +333,15 @@ window.addEventListener('DOMContentLoaded', () => {
 		document.body.appendChild(bg);
 	});
 
+	//~~ REMOVE INGREDIENT FROM MEAL BUTTON
+	removeIngred.addEventListener('click', function(e) {
+		e.preventDefault();
+		console.log('remove was clicked\ngood work today bro!');
+	});
+
+	//~~ CREATE MEAL BUTTON
 	createMealBtn.addEventListener('click', function(e) {
 		e.preventDefault();
-		console.log(mealList.length);
+		console.log(mealList);
 	});
 });
