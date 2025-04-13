@@ -57,7 +57,7 @@ const Round = sequelize.define('Round', {
 			}
 		}
 	},
-	holesPlayed: {
+	/*holesPlayed: {
 		type: DataTypes.TINYINT.UNSIGNED,
 		allowNull: false,
 		validate: {
@@ -67,7 +67,7 @@ const Round = sequelize.define('Round', {
 				}
 			}
 		}
-	},
+	},*/
 	strokes: {
 		type: DataTypes.INTEGER,
 		allowNull: false,
@@ -81,7 +81,7 @@ const Round = sequelize.define('Round', {
 				}
 			}
 		}
-	},
+	}/*,
 	score: {
 		type: DataTypes.INTEGER,
 		allowNull: false,
@@ -95,7 +95,7 @@ const Round = sequelize.define('Round', {
 				}
 			}
 		}
-	}
+	}*/
 }, {
 	tableName: 'Rounds',
 	timestamps: false,
