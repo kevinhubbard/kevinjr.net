@@ -4,7 +4,12 @@ window.addEventListener('DOMContentLoaded', function() {
 
 	openNav.addEventListener('mouseover', (e) => {
 		e.preventDefault();
-		sideNav.style.width = '15%';
+		if (window.screen.width < 600) {
+			sideNav.style.width = '35%';
+		} else {
+			sideNav.style.width = '15%';
+		}
+		
 	});
 
 	sideNav.addEventListener('mouseleave', (e) => {
