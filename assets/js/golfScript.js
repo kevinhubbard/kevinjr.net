@@ -48,10 +48,30 @@ window.addEventListener("DOMContentLoaded", function(event) {
 		if (finishGameCheck(holeNum, holesData.length)) {
 			document.getElementById('nextHole').disabled = true;
 			document.getElementById('stroke').disabled = true;
+			saveRound();
 		} else {
 			updatePageWithHoleInfo(holeNum - 1);
 		}
 	});
+
+	function saveRound() {
+		round = new Round(courseData[0].courseID, strokes);
+		console.log(round.toString());
+		fetch('/golfcard/rounds', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify(round)
+		})
+		.then(response => response.json())
+		.then(data => {
+			console.log('Round saved:', data);
+		})
+		.catch(error => {
+			console.error('Error saving round:', error);
+		});
+	}
 
 	let startRound = document.getElementById('start');
 	startRound.addEventListener("click", async function() {
@@ -190,7 +210,7 @@ window.addEventListener("DOMContentLoaded", function(event) {
 		this.strokes = strk;
 	}
 
-	function Round(name, numOfHoles, score, strokes, hole) {
+	function UnlistedRound(name, numOfHoles, score, strokes, hole) {
 		this.courseName = name;
 		this.holesPlayed = numOfHoles;
 		this.score = score;
@@ -198,8 +218,13 @@ window.addEventListener("DOMContentLoaded", function(event) {
 		this.hole = hole;
 	}
 
+	function Round(courseID, strokes) {
+		this.courseID = courseID;
+		this.strokes = strokes;
+	}
+
 	Round.prototype.toString = function() {
-		let summary = this.holesPlayed + " holes played at " + this.courseName + ".\nScore: " + this.score + "\nStrokes: " + this.strokes + "\n";
+		let summary = holesData.length + " holes played at " + courseData[0].courseID + "\nStrokes: " + this.strokes + "\n";
 		for (i = 0; i < hole.length; i++) {
 			summary += "Hole: " + hole[i].holeNumber + ", Par: " + hole[i].par + ", Strokes: " + hole[i].strokes + "\n";
 		}

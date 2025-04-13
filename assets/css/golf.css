@@ -17,7 +17,7 @@
 		padding-top: 50px;
 		display: block;
 		background-color: lightgreen;
-		height: 85vh;
+		height: 100%;
 		width: 65%;
 		box-sizing: border-box;
 	}
@@ -27,8 +27,8 @@
 		padding-top: 50px;
 		display: block;
 		background-color: yellow;
-		height: 85vh;
 		width: 65%;
+		height: 100%;
 		font-size: 0;
 		box-sizing: border-box;
 	}
@@ -108,9 +108,9 @@
 
 	#app {
 		background-color: lightgreen;
-		height: 85vh;
 		text-align: center;
 		width: 65%;
+		height: 100%;
 		margin: 0 auto;
 	}
 
@@ -307,5 +307,18 @@
 	td {
 		min-width: 25px;
 		min-height: 25px;
+	}
+
+	#loadedInfo p{
+		display: inline;
+	}
+
+	
+	#lcourseName {
+		text-decoration: underline;
+	}
+
+	.oneLine{
+		display: inline;
 	}
 }
