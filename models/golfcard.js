@@ -57,17 +57,6 @@ const Round = sequelize.define('Round', {
 			}
 		}
 	},
-	/*holesPlayed: {
-		type: DataTypes.TINYINT.UNSIGNED,
-		allowNull: false,
-		validate: {
-			validHoles(value) {
-				if (value != 9 || value != 18) {
-					throw new Error("holes played must be 9 or 18")
-				}
-			}
-		}
-	},*/
 	strokes: {
 		type: DataTypes.INTEGER,
 		allowNull: false,
@@ -81,7 +70,7 @@ const Round = sequelize.define('Round', {
 				}
 			}
 		}
-	}/*,
+	},
 	score: {
 		type: DataTypes.INTEGER,
 		allowNull: false,
@@ -95,7 +84,7 @@ const Round = sequelize.define('Round', {
 				}
 			}
 		}
-	}*/
+	}
 }, {
 	tableName: 'Rounds',
 	timestamps: false,

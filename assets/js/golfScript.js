@@ -55,8 +55,8 @@ window.addEventListener("DOMContentLoaded", function(event) {
 	});
 
 	function saveRound() {
-		round = new Round(courseData[0].courseID, strokes);
-		console.log(round.toString());
+		round = new Roundr(courseData[0].courseID, strokes, score);
+		console.log(round);
 		fetch('/golfcard/rounds', {
 			method: 'POST',
 			headers: {
@@ -218,9 +218,10 @@ window.addEventListener("DOMContentLoaded", function(event) {
 		this.hole = hole;
 	}
 
-	function Round(courseID, strokes) {
+	function Roundr(courseID, strokes, score) {
 		this.courseID = courseID;
 		this.strokes = strokes;
+		this.score = score;
 	}
 
 	Round.prototype.toString = function() {

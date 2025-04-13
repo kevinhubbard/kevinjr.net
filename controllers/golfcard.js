@@ -54,10 +54,11 @@ router.get('/rounds', async function(req, res) {
 
 router.post('/rounds', async function(req, res){
 	try {
-		const {courseID, strokes} = req.body;
+		const {courseID, strokes, score} = req.body;
 		const newRound = await Round.create({
 			courseID: courseID,
-			strokes: strokes
+			strokes: strokes,
+			score: score
 		});
 		res.json({message: 'Round Saved!', roundID: newRound.roundID});
 	} catch (err) {
