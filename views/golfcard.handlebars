@@ -31,9 +31,11 @@
 	<p id="course"></p>
 	<p id="score">E</p>
 	<br>
-	<p>Hole: <span id="hole"></span></p>
-	<p>Par: <span id="par"></span></p>
-	<p>Yards: <span id="yards"></span></p>
+	<div id="holeInfo">
+		<p class="oneLine">Hole: <span id="hole"></span></p>
+		<p class="oneLine">Par: <span id="par"></span></p>
+		<p>Yards: <span id="yards"></span></p>
+	</div>
 	{{!-- <select id="par">
 		<option value="3">3</option>
 		<option value="4">4</option>
@@ -45,7 +47,7 @@
 	<label class="inp" for="gir">Green in Regulation</label>
 	<button id="stroke">Stroke: <span id="strokes">0</span></button>
 	<button id="nextHole">Next Hole</button>
-	<div id="scoreCard">
+    <div id="scoreCard">
 		<table>
 			<tr id="holeRow">
 				<th>Hole</th>
