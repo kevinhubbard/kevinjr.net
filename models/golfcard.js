@@ -88,7 +88,7 @@ const Round = sequelize.define('Round', {
 }, {
 	tableName: 'Rounds',
 	timestamps: false,
-	createdAt: false,
+	createdAt: true,
 	updatedAt: false
 });
 

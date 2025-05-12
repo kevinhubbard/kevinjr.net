@@ -2,9 +2,9 @@ var express = require('express');
 var router = express.Router();
 
 router.get('/', function(req, res) {
-	res.render('campgear', {
-		css: ['style.css', 'campgear.css'],
-		js: []
+	res.render('workout', {
+		css: ['style.css', 'workout.css'],
+		js: ['menu.js']
 	});
 });
 
