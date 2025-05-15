@@ -14,26 +14,31 @@
 #progressView {
 	display: none;
 	background-color: red;
-	width: 500px;
+	width: 650px;
 	height: 500px;
 }
 
 #loadView {
 	display: none;
 	background-color: blue;
-	width: 500px;
+	width: 650px;
 	height: 500px;
 }
 
 #createView {
 	display: none;
 	background-color: green;
-	width: 500px;
+	width: 650px;
 	height: 500px;
 }
 
 select {
-	overflow-y: hidden;
-	width: 100px;
+	margin-top: 50px;
+	width: 200px;
 	text-align: center;
 }
+
+#addWrkt {
+	margin-top: 15px;
+}
+
