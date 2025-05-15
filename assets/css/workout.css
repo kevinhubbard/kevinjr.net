@@ -6,10 +6,34 @@
 	text-align: center;
 }
 
-#headline {
-	text-decoration: underline;
+#appSelection {
+	margin-top: 25%;
+	display: inline-block;
 }
 
-.list {
-	display: inline-block;
+#progressView {
+	display: none;
+	background-color: red;
+	width: 500px;
+	height: 500px;
+}
+
+#loadView {
+	display: none;
+	background-color: blue;
+	width: 500px;
+	height: 500px;
+}
+
+#createView {
+	display: none;
+	background-color: green;
+	width: 500px;
+	height: 500px;
+}
+
+select {
+	overflow-y: hidden;
+	width: 100px;
+	text-align: center;
 }
