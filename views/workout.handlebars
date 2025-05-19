@@ -24,7 +24,19 @@
 		<select id="muscle"></select>
 		<select id="workout"></select>
 		<button id="addWrkt">Add Workout</button>
-		<ul id="workoutList"></ul>
-		<button>Create Routine</button>
+		<table id="workoutList">
+			<tr>
+				<th>Exercise</th>
+				<th>Muscle</th>
+			</tr>
+		</table>
+		<button id="createRoutine">Create Routine</button>
+		<div id="myModal" class="modal">
+			<span class="close">&times;</span>
+			<div class="modal-content">
+				<p>Enter Name for Workout: <input id="routineName" placeholder="ie: Monday Back/Chest"></input></p>
+			</div>
+			<button id="submitRoutine">Create</button>
+		</div>
 	</div>
 </div>

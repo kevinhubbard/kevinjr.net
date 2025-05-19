@@ -196,12 +196,32 @@ window.addEventListener('DOMContentLoaded', (event) => {
 		document.getElementById('workoutList').display = 'inline-block';
 		console.log(document.getElementById('workout').value);
 		document.getElementById('addWrkt').disabled = true;
-		let ele = document.createElement('li');
-		ele.innerText = document.getElementById('workout').value;
-		document.getElementById('workoutList').appendChild(ele)
+		let eleRow = document.createElement('tr');
+		let eleExerciseData = document.createElement('td');
+		let eleMuscleData = document.createElement('td');
+		eleExerciseData.innerText = document.getElementById('workout').value;
+		eleMuscleData.innerText = document.getElementById('muscle').value;
+		eleRow.appendChild(eleExerciseData);
+		eleRow.appendChild(eleMuscleData);
+		document.getElementById('workoutList').appendChild(eleRow);
+	});
+
+	document.getElementById('createRoutine').addEventListener('click', function (e) {
+		e.preventDefault();
+		document.getElementById('myModal').style.display = "block";
+	});
+
+	document.getElementsByClassName('close')[0].addEventListener('click', function (e) {
+		e.preventDefault()
+		document.getElementById('myModal').style.display = "none";
 	});
 
 
-
-
+/*	window.addEventListener('click', function (e) {
+		e.preventDefault()
+		if (e.target !== document.getElementById('myModal') || document.getElementById('myModal').style.display == 'block') {
+			document.getElementById('myModal').style.display = 'none';
+		}
+		console.log("window was clicked.");
+	});*/
 });
