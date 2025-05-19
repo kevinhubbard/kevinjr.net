@@ -30,6 +30,7 @@
 	background-color: green;
 	width: 650px;
 	height: 500px;
+	overflow-y: auto;
 }
 
 select {
@@ -78,3 +79,13 @@ select {
 	text-decoration: none;
 	cursor: pointer;
 }
+
+
+.btn {
+  border: none; /* Remove borders */
+  color: white; /* Add a text color */
+  padding: 14px 28px; /* Add some padding */
+  cursor: pointer; /* Add a pointer cursor on mouse-over */
+}
+.danger {background-color: #f44336;} /* Red */
+.danger:hover {background: #da190b;}

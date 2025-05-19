@@ -196,14 +196,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
 		document.getElementById('workoutList').display = 'inline-block';
 		console.log(document.getElementById('workout').value);
 		document.getElementById('addWrkt').disabled = true;
-		let eleRow = document.createElement('tr');
-		let eleExerciseData = document.createElement('td');
-		let eleMuscleData = document.createElement('td');
-		eleExerciseData.innerText = document.getElementById('workout').value;
-		eleMuscleData.innerText = document.getElementById('muscle').value;
-		eleRow.appendChild(eleExerciseData);
-		eleRow.appendChild(eleMuscleData);
-		document.getElementById('workoutList').appendChild(eleRow);
+		let card = createWorkoutCard();
+
+		document.getElementById('workoutList').appendChild(card);
 	});
 
 	document.getElementById('createRoutine').addEventListener('click', function (e) {
@@ -217,11 +212,62 @@ window.addEventListener('DOMContentLoaded', (event) => {
 	});
 
 
-/*	window.addEventListener('click', function (e) {
-		e.preventDefault()
-		if (e.target !== document.getElementById('myModal') || document.getElementById('myModal').style.display == 'block') {
-			document.getElementById('myModal').style.display = 'none';
+	let selectedCard = null;
+	document.getElementById('removeWorkout').disabled = true;
+
+	function createWorkoutCard() {
+		let card = document.createElement('div');
+			card.style.display = 'inline-block';
+			card.style.margin = '5px 5px 5px 5px';
+			card.style.width = '150px';
+			card.style.height = '275px';
+			card.className = 'workoutCard';
+			let img = document.createElement('img');
+			img.style.width = '150px';
+			img.src = 'https://placehold.co/100x100'
+			let cont = document.createElement('div');
+			cont.className = 'container';
+			let mn = document.createElement('h5');
+			let mg = document.createElement('p');
+
+			mn.innerText = document.getElementById('workout').value;
+			mg.innerText = document.getElementById('muscle').value;
+
+			card.appendChild(img);
+			cont.appendChild(mn);
+			cont.appendChild(mg);
+			card.appendChild(cont);
+			card.addEventListener('click', function(e) {
+				e.stopPropagation();
+				document.getElementById('removeWorkout').disabled = false;
+				if (selectedCard && selectedCard !== card) {
+					selectedCard.style.border = 'none';
+				}
+
+				if (selectedCard === card) {
+					card.style.border = 'none';
+					selectedCard = null;
+				} else {
+					card.style.border = '2px solid blue';
+					selectedCard = card;
+				}
+				console.log(selectedCard);
+			});
+
+			return card;
+	}
+
+	window.addEventListener('click', function() {
+		if (selectedCard) {
+			selectedCard.style.border = 'none';
+			selectedCard = null;
+			document.getElementById('removeWorkout').disabled = true;
 		}
-		console.log("window was clicked.");
-	});*/
+	});
+
+	document.getElementById('removeWorkout').addEventListener('click', function(e) {
+		e.preventDefault();
+		selectedCard.remove();
+	});
+
 });
