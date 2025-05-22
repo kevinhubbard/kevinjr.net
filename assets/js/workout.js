@@ -270,4 +270,20 @@ window.addEventListener('DOMContentLoaded', (event) => {
 		selectedCard.remove();
 	});
 
+	document.getElementById('submitRoutine').addEventListener('click', function (e) {
+		e.preventDefault();
+		if (document.getElementById('routineName').value == "") {
+			alert("Routine must have a name...");
+		} else {
+			let rName = document.getElementById('routineName').value;
+			let x = document.getElementsByClassName('workoutCard');
+
+			for (let i = 0; i < x.length; i++) {
+				console.log(x[i].lastChild.firstChild.textContent);
+			}
+
+
+		}
+		
+	})
 });

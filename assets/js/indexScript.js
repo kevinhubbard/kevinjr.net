@@ -1,6 +1,6 @@
 $(document).ready(function() {
 
-	var $foot = $('#foot');
+/*	var $foot = $('#foot');
 	var year = new Date().getFullYear();
 	$foot.append(year);
 
@@ -9,6 +9,6 @@ $(document).ready(function() {
 	$(".card").flip({
 	  axis: 'x',
 	  trigger: 'hover'
-	});
+	});*/
 });
 

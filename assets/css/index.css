@@ -21,17 +21,46 @@
   }
 
 
-  #portPic {
-    display: block;
+#portPic {
+    display: inline-block;
     margin: 0 auto;
-    margin-bottom: 20px;
+   /* margin-bottom: 20px;*/
     border-radius: 25px;
-  }
-
+    
+}
   #state{
     visibility: hidden;
   }
 }
 @media only screen and (max-width: 600px) {
 
+}
+
+
+.back {
+  display: none;
+}
+
+.connect {
+  display: inline;
+}
+
+.headline {
+  display: block;
+}
+
+
+.sTest {
+  text-align: center;
+
+}
+
+.tim {
+  width: 72px;
+  height: 72px;
+}
+
+.cim {
+  width: 24px;
+  height: 24px;
 }
