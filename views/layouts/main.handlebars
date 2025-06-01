@@ -35,10 +35,35 @@
 				<li><a class="navLink" href="/portfolio">Projects</a></li>
 				<li><a class="navLink" href="/contact">Contact</a></li>
 				<li><a class="navLink" href="/resume">Resume</a></li>
+				<li id="log"><a  class="navLink" href="/blog">Blog</a></li>
+				<li><a id="logLink" class="navLink" href="#">Login</a></li>
 			</ul>
 		</div>
 
 		{{{body}}}
+
+		<div id="loginModel">
+			<span id="closeLogin">X</span>
+			<form id="loginForm" action="/" method="post">
+				<div class="loginContainer">
+					<label for="uname"><b>Username</b></label>
+					<input type="text" name="uname" placeholder="Enter Email" required><br>
+
+					<label for="psw"><b>Password</b></label>
+					<input type="password" name="psw" placeholder="Enter Password" required><br>
+
+					<button type="submit">Login</button>
+					<label>
+						<input type="checkbox" name="remember"> Remember Me
+					</label>
+				</div>
+
+				<div class="contHelp" style="background-color:#f1f1f1">
+					<a href="/signup">Sign Up</a>
+					<a href="#forgot">Forgot Password</a>
+				</div>
+			</form>
+		</div>
 
 		<footer class="footer">
 			<span>Kevin Hubbard &copy; <span id="footID"></span></span>

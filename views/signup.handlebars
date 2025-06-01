@@ -1,0 +1,13 @@
+<div id="signupForm">
+	{{#if message}}
+    	<div style="color: {{#if success}}green{{else}}red{{/if}};">
+      		{{message}}
+    	</div>
+  	{{/if}}
+	<form action="/signup" method="post">
+		<input type="email" name="userEmail" placeholder="Email">
+		<input type="text" name="userName" placeholder="Name">
+		<input type="password" name="userPassword" placeholder="Password">
+		<input type="submit" value="Submit">
+	</form>
+</div>

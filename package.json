@@ -29,6 +29,7 @@
   },
   "homepage": "https://github.com/kevinhubbard/New-Portfolio#readme",
   "dependencies": {
+    "bcrypt": "^6.0.0",
     "body-parser": "^1.20.1",
     "bootstrap": "^5.3.3",
     "cors": "^2.8.5",

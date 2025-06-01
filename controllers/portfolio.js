@@ -5,7 +5,7 @@ var router = express.Router();
 router.get('/', function (req, res) {
 	res.render('portfolio',{
 		css: ['style.css', 'portfolio.css'],
-		js: ['menu.js']
+		js: ['menu.js', 'loginScript.js']
 	});
 });
 

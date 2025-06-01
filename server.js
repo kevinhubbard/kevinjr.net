@@ -44,6 +44,8 @@ app.use('/botw', require('./controllers/botw'));
 app.use('/brpaints', require('./controllers/brpaints'));
 app.use('/workout', require('./controllers/workout'));
 app.use('/meals', require('./controllers/meals'));
+app.use('/blog', require('./controllers/blog'));
+app.use('/signup', require('./controllers/signup'));
 
 // 404 CATCH
 app.use(function (req, res, next) {

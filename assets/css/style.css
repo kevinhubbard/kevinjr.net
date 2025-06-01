@@ -54,6 +54,10 @@ body {
   transition: 0.3s;
 }
 
+#log{
+  margin-bottom: 70%;
+}
+
 .headline{
   color: white;
   text-decoration: underline;
@@ -72,6 +76,7 @@ footer {
   padding: 10px 0px 10px 0px;
   background-color:  #f5f5f5;  
   text-align: center;
+  z-index: 2;
 }
 
 
@@ -90,10 +95,58 @@ footer {
   margin-top: 50px;
 }
 
-#myCanvas {
+#frontCanvas {
   background-color: transparent;
   margin: 0 auto;
-  width: 70%;
-  height: 200px;
+  width: 50%;
+  height: 100px;
   border: 2px solid #FF69B4;
+}
+
+#backCanvas {
+  background-color: transparent;
+  margin: 0 auto;
+  width: 50%;
+  height: 100px;
+}
+
+#loginModel {
+  display: none;
+
+  position: absolute;
+    left: 35%;
+  top: 35%;
+  z-index: 5;
+  background-color: black;
+    width: 500px;
+  height: 500px;
+}
+
+
+
+#loginForm {
+
+  display: block;
+  background-color: white;
+}
+
+#closeLogin {
+  display: block;
+  float: right;
+  font-size: 24px;
+  margin: 0px 10px 0px 0px;
+  padding: 0px 10px 0px 10px;
+  border: 1px solid black;
+}
+
+#closeLogin:hover {
+  cursor: pointer;
+}
+
+
+#signupForm {
+  margin: 0 auto;
+  display: block;
+  width: 500px;
+  height: 500px;
 }

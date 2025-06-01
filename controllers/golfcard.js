@@ -8,7 +8,7 @@ router.get('/', async function(req, res){
 
 	res.render('golfcard', {
 		css: ['style.css', 'golf.css'],
-		js: ['golfScript.js', 'menu.js'],
+		js: ['golfScript.js', 'menu.js', 'loginScript.js'],
 		crs: crs
 	});
 });
