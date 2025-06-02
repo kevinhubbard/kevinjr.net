@@ -24,10 +24,25 @@ router.post('/', async function(req, res) {
 		if (!isValidPassword) {
 			return res.status(401).json({message: 'Invalid Password'});
 		}
-		res.status(200).json({message: 'login successful', user});
+		console.log(req.session);
+		req.session.userId = user.userID;
+		console.log(req.session);
+		res.redirect(`/profile/${user.userID}`);
 	} catch (error) {
 		console.error('Server Error', error);
 		res.status(500).json({error: 'Something went wrong.'});
 	}
 });
+
+router.get('/logout', function(req, res) {
+	req.session.destroy(function(err) {
+		if (err) {
+			console.error("Logout error: ", err);
+			return res.status(500).send("Logout failed");
+		}
+
+		res.clearCookie('connect.sid');
+		res.redirect('/');
+	})
+})
 module.exports = router;
