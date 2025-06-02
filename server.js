@@ -4,6 +4,8 @@ var exphbs = require('express-handlebars');
 var expressRobotsMiddleware = require('express-robots-middleware');
 var path = require('path');
 var bodyParser = require('body-parser');
+const session = require('express-session');
+const sessionString = require('./config.js').sessionString;
 
 // DEFINES APP METHOD
 var app = express();
@@ -33,8 +35,16 @@ var robotsMiddleware = expressRobotsMiddleware([{
 // ROBOTS.TXT ROUTE
 app.get('/robots.txt', robotsMiddleware);
 
+app.use(session({
+	secret: process.env.SESSION_SECRET || sessionString,
+	resave: false,
+	saveUninitialized: false,
+	cookie: {secure: false}
+}));
+
 // ROUTES
 app.use('/', require('./controllers/index'));
+app.use('/admin', require('./controllers/admin'));
 app.use('/contact', require('./controllers/contact'));
 app.use('/portfolio', require('./controllers/portfolio'));
 app.use('/resume', require('./controllers/resume'));
@@ -46,11 +56,14 @@ app.use('/workout', require('./controllers/workout'));
 app.use('/meals', require('./controllers/meals'));
 app.use('/blog', require('./controllers/blog'));
 app.use('/signup', require('./controllers/signup'));
+app.use('/profile', require('./controllers/profile'));
+
 
 // 404 CATCH
 app.use(function (req, res, next) {
 	res.status(404).render('404',{
-		css: ['style.css', 'error.css']
+		css: ['style.css', 'error.css'],
+		js: ['menu.js', 'loginScript.js']
 	});
 });
 
