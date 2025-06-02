@@ -7,7 +7,7 @@ if (process.env.NODE_ENV === 'production') {
 		dialect: 'mysql'
 	});
 } else {
-	var db = require('../config');
+	var db = require('../config').db;
 	connection = new Sequelize(db.DATABASE, db.USER, db.PASSWORD, {
 		host: db.HOST,
 		dialect: 'mysql',
