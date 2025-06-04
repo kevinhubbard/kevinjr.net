@@ -1,5 +1,10 @@
 <div id="profile">
 	<h1>Welcome: {{user.name}}!</h1>
 	<p>Email: {{user.email}}</p>
+	<p>publicID: {{user.publicID}}</p>
+	<p>role: {{user.role}}</p>
 	<a href="/logout">Logout</a>
+	{{#ifEquals user.role 'admin'}}
+	<a href="/admin">Admin Page</a>
+	{{/ifEquals}}
 </div>
