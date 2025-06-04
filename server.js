@@ -1,14 +1,13 @@
-// PACKAGES REQUIRED
-var express = require('express');
-var exphbs = require('express-handlebars');
-var expressRobotsMiddleware = require('express-robots-middleware');
-var path = require('path');
-var bodyParser = require('body-parser');
+const express = require('express');
+const exphbs = require('express-handlebars');
+const expressRobotsMiddleware = require('express-robots-middleware');
+const path = require('path');
+const bodyParser = require('body-parser');
 const session = require('express-session');
 const sessionString = require('./config.js').sessionString;
 
 // DEFINES APP METHOD
-var app = express();
+const app = express();
 
 // LETS EXPRESS USE STATIC FILES
 app.use(express.static('node_modules'));
@@ -18,14 +17,25 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use('/api', require('cors')());
 
 // DEFINES PORT
-var PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3000;
 
-//SETS HANDLEBARS AS OUR MAIN VIEW ENGINE AND USES MAIN AS DEFAULT LAYOUT
-app.engine('handlebars', exphbs.engine({ defaultLayout: 'main'}));
+// SETS HANDLEBARS AS OUR MAIN VIEW ENGINE AND USES MAIN AS DEFAULT LAYOUT
+app.engine('handlebars', exphbs.engine({
+	defaultLayout: 'main',
+	helpers: {
+		ifEquals: function (arg1, arg2, options) {
+			if (arg1 === arg2) {
+				return options.fn(this);
+			} else {
+				return options.inverse(this);
+			}
+		}
+	}
+}));
 app.set('view engine', 'handlebars');
 
 // ROBOTS.TXT MIDDLEWARE
-var robotsMiddleware = expressRobotsMiddleware([{
+const robotsMiddleware = expressRobotsMiddleware([{
 	UserAgent: '*',
 	Disallow: ['/admin','/thankyou'],
 	Allow: ['/', '/blog', '/contact', '/portfolio', '/resume'],
@@ -35,6 +45,7 @@ var robotsMiddleware = expressRobotsMiddleware([{
 // ROBOTS.TXT ROUTE
 app.get('/robots.txt', robotsMiddleware);
 
+// INITIALIZE USER SESSION
 app.use(session({
 	secret: process.env.SESSION_SECRET || sessionString,
 	resave: false,
@@ -68,7 +79,6 @@ app.use(function (req, res, next) {
 });
 
 // START SERVER LISTENING
-
 app.listen(PORT, function () {
 	console.log('App listening on port: ' + PORT);
 });
