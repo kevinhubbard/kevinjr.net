@@ -6,10 +6,9 @@ router.get('/:id', async function(req, res) {
 	if(!req.session.userId || req.session.userId != req.params.id) {
 		return res.status(403).send('Access denied');
 	}
-
+	let userID = req.session.userId;
 	try {
-		const user = await User.findByPk(req.params.id);
-		
+		const user = await User.findOne({where:{publicID: userID}});
 		if (!user) {
 			return res.status(404).send("User not found");
 		}

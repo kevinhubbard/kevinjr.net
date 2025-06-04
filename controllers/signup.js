@@ -1,9 +1,7 @@
-var express = require('express');
-var router = express.Router();
-var User = require('../models/user.js');
+const express = require('express');
+const router = express.Router();
+const User = require('../models/user.js');
 const bcrypt = require('bcrypt');
-
-
 
 //GETS RESUME ROUTE
 router.get('/', function (req, res) {
@@ -14,14 +12,10 @@ router.get('/', function (req, res) {
 });
 
 router.post('/', async function (req, res) {
-/*	console.log("user email: " + req.body.userEmail);
-	console.log("user name: " + req.body.userName);
-	console.log("user password: " + req.body.userPassword);*/
-
-	let email = req.body.userEmail;
+	const uuid = crypto.randomUUID();
+	const email = req.body.userEmail;
 	try {
 		const user = await User.findOne({where:{email}});
-
 		if (user) {
 			return res.render('signup', {
 				message: 'Email Already in use!',
@@ -33,6 +27,7 @@ router.post('/', async function (req, res) {
 		
 		const hashedPassword = await bcrypt.hash(req.body.userPassword, 10);
 		await User.create({
+			publicID: uuid,
 			email: req.body.userEmail,
 			name: req.body.userName,
 			password: hashedPassword
