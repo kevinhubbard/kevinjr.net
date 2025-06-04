@@ -7,6 +7,11 @@ const User = sequelize.define('User', {
 		autoIncrement: true,
 		primaryKey: true
 	}, 
+	publicID: {
+		type: DataTypes.STRING(36),
+		unique: true,
+		allowNull: false
+	},
 	email: {
 		type: DataTypes.STRING(60),
 		unique: true,
@@ -18,6 +23,12 @@ const User = sequelize.define('User', {
 	}, 
 	password: {
 		type: DataTypes.STRING(60),
+		allowNull: false
+	},
+	role: {
+		type: DataTypes.ENUM,
+		values: ['admin', 'editor', 'user'],
+		defaultValue: 'user',
 		allowNull: false
 	}
 }, {
