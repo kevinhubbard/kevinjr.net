@@ -4,8 +4,8 @@ const expressRobotsMiddleware = require('express-robots-middleware');
 const path = require('path');
 const bodyParser = require('body-parser');
 const session = require('express-session');
-const sessionString = require('./config.js').sessionString;
-
+//const sessionString = require('./config.js').sessionString;
+require('dotenv').config();
 // DEFINES APP METHOD
 const app = express();
 
@@ -15,9 +15,6 @@ app.use(express.static(path.join(__dirname, 'assets')));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use('/api', require('cors')());
-
-// DEFINES PORT
-const PORT = process.env.PORT || 3000;
 
 // SETS HANDLEBARS AS OUR MAIN VIEW ENGINE AND USES MAIN AS DEFAULT LAYOUT
 app.engine('handlebars', exphbs.engine({
@@ -47,7 +44,7 @@ app.get('/robots.txt', robotsMiddleware);
 
 // INITIALIZE USER SESSION
 app.use(session({
-	secret: process.env.SESSION_SECRET || sessionString,
+	secret: process.env.SECRET_KEY,
 	resave: false,
 	saveUninitialized: false,
 	cookie: {secure: false}
@@ -79,6 +76,6 @@ app.use(function (req, res, next) {
 });
 
 // START SERVER LISTENING
-app.listen(PORT, function () {
-	console.log('App listening on port: ' + PORT);
+app.listen(process.env.PORT, function () {
+	console.log('App listening on port: ' + process.env.PORT);
 });
