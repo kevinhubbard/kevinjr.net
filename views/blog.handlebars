@@ -1,1 +1,10 @@
-<h1>Blog Page</h1>
+<div>
+	<h1>Blog Page</h1>
+	{{#each blog}}
+	<div class="blogPreview">
+		<h1>{{blog.title}}</h1>
+		<p>{{blog.date}}</p>
+		<p>{{blog.body}}</p>
+	</div>
+	{{/each}}
+</div>
