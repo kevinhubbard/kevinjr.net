@@ -1,11 +1,11 @@
 <div id="blogPage">
-	<h1 id="titlePage">Kevin Hubbard Official Blog</h1>
+	<h1 id="titlePage">Welcome to my Blog</h1>
 	{{#each posts}}
 	<div class="blogPreview">
-		<h2 id="blogTitle"><a href="/posts/{{title}}">{{title}}</a></h2>
+		<h2 id="blogTitle"><a href="/blog/posts/{{slug}}">{{title}}</a></h2>
 		<div id="dateAuthor">Date:</div>
 		<p class="blogShort">{{{body}}}</p>
-		<p><a href="/posts/{{title}}">READ MORE -></a></p>
+		<p><a href="/posts/{{slug}}">READ MORE -></a></p>
 	</div>
 	{{/each}}
 </div>
