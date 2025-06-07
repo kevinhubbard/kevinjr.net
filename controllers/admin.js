@@ -3,6 +3,7 @@ const router = express.Router();
 const ADMIN_ID = require('../config').ADMIN_ID;
 const User = require('../models/user');
 const Post = require('../models/blog');
+const multer = require('multer');
 
 //GETS ADMIN ROUTE
 router.get('/', async function(req, res) {
