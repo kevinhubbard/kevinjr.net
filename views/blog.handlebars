@@ -1,9 +1,11 @@
-<div>
-	<h1>Blog Page</h1>
+<div id="blogPage">
+	<h1 id="titlePage">Kevin Hubbard Official Blog</h1>
 	{{#each posts}}
 	<div class="blogPreview">
-		<p>{{this.dataValues.title}}</p>
-		<p>{{{this.dataValues.body}}}</p>
+		<h2 id="blogTitle"><a href="/posts/{{title}}">{{title}}</a></h2>
+		<div id="dateAuthor">Date:</div>
+		<p class="blogShort">{{{body}}}</p>
+		<p><a href="/posts/{{title}}">READ MORE -></a></p>
 	</div>
 	{{/each}}
 </div>
