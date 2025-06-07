@@ -1,0 +1,12 @@
+#admin {
+	margin: 0 auto;
+	width: 75%;
+	height: 125%;
+	background-color: white;
+}
+
+#blogPanel {
+	width: 500px;
+	height: 500px;
+	border: 1px solid black;
+}
