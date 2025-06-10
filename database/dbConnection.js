@@ -1,5 +1,5 @@
 const Sequelize = require('sequelize');
-const connection;
+let connection;
 
 if (process.env.NODE_ENV === 'production') {
 	connection = new Sequelize(process.env.DATABASE, process.env.USER, process.env.PASSWORD, {
