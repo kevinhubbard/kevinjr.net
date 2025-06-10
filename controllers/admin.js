@@ -30,7 +30,7 @@ router.post('/blog-post', async function(req, res) {
 	console.log('Recieved data:', data);
 	res.status(200).send('data received!');
 
-	const post = await Post.create({title: data.t, body: data.v});
+	const post = await Post.create({title: data.t, author: data.a, body: data.v});
 });
 
 module.exports = router;
