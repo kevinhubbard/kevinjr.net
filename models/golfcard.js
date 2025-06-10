@@ -1,6 +1,6 @@
 const {Sequelize, DataTypes, QueryTypes} = require('sequelize');
-var sequelize = require('../database/dbConnection');
-//sequelize.sync({alter: true});
+const sequelize = require('../database/dbConnection');
+
 const Course = sequelize.define('Course', {
 		courseID: {
 			type: DataTypes.SMALLINT,
