@@ -3,11 +3,15 @@ var sequelize = require('../database/dbConnection');
 
 const Post = sequelize.define('Post', {
 	postID: {
-			type: DataTypes.INTEGER,
-			autoIncrement: true,
-			allowNull: false,
-			primaryKey: true
-		},
+		type: DataTypes.INTEGER,
+		autoIncrement: true,
+		allowNull: false,
+		primaryKey: true
+	},
+	author: {
+		type: DataTypes.STRING,
+		allowNull: false
+	},
 	title: {
 		type: DataTypes.STRING,
 		allowNull: false
@@ -18,9 +22,9 @@ const Post = sequelize.define('Post', {
 	}
 },  {
 	tableName: 'Posts',
-	timestamps: false,
-	createdAt: false,
-	updatedAt: false
+	timestamps: true,
+	createdAt: 'created_at',
+	updatedAt: 'updated_at'
 });
 
 module.exports = Post;
