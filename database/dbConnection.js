@@ -3,14 +3,14 @@ const Sequelize = require('sequelize');
 let connection;
 
 if (process.env.NODE_ENV === 'production') {
-	connection = new Sequelize(process.env.DATABASE, process.env.USER, process.env.PASSWORD, {
-		host: process.env.HOST,
+	connection = new Sequelize(process.env.DB, process.env.DB_USER, process.env.DB_PASSWORD, {
+		host: process.env.DB_HOST,
 		dialect: 'mysql',
 		logging: false
 	});
 } else {
-	connection = new Sequelize(process.env.DATABASE, process.env.USER, process.env.PASSWORD, {
-		host: process.env.HOST,
+	connection = new Sequelize(process.env.DB, process.env.DB_USER, process.env.DB_PASSWORD, {
+		host: process.env.DB_HOST,
 		dialect: 'mysql',
 		logging: false
 	});
