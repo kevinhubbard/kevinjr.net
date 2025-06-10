@@ -3,11 +3,10 @@ window.addEventListener('DOMContentLoaded', function(event) {
 
 	document.getElementById('submitBtn').addEventListener('click', function(e) {
 		e.preventDefault();
-			const titleVar = document.getElementById('postTitle').value;
-			const bodyVar = document.getElementById('postBody').value;
-
+		const titleVar = document.getElementById('postTitle').value;
+		const bodyVar = document.getElementById('postBody').value;
 		const authVar = document.getElementById('postAuth').value;
-		console.log('title: ' + titleVar + '\nbody: ' + bodyVar + '\nauth: ' + authVar);
+		//console.log('title: ' + titleVar + '\nbody: ' + bodyVar + '\nauth: ' + authVar);
 		savePost()
 	});
 

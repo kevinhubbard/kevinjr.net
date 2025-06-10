@@ -1,5 +1,37 @@
 #post {
 	margin: 0 auto;
-	width: 75%;
+	margin-top: 2%;
+	width: 65%;
+	height: 100%;
 	background-color: white;
+	display: inline-block;
+}
+#tit {
+	display: block;
+}
+
+.imgRow {
+	display: flex;
+	
+}
+
+.fullImg {
+	width: 100%;
+	height: auto;
+	object-fit: cover;
+	aspect-ratio: auto;
+}
+
+.halfImg {
+	flex: 1;
+	object-fit: cover;
+	width: 49%;
+	height: auto;
+	display: inline-block;
+	margin-left: .5%;
+}
+
+p {
+	width: 98%;
+	margin-left: 1%;
 }
