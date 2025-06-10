@@ -3,9 +3,9 @@
 	{{#each posts}}
 	<div class="blogPreview">
 		<h2 id="blogTitle"><a href="/blog/posts/{{slug}}">{{title}}</a></h2>
-		<div id="dateAuthor">Date:</div>
+		<div id="dateAuthor">{{formatDate created_at}} &#8226; {{author}}</div>
 		<p class="blogShort">{{{body}}}</p>
-		<p><a href="/blog/posts/{{slug}}">READ MORE -></a></p>
+		<p><a id="more" href="/blog/posts/{{slug}}">READ MORE<span> &#8594;</span></a></p>
 	</div>
 	{{/each}}
 </div>
