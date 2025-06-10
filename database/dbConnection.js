@@ -12,16 +12,18 @@ if (process.env.NODE_ENV === 'production') {
 	connection = new Sequelize(process.env.DATABASE, process.env.USER, process.env.PASSWORD, {
 		host: process.env.HOST,
 		dialect: 'mysql',
-		logging: true
+		logging: false
 	});
 }
 
-try {
-	connection.authenticate();
-	console.log('Connection successfully established.');
-	connection.sync();
-} catch (error) {
-	console.error('Unable to connect to database', error);
-}
+(async () => {
+	try {
+		connection.authenticate();
+		console.log('Connection successfully established.');
+		connection.sync();
+	} catch (error) {
+		console.error('Unable to connect to database', error);
+	}
+})();
 
 module.exports = connection;
