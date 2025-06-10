@@ -1,11 +1,11 @@
+require('dotenv').config();
 const express = require('express');
 const exphbs = require('express-handlebars');
 const expressRobotsMiddleware = require('express-robots-middleware');
 const path = require('path');
 const bodyParser = require('body-parser');
 const session = require('express-session');
-//const sessionString = require('./config.js').sessionString;
-require('dotenv').config();
+
 // DEFINES APP METHOD
 const app = express();
 
@@ -26,6 +26,9 @@ app.engine('handlebars', exphbs.engine({
 			} else {
 				return options.inverse(this);
 			}
+		},
+		formatDate: function(datetime) {
+			return new Date(datetime).toDateString();
 		}
 	}
 }));
@@ -34,7 +37,7 @@ app.set('view engine', 'handlebars');
 // ROBOTS.TXT MIDDLEWARE
 const robotsMiddleware = expressRobotsMiddleware([{
 	UserAgent: '*',
-	Disallow: ['/admin','/thankyou'],
+	Disallow: ['/admin','/thankyou', '/profile'],
 	Allow: ['/', '/blog', '/contact', '/portfolio', '/resume'],
 	CrawlDelay: '5'
 }]);
