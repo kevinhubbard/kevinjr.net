@@ -4,15 +4,15 @@
 	<a href="/profile/{{user.publicID}}">My Profile</a>
 
 	<div id="blogPanel">
-		<input id="postTitle" type="test" name="blogTitle" placeholder="Blog Title">
-		<br>
-		<select id="postAuth">
-			<option>Kevin H</option>
-		</select>
-		<textarea id="postBody" placeholder="Blog body..."></textarea>
-		<form>
-
+		<form id="blogForm" action="/admin/blog-post" method="post" enctype="multipart/form-data">
+			<input id="postTitle" type="text" name="title" placeholder="Blog Title">
+			<br>
+			<select id="postAuth" name="author">
+				<option>Kevin H</option>
+			</select>
+			<textarea id="postBody" name="body" placeholder="Blog body..."></textarea>
+			<input type="file" name="image">
+			<button type="submit">Submit Blog Post</button>
 		</form>
-		<input id="submitBtn" type="submit" name="Submit">
 	</div>
 </div>
