@@ -12,8 +12,8 @@ const app = express();
 // LETS EXPRESS USE STATIC FILES
 app.use(express.static('node_modules'));
 app.use(express.static(path.join(__dirname, 'assets')));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: false}));
+app.use(express.json());
+app.use(express.urlencoded({extended: true}));
 app.use('/api', require('cors')());
 
 // SETS HANDLEBARS AS OUR MAIN VIEW ENGINE AND USES MAIN AS DEFAULT LAYOUT
