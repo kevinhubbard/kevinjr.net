@@ -1,0 +1,25 @@
+<script>
+	document.getElementById('start-round').addEventListener('click', function(e) {
+		window.location.href
+	})
+</script>
+
+<div id="waiting">
+	<h1>Display waiting room contents here!</h1>
+	<h1 id="round-id" data-round="{{round.dataValues.roundID}}">{{round.Course.dataValues.courseName}}</h1>
+
+<ul id="participant-list">
+  {{#each participants}}
+    <li>
+      <button class="participant-button" onclick="location.href='/profile/{{this.dataValues.userID}}'">
+        {{this.dataValues.User.dataValues.name}}
+      </button>
+    </li>
+  {{/each}}
+</ul>
+
+{{#if isHost}}
+<button id="start-round">Start Round</button>
+{{/if}}
+</div>
+
