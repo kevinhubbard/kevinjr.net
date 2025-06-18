@@ -1,5 +1,6 @@
 const {Sequelize, DataTypes, QueryTypes} = require('sequelize');
 const sequelize = require('../database/dbConnection');
+const User = require('./user.js');
 
 const Course = sequelize.define('Course', {
 		courseID: {
@@ -48,6 +49,10 @@ const Round = sequelize.define('Round', {
 		autoIncrement: true,
 		primaryKey: true
 	},
+	hostID: {
+		type: DataTypes.STRING(36),
+		allowNull: false
+	},
 	courseID: {
 		type: DataTypes.SMALLINT,
 		allowNull: false,
@@ -56,7 +61,11 @@ const Round = sequelize.define('Round', {
 				msg: 'Please enter course ID'
 			}
 		}
-	},
+	}, 
+	status: {
+		type: DataTypes.STRING,
+		allowNull: false
+	}/*,
 	strokes: {
 		type: DataTypes.INTEGER,
 		allowNull: false,
@@ -84,11 +93,40 @@ const Round = sequelize.define('Round', {
 				}
 			}
 		}
-	}
+	}*/
 }, {
 	tableName: 'Rounds',
 	timestamps: false,
 	createdAt: true,
+	updatedAt: false
+});
+
+const RoundScore = sequelize.define('RoundScore', {
+	scoreID: {
+		type: DataTypes.INTEGER,
+		primaryKey: true,
+		autoIncrement: true
+	},
+	roundID: {
+		type: DataTypes.SMALLINT,
+		allowNull: false
+	},
+	userID: {
+		type: DataTypes.SMALLINT,
+		allowNull: false
+	},
+	holeNumber: {
+		type: DataTypes.TINYINT,
+		allowNull: false
+	},
+	strokes: {
+		type: DataTypes.TINYINT.UNSIGNED,
+		allowNull: false
+	}
+}, {
+	tableName: 'RoundScores',
+	timestamps: false,
+	createdAt: false,
 	updatedAt: false
 });
 
@@ -121,4 +159,40 @@ const Hole = sequelize.define('Hole', {
 		updatedAt: false
 });
 
-module.exports = {Course, Round, Hole}
+const RoundParticipant = sequelize.define('RoundParticipants', {
+	roundID: {
+		type: DataTypes.SMALLINT,
+		allowNull: false,
+		primaryKey: true,
+		references: {
+			model: 'Rounds',
+			key: 'roundID'
+		}
+	},
+	userID: {
+		type: DataTypes.STRING(36),
+		allowNull: false,
+		primaryKey: true,
+		references: {
+			model: 'Users',
+			key: 'publicID'
+		}
+	}
+}, {
+	tableName: 'RoundParticipants',
+	timestamps: false,
+	createdAt: false,
+	updatedAt: false,
+	freezeTableName: true
+});
+
+Round.belongsTo(Course, { foreignKey: 'courseID' });
+Course.hasMany(Round, { foreignKey: 'courseID' });
+
+RoundParticipant.belongsTo(User, { foreignKey: 'userID' });
+User.hasMany(RoundParticipant, { foreignKey: 'userID' });
+
+RoundParticipant.belongsTo(Round, { foreignKey: 'roundID' });
+Round.hasMany(RoundParticipant, { foreignKey: 'roundID' });
+
+module.exports = {Course, Round, Hole, RoundParticipant}

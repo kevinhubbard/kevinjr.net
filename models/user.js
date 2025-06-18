@@ -1,14 +1,10 @@
 const {Sequelize, DataTypes, QueryTypes} = require('sequelize');
 var sequelize = require('../database/dbConnection');
 
-const User = sequelize.define('User', {
-	userID: {
-		type: DataTypes.SMALLINT,
-		autoIncrement: true,
-		primaryKey: true
-	}, 
+const User = sequelize.define('User', { 
 	publicID: {
 		type: DataTypes.STRING(36),
+		primaryKey: true,
 		unique: true,
 		allowNull: false
 	},
