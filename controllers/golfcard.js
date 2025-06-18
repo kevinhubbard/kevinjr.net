@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
-var {Course, Round, Hole} = require('../models/golfcard.js');
+var {Course, Round, Hole, RoundParticipant} = require('../models/golfcard.js');
+var User = require('../models/user.js');
 const { QueryTypes } = require('sequelize');
 
 router.get('/', async function(req, res){
@@ -67,8 +68,120 @@ router.post('/rounds', async function(req, res){
 	}
 });
 
-router.get('/play', async function(req, res) {
-	
+router.get('/rounds/create', async function(req, res) {
+
+	if (!req.session.userId) {
+		return res.status(401).send("please login first");
+	}
+	const crs = await Course.findAll();
+	const host = req.session.userName;
+	console.log(host);
+	res.render('createRound', {
+		css: ['style.css', 'golf.css', 'createRound.css'],
+		js: ['golfScript.js', 'menu.js', 'loginScript.js', 'createRound.js'],
+		crs: crs,
+		usr: host,
+		pid: req.session.userId
+	});
 });
+
+router.post('/rounds/create', async function(req, res) {
+	if (!req.session.userId) {
+		return res.status(401).send("please login first");
+	}
+
+	const {course} = req.body;
+
+	try {
+		const newRound = await Round.create({
+			courseID: course,
+			hostID: req.session.userId,
+			status: 'waiting'
+		});
+
+		await RoundParticipant.create({
+			roundID: newRound.roundID,
+			userID: req.session.userId
+		});
+		// redirect user to the current "active round room they created"
+		res.redirect(`/golfcard/rounds/${newRound.roundID}/waiting`);
+	} catch (err) {
+		console.error(err);
+		res.status(500).send("Failed to create round.");
+	}
+});
+
+router.get('/rounds/:id/waiting', async function(req, res) {
+	const roundID = req.params.id;
+
+	try {
+		const round = await Round.findByPk(roundID, {
+			include: [Course]
+		});
+
+		const participants = await RoundParticipant.findAll({
+			where: {roundID},
+			include: [User]
+		});
+		//console.log(participants);
+		res.render('waitingRoom', {
+			css: ['style.css', 'waiting.css'],
+			js: ['golfScript.js', 'newGolfer.js'],
+			round: round,
+			participants: participants,
+			isHost: req.session.userId === round.hostID
+		});
+	} catch (err) {
+		console.error(err);
+		res.status(500).send('Could not load waiting room');
+	}
+});
+
+router.get('/rounds/active', async function(req, res) {
+	const activeRounds = await Round.findAll({
+		where: {status: 'waiting'},
+		include: [Course]
+	});
+	
+	res.render('activeRound', {
+		css: ['style.css', 'golf.css', 'activeRound.css'],
+		js: ['golfScript.js', 'menu.js', 'loginScript.js', 'newGolfer.js'],
+		rounds: activeRounds
+	});
+});
+
+router.get('/rounds/:id/join', async function(req, res) {
+	if (!req.session.userId) {
+		return res.status(401).send("please login first");
+	}
+	const roundID = req.params.id;
+	const userID = req.session.userId;
+	const user = await User.findByPk(userID);
+
+	await RoundParticipant.create({ roundID, userID});
+
+	//emit to clients in the room
+	const io = req.app.get('io');
+	io.to(`round-${roundID}`).emit('newParticipant', {userID, userName: user.name});
+
+	res.redirect(`/golfcard/rounds/${roundID}/waiting`);
+});
+
+router.get('/play:id', async function(req, res) {
+	res.render('playRound', {
+		css: ['style.css', 'golf.css', 'activeRound.css'],
+		js: ['golfScript.js', 'menu.js', 'loginScript.js', 'newGolfer.js'],
+	});
+});
+
+router.post('/rounds/:id/scores', async function(req, res) {
+
+});
+
+router.get('/rounds/:id/scores', async function(req, res) {
+
+});
+
+
 
 module.exports = router;

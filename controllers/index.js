@@ -48,6 +48,7 @@ router.post('/', async function(req, res) {
 		}
 
 		req.session.userId = user.publicID;
+		req.session.userName = user.name;
 		res.redirect(`/profile/${user.publicID}`);
 	} catch (error) {
 		logStream.write(`[${new Date().toISOString()}] ${ip} - Server error: ${error.message}\n`);
