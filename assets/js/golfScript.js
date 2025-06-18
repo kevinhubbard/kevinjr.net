@@ -15,6 +15,11 @@ window.addEventListener("DOMContentLoaded", function(event) {
 	document.getElementById('app').style.display = 'none';
 	document.getElementById('courseInfo').style.display = 'none';
 
+	const activeRounds = document.getElementById('activeRounds');
+	activeRounds.addEventListener('click', function() {
+		window.location.href='/golfcard/rounds/active';
+	})
+
 	let newRound = document.getElementById('newRound');
 	newRound.addEventListener("click", function() {
 		document.getElementById('options').style.display = 'none';
