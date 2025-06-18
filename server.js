@@ -9,6 +9,30 @@ const session = require('express-session');
 // DEFINES APP METHOD
 const app = express();
 
+// REALTIME UPDATES
+const http = require('http');
+const socketio = require('socket.io');
+const server = http.createServer(app);
+const io = socketio(server);
+app.set('io', io);
+
+io.on('connection', (socket) => {
+	console.log('New Client Connected');
+
+	socket.on('joinRoom', (roomName) => {
+		socket.join(roomName);
+		console.log(`Socket joined room: ${roomName}`);
+	});
+
+	socket.on('startRound', ({roundID}) => {
+		io.to(`round-${roundID}`).emit('roundStarted', {roundID});
+	})
+
+	socket.on('disconnect', () => {
+		console.log('client disconnected.');
+	});
+});
+
 // LETS EXPRESS USE STATIC FILES
 app.use(express.static('node_modules'));
 app.use(express.static(path.join(__dirname, 'assets')));
@@ -79,6 +103,6 @@ app.use(function (req, res, next) {
 });
 
 // START SERVER LISTENING
-app.listen(process.env.PORT, function () {
+server.listen(process.env.PORT, function () {
 	console.log('App listening on port: ' + process.env.PORT);
 });
