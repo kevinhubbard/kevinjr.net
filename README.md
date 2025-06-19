@@ -1,7 +1,7 @@
 # Portfolio
 
 
-My portfolio/blog was made using Node, Express, Handlebars and MongoDb.  
+My portfolio/blog was made using Node, Express, Handlebars and MySQL.  
 Follows the MVC architecture.
 
 
@@ -11,10 +11,14 @@ Follows the MVC architecture.
 * Body Parser
 * Express
 * Mongoose
+* Multer
+* Socket.io
 
 
 ### Future Updates include
-* Converting to React UI
-* Adding login
-* Image Upload for blog
+* <del>Adding login<del>
+* <del>Image Upload for blog<del>
 * Edit/Delete Blog posts
+* Make golfapp multiuser
+* Update profile pages
+* Make site banner
