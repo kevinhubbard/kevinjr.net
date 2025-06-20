@@ -167,10 +167,35 @@ router.get('/rounds/:id/join', async function(req, res) {
 	res.redirect(`/golfcard/rounds/${roundID}/waiting`);
 });
 
-router.get('/play:id', async function(req, res) {
+router.get('/play/:id', async function(req, res) {
+	const roundID = req.params.id;
+	const currentRound = await Round.findByPk(roundID, {
+		include: [Course]
+	});
+	//console.log(currentRound);
+
+	const players = await RoundParticipant.findAll({
+		where: {roundID},
+		include: [User]
+	});
+
+	const holes = await Hole.findAll({
+		where: {
+			courseID: currentRound.courseID
+		}
+	});
+
+	//console.log(holes);
+	console.log("session.userId:", req.session.userId);
 	res.render('playRound', {
-		css: ['style.css', 'golf.css', 'activeRound.css'],
-		js: ['golfScript.js', 'menu.js', 'loginScript.js', 'newGolfer.js'],
+		roundID,
+		currentRound,
+		course: currentRound.Course,
+		players,
+		userId: req.session.userId,
+		holes,
+		css: ['style.css', /*'golf.css',*/ 'activeRound.css', 'play.css'],
+		js: [/*'golfScript.js',*/ 'menu.js', 'loginScript.js', 'newGolfer.js'],
 	});
 });
 
