@@ -26,7 +26,14 @@ io.on('connection', (socket) => {
 
 	socket.on('startRound', ({roundID}) => {
 		io.to(`round-${roundID}`).emit('roundStarted', {roundID});
-	})
+	});
+
+  socket.on('holeFinished', ({ roundID, userID, holeNum, strokes }) => {
+    console.log(`[server] holeFinished: user ${userID}, hole ${holeNum}, strokes: ${strokes}`);
+    console.log('update should fire');
+    io.to(`round-${roundID}`).emit('updateScore', { userID, holeNum, strokes });
+    console.log('after update');
+  });
 
 	socket.on('disconnect', () => {
 		console.log('client disconnected.');
@@ -53,6 +60,9 @@ app.engine('handlebars', exphbs.engine({
 		},
 		formatDate: function(datetime) {
 			return new Date(datetime).toDateString();
+		},
+		json: function(context) {
+			return JSON.stringify(context);
 		}
 	}
 }));
