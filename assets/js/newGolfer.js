@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Join socket.io room for this round
   socket.emit('joinRoom', `round-${roundID}`);
+  console.log(`Joining socket room: round-${roundID}`);
 
   // Listen for new participants
   socket.on('newParticipant', data => {
@@ -18,15 +19,30 @@ document.addEventListener('DOMContentLoaded', () => {
     ul.appendChild(li);
   });
 
-
-  document.getElementById('start-round').addEventListener('click', function(e) {
-    const roundID = document.getElementById('round-id').dataset.round;
-    socket.emit('startRound', {roundID});
-  });
+  const startBtn = document.getElementById('start-round');
+  if (startBtn) {
+    startBtn.addEventListener('click', function() {
+      socket.emit('startRound', {roundID});
+    });
+  }
 
   socket.on('roundStarted', data => {
-    window.location.href = `/golfcard/play${data.roundID}`;
+    console.log('Received roundStarted', data);
+    window.location.href = `/golfcard/play/${data.roundID}`;
   });
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

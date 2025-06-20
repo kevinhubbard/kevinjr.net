@@ -11,8 +11,11 @@ window.addEventListener("DOMContentLoaded", function(event) {
 	let courseData;
 
 
-	
-	document.getElementById('app').style.display = 'none';
+	const mainApp = document.getElementById('app');
+	if (mainApp) {
+		mainApp.style.display = 'block';
+	}
+	//document.getElementById('app').style.display = 'none';
 	document.getElementById('courseInfo').style.display = 'none';
 
 	const activeRounds = document.getElementById('activeRounds');
@@ -236,6 +239,17 @@ window.addEventListener("DOMContentLoaded", function(event) {
 		}
 		return summary;
 	}
+
+
+
+
+
+
+
+	
+
+
+	
 });
 
 window.addEventListener('beforeunload', (event) => {
