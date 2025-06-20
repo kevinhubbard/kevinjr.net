@@ -7,6 +7,21 @@
 	{{#ifEquals user.role 'admin'}}
 	<a href="/admin">Admin Page</a>
 	{{/ifEquals}}
-	
-	<a href="/golfcard/rounds/create">Create a golf round</a>
+
+	<ul id="appLinks">
+		<li>Golfcard</li>
+		<ul>
+			<li><a href="/golfcard">Golfcard</a></li>
+			<li><a href="/golfcard/rounds/active">Active Rounds</a></li>
+			<li><a href="/golfcard/rounds/create">Create a Round</a></li>
+		</ul>
+		<li>Blog</li>
+		<ul>
+			<li><a href="/blog">Blog</a></li>
+		</ul>
+		<li>Contact</li>
+		<ul>
+			<li><a href="/contact">Contact</a></li>
+		</ul>
+		</ul>
 </div>

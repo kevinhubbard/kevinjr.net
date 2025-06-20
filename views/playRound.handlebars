@@ -1,1 +1,114 @@
-<h1>Welcome to the play round page!</h1>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+	const socket = io();
+	const roundID = {{roundID}};
+	socket.emit('joinRoom', `round-${roundID}`);
+	console.log(`[socket] joining round room: round-${roundID}`);
+	const userID = "{{userId}}";
+	const participants = {{{json players}}};
+	const courseInfo = {{{json currentRound}}};
+	const holes = {{{json holes}}};
+
+
+	console.log(courseInfo);
+
+	document.getElementById('courseName').textContent = courseInfo.Course.courseName;
+	document.getElementById('coursePar').textContent = `Par: ${courseInfo.Course.par}`;
+	document.getElementById('courseYards').textContent = `Yards: ${courseInfo.Course.yards}`;
+
+
+participants.forEach(p => {
+  const div = document.createElement('div');
+  div.id = `scoreboard-${p.userID}`;
+  div.innerHTML = `<h2>${p.User.name}</h2><ul id="score-list-${p.userID}"></ul>`;
+  document.getElementById('scoreboards').appendChild(div);
+});
+
+console.log('userID:', userID);
+console.log('participants:', participants.map(p => p.userID));
+
+
+if (participants.some(p => p.userID === userID)) {
+  const inputDiv = document.getElementById('playerInputArea');
+  inputDiv.innerHTML = `
+    <p>Hole: <span id="current-hole">1</span></p>
+    <p>Strokes: <span id="current-strokes">0</span></p>
+    <button id="add-stroke">Add Stroke</button>
+    <button id="finish-hole" disabled>Finish Hole</button>
+  `;
+
+  let holeStrokes = 0;
+  let holeNum = 1;
+
+  // Display first hole info
+  const currentHole = holes[holeNum - 1];
+  document.getElementById('holePar').textContent = `Par: ${currentHole.par}`;
+  document.getElementById('holeYards').textContent = `Yards: ${currentHole.yards}`;
+
+  document.getElementById('add-stroke').addEventListener('click', () => {
+    holeStrokes++;
+    document.getElementById('current-strokes').textContent = holeStrokes;
+    document.getElementById('finish-hole').disabled = false;
+  });
+
+  document.getElementById('finish-hole').addEventListener('click', () => {
+  	console.log('shit was clicked yo.');
+    socket.emit('holeFinished', {
+      roundID,
+      userID,
+      holeNum,
+      strokes: holeStrokes,
+    });
+
+    // Reset UI for next hole
+    holeNum++;
+    holeStrokes = 0;
+    document.getElementById('current-hole').textContent = holeNum;
+    document.getElementById('current-strokes').textContent = 0;
+    document.getElementById('finish-hole').disabled = true;
+
+    // ✅ Update hole info
+    const nextHole = holes[holeNum - 1];
+    if (nextHole) {
+      document.getElementById('holePar').textContent = `Par: ${nextHole.par}`;
+      document.getElementById('holeYards').textContent = `Yards: ${nextHole.yards}`;
+    }
+  });
+}
+
+socket.on('updateScore', ({ userID, holeNum, strokes }) => {
+	console.log('update clicked');
+  console.log(`[updateScore] received for user ${userID} - hole ${holeNum} - strokes: ${strokes}`);
+
+  const ul = document.getElementById(`score-list-${userID}`);
+  if (!ul) {
+    console.warn(`[updateScore] Missing score list element for userID ${userID}`);
+    return;
+  }
+
+  const li = document.createElement('li');
+  li.textContent = `Hole ${holeNum}: ${strokes} strokes`;
+  ul.appendChild(li);
+});
+
+});
+
+
+</script>
+
+<div id="mainApp">
+	<div id="ci">
+		<h1 id="courseName"></h1>
+		<p id="coursePar"></p>
+		<p id="courseYards"></p>
+	</div>
+	<div id="app">
+		
+	</div>
+	<div id="scoreboards"></div>
+		<div id="holeDetails">
+  			<p id="holePar"></p>
+  			<p id="holeYards"></p>
+		</div>
+	<div id="playerInputArea"></div>
+</div>
