@@ -1,15 +1,30 @@
-/*var mongoose = require('mongoose');
-var Schema = mongoose.Schema;
+const { Sequelize, Model, DataTypes } = require('sequelize');
+const sequelize = require('../database/dbConnection');
 
-var contactSchema = new Schema({
-	name: String,
-	email: String,
-	msg: String,
-	role: String,
-	state: String,
-	date: {type: Date, default: Date.now} 
+const Message = sequelize.define('Message', {
+	messageID: {
+		type: DataTypes.INTEGER,
+		autoIncrement: true,
+		allowNull: false,
+		primaryKey: true
+	},
+	name: {
+		type: DataTypes.STRING,
+		allowNull: false
+	},
+	email: {
+		type: DataTypes.STRING,
+		allowNull: false
+	},
+	message: {
+		type: DataTypes.TEXT,
+		allowNull: false
+	}
+}, {
+	tableName: 'Messages',
+	timestamps: false,
+	createdAt: false,
+	updatedAt: false
 });
 
-var Contact = mongoose.model('Contact', contactSchema);
-
-module.exports = Contact;*/
+module.exports = Message;
