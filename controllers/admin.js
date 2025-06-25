@@ -54,9 +54,28 @@ router.post('/blog-post', upload.single('image'), async function(req, res) {
 	console.log('Recieved data:', data);
 	res.status(200).send('data received!');*/
 
-	console.log(req.body);
+	//console.log(req.body);
 
-	const post = await Post.create({title: req.body.title, author: req.body.author, body: req.body.body});
+	if (!req.session.userId) {
+		return res.status(401).send("Please login first");
+	}
+
+	if (req.session.userId !== process.env.ADMIN_ID) {
+		return res.status(403). send("Access Denied");
+	}
+
+	const post = await Post.create({
+		title: req.body.title, 
+		author: req.body.author, 
+		body: req.body.body
+	});
+
+	const user = await User.findOne({ where: {publicID: req.session.userId} });
+	res.render('admin', {
+		user: user.toJSON(),
+		css: ['style.css', 'admin.css'],
+		js: ['menu.js', 'loginScript.js', 'admin.js']
+	});
 });
 
 module.exports = router;
