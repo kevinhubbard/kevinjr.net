@@ -80,6 +80,7 @@ const robotsMiddleware = expressRobotsMiddleware([{
 app.get('/robots.txt', robotsMiddleware);
 
 // INITIALIZE USER SESSION
+app.set('trust proxy', 1);
 app.use(session({
 	secret: process.env.SECRET_KEY,
 	resave: false,
