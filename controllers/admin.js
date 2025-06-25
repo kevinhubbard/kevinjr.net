@@ -61,7 +61,7 @@ router.post('/blog-post', upload.single('image'), async function(req, res) {
 	}
 
 	if (req.session.userId !== process.env.ADMIN_ID) {
-		return res.status(403). send("Access Denied");
+		return res.status(403).send("Access Denied");
 	}
 
 	const post = await Post.create({
