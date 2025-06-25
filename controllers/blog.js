@@ -14,7 +14,7 @@ router.get('/', async function(req,res){
 		let slug = tempTitle.replace(/ /g, '-');
 		plainPosts[i].slug = slug;
 	}
-	console.log(plainPosts);
+	//console.log(plainPosts);
 	res.render('blog', {
 		css: ['style.css', 'blog.css'],
 		js: ['menu.js', 'loginScript.js'],
