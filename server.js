@@ -99,7 +99,6 @@ app.use('/admin', require('./controllers/admin'));
 app.use('/contact', require('./controllers/contact'));
 app.use('/portfolio', require('./controllers/portfolio'));
 app.use('/resume', require('./controllers/resume'));
-app.use('/thankyou', require('./controllers/thankyou'));
 app.use('/golfcard', require('./controllers/golfcard'));
 app.use('/botw', require('./controllers/botw'));
 app.use('/brpaints', require('./controllers/brpaints'));
