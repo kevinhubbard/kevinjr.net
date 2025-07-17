@@ -2,8 +2,10 @@ require('dotenv').config();
 const express = require('express');
 const router = express.Router();
 const User = require('../models/user.js');
+const PendingUser = require('../models/pendingUser.js');
 const bcrypt = require('bcrypt');
 const crypto = require('crypto');
+const nodemailer = require('nodemailer');
 
 //GETS RESUME ROUTE
 router.get('/', function (req, res) {
@@ -38,7 +40,8 @@ router.post('/', async function (req, res) {
 				headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
 				body: `secret=${secret}&response=${token}`
 			});
-		return response.json();
+
+			return response.json();
 		};
 
 		const recaptchaRes = await verifyRecaptcha(secretKey, recaptchaToken);
@@ -60,17 +63,55 @@ router.post('/', async function (req, res) {
 				js: ['menu.js', 'createUser.js', 'loginScript.js']
 			});
 		}  
-		
-		const hashedPassword = await bcrypt.hash(req.body.userPassword, 10);
-		await User.create({
-			publicID: uuid,
-			email: req.body.userEmail,
-			name: req.body.userName,
-			password: hashedPassword
+
+		//SEND VERFICATION EMAIL
+		const mailTransport = nodemailer.createTransport({
+			host: 'smtp.zoho.com',
+			port: 465,
+			secure: true,
+			auth: {
+				user: process.env.MAIL_USER,
+				pass: process.env.MAIL_PSSWD
+			}
 		});
+
+		(async () => {
+			const token = crypto.randomBytes(32).toString('hex');
+			let baseURL;
+			if (process.env.NODE_ENV === 'development') {
+				baseURL = `http://localhost:${process.env.PORT}`;
+			} else {
+				baseURL = process.env.BASE_URL;
+			}
+			const verificationLink = `${baseURL}/verify/${token}`;
+			const hashedPassword = await bcrypt.hash(req.body.userPassword, 10);
+			const expires = new Date(Date.now() + 1000 * 60 * 60);
+
+			await PendingUser.create({
+				publicID: uuid,
+				email: req.body.userEmail,
+				name: req.body.userName,
+				password: hashedPassword,
+				token: token,
+				expiresAt: expires
+			});
+
+
+			const info = await mailTransport.sendMail({
+				from: '"Kevin Jr" <kevin@kevinjr.net>',
+				to: email,
+				subject: 'Email Verification',
+				text: `Thank you for registering with my website. To protect against bot accounts I please ask to verify your email one time by clicking this link. ${verificationLink} (This link creates a user [you] in my database.)`,
+			});
+
+			console.log("Message send:", info.messageId);
+		})();
+		
+
+
 		
 		return res.render('signup', {
-			message: 'Registration successful!',
+			message: 'Temporary Registration! A verification link has been sent to the email you provided. This is done to protect against bot accounts. Click the link to verify your account!',
 			success: true,
 			css: ['style.css'],
 			js: ['menu.js', 'createUser.js', 'loginScript.js']
