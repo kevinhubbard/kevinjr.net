@@ -98,7 +98,11 @@
 				<img src="/images/gimp.png" alt="gimp icon">
 			</div>
 	</div> --}}
-
+	{{#if message}}
+    	<div style="color: {{#if success}}green{{else}}red{{/if}};">
+      		{{message}}
+    	</div>
+  	{{/if}}
 
 	<div class="row">
 		<div class="col-md-7">
