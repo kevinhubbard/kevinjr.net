@@ -98,7 +98,7 @@ router.post('/', async function (req, res) {
 
 
 			const info = await mailTransport.sendMail({
-				from: '"Kevin Jr" <kevin@kevinjr.net>',
+				from: `"Kevin Jr" <${process.env.MAIL_USER}>`,
 				to: email,
 				subject: 'Email Verification',
 				text: `Thank you for registering with my website. To protect against bot accounts I please ask to verify your email one time by clicking this link. ${verificationLink} (This link creates a user [you] in my database.)`,

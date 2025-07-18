@@ -8,7 +8,7 @@ const crypto = require('crypto');
 console.log(" Verify controller loaded");
 
 router.get('/:token', async function(req, res) {
-	console.log(" Verification hit with token:", req.params.token);
+	//console.log(" Verification hit with token:", req.params.token);
 	const token = req.params.token;
 	const pendingUser = await PendingUser.findOne({where: { token }});
 
@@ -41,12 +41,19 @@ router.get('/:token', async function(req, res) {
 
 	await pendingUser.destroy();
 
-	return res.render('index', {
+	/*return res.render('index', {
 		message: 'Your email has been validated! You can now login.',
 		success: true,
 		css: ['style.css', 'index.css'],
 		js: ['menu.js', 'createUser.js', 'loginScript.js']
-	});
+	});*/
+
+	req.session.flash = {
+		message: 'Your email has been validated! You can now login.',
+		success: true
+	};
+
+	return res.redirect('/');
 });
 
 module.exports = router;

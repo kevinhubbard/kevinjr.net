@@ -9,7 +9,11 @@ const logStream = fs.createWriteStream(logPath, {flags: 'a'});
 
 //GETS INDEX ROUTE
 router.get('/', function(req, res){
+	const flash = req.session.flash;
+	delete req.session.flash;
 	res.render('index',{
+		message: flash?.message,
+		success: flash?.success,
 		css: ['style.css', 'index.css'],
 		js: ['canvasScript.js', 'menu.js', 'loginScript.js']
 	});
