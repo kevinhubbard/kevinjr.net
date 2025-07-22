@@ -1,0 +1,12 @@
+#main {
+	width: 60%;
+	margin: 0 auto;
+	display: inline-block;
+	text-align: center;
+	margin-top: 5%;
+}
+
+.cardTile {
+	width: 500px;
+	height: 500px;
+}
