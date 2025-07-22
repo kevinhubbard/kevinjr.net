@@ -108,6 +108,7 @@ app.use('/blog', require('./controllers/blog'));
 app.use('/signup', require('./controllers/signup'));
 app.use('/verify', require('./controllers/verify'));
 app.use('/profile', require('./controllers/profile'));
+app.use('/card-games', require('./controllers/cardGames'));
 
 
 // 404 CATCH
