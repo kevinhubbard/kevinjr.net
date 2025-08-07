@@ -70,7 +70,7 @@ router.post('/', async function (req, res) {
 			port: 465,
 			secure: true,
 			auth: {
-				user: process.env.MAIL_USER,
+				user: process.env.MAIL_ADMIN,
 				pass: process.env.MAIL_PSSWD
 			}
 		});
