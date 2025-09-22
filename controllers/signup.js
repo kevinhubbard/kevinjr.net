@@ -85,7 +85,7 @@ router.post('/', async function (req, res) {
 			}
 			const verificationLink = `${baseURL}/verify/${token}`;
 			const hashedPassword = await bcrypt.hash(req.body.userPassword, 10);
-			const expires = new Date(Date.now() + 1000 * 60 * 60);
+			const expires = new Date(Date.now() + 1000 * 60 * 5);
 
 			await PendingUser.create({
 				publicID: uuid,
@@ -101,7 +101,7 @@ router.post('/', async function (req, res) {
 				from: `"Kevin Jr" <${process.env.MAIL_ADMIN}>`,
 				to: email,
 				subject: 'Email Verification',
-				text: `Thank you for registering with my website. To protect against bot accounts I please ask to verify your email one time by clicking this link. ${verificationLink} (This link creates a user [you] in my database.)`,
+				text: `Thank you for registering with my website. To protect against bot accounts I please ask to verify your email one time by clicking this link. ${verificationLink} \n(This link creates a user [you] in my database and expires after 5 minutes.)`,
 			});
 
 			console.log("Message send:", info.messageId);

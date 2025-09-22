@@ -98,3 +98,20 @@
 .hcont:hover .hidTxt {
   opacity: 1;
 }
+
+
+#logo {
+  margin-top: 50px;
+  text-align: center;
+  font-size: 44px;
+  user-select: none;
+}
+
+@keyframes blink {
+  0% { opacity: 1; }
+  50% { opacity: 0; }
+  100% { opacity: 1; }
+}
+.cursor {
+  animation: blink 1s step-end infinite;
+}
