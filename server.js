@@ -5,6 +5,8 @@ const expressRobotsMiddleware = require('express-robots-middleware');
 const path = require('path');
 const bodyParser = require('body-parser');
 const session = require('express-session');
+const { Op } = require('sequelize');
+const BannedIP = require('./models/bannedIPs.js');
 
 // DEFINES APP METHOD
 const app = express();
@@ -67,6 +69,7 @@ app.engine('handlebars', exphbs.engine({
 	}
 }));
 app.set('view engine', 'handlebars');
+app.set('trust proxy', true);
 
 // ROBOTS.TXT MIDDLEWARE
 const robotsMiddleware = expressRobotsMiddleware([{
@@ -80,7 +83,6 @@ const robotsMiddleware = expressRobotsMiddleware([{
 app.get('/robots.txt', robotsMiddleware);
 
 // INITIALIZE USER SESSION
-//app.set('trust proxy', 1);
 app.use(session({
 	secret: process.env.SECRET_KEY,
 	resave: false,
@@ -92,6 +94,26 @@ app.use(session({
 		maxAge: 1000 * 60 * 60 * 24
 	}
 }));
+
+// BANNED CATCH
+app.use(async function (req, res, next) {
+	const ip = req.ip || req.connection.remoteAddress;
+
+	try {
+		const banned = await BannedIP.findAll({where:{banType:{[Op.ne]: 'unbanned'}}});
+		for (let i = 0; i < banned.length; i++) {
+			if (banned[i].ipAddress === ip) {
+			    return res.status(403).render('banned', {
+			  	message: 'Acess denied. Your IP has been temporarily banned.',
+			  	css: ['style.css'],
+			  });
+			}
+		}
+		next();
+	} catch (err) {
+		console.log("error fetching banned ip's", err);
+	}
+});
 
 // ROUTES
 app.use('/', require('./controllers/index'));
@@ -109,6 +131,7 @@ app.use('/signup', require('./controllers/signup'));
 app.use('/verify', require('./controllers/verify'));
 app.use('/profile', require('./controllers/profile'));
 app.use('/card-games', require('./controllers/cardGames'));
+
 
 
 // 404 CATCH
