@@ -23,6 +23,9 @@ router.post('/', async function (req, res) {
 	const uuid = crypto.randomUUID();
 	const email = req.body.userEmail;
 
+	console.log("Client IP:" + req.ip);
+	console.log(req);
+
 	if (!recaptchaToken) {
 		return res.render('signup', {
 			message: "Please complete the reCAPTCHA.",
