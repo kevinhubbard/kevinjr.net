@@ -23,8 +23,7 @@ router.post('/', async function (req, res) {
 	const uuid = crypto.randomUUID();
 	const email = req.body.userEmail;
 
-	console.log("Client IP:" + req.ip);
-	console.log(req);
+	const ip = req.ip || req.connection.remoteAddress;
 
 	if (!recaptchaToken) {
 		return res.render('signup', {
@@ -96,7 +95,8 @@ router.post('/', async function (req, res) {
 				name: req.body.userName,
 				password: hashedPassword,
 				token: token,
-				expiresAt: expires
+				expiresAt: expires,
+				ipAddress: ip
 			});
 
 
