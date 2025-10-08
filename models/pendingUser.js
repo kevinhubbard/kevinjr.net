@@ -1,7 +1,7 @@
 const {Sequelize, DataTypes, QueryTypes} = require('sequelize');
 var sequelize = require('../database/dbConnection');
 
-const PendingUser = sequelize.define('PendingUser', { 
+const PendingUser = sequelize.define('PendingUse2r', { 
 	publicID: {
 		type: DataTypes.STRING(36),
 		primaryKey: true,
@@ -34,9 +34,13 @@ const PendingUser = sequelize.define('PendingUser', {
 	expiresAt: {
 		type: DataTypes.DATE,
 		allowNull: false
+	},
+	ipAddress: {
+		type: DataTypes.STRING(45),
+		allowNull: false
 	}
 }, {
-	tableName: 'PendingUsers',
+	tableName: 'PendingUser2s',
 	timestamps: false,
 	createdAt: false,
 	updatedAt: false
