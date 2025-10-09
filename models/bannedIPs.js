@@ -71,8 +71,8 @@ const BannedIP = connection.define('BannedIP', {
 },{
 	tableName: 'BannedIPs',
 	timestamps: true,
-	createdAt: 'created_at',
-	updatedAt: 'updated_at'
+	createdAt:  true,
+	updatedAt: 	true
 });
 
 module.exports = BannedIP;
