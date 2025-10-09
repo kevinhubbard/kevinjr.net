@@ -1,4 +1,4 @@
-// cleanup.js
+/*// cleanup.js
 require('dotenv').config();
 const mysql = require('mysql2/promise');
 
@@ -27,7 +27,7 @@ async function runCleanup() {
 
     console.log(expiredUsers);
 
-    /*if (expiredUsers.length > 0) {
+    if (expiredUsers.length > 0) {
       // 2. Insert into BannedIPs
       const values = expiredUsers.map(user => [user.ipAddress]);
       await connection.query(
@@ -43,12 +43,36 @@ async function runCleanup() {
       console.log(`Moved ${expiredUsers.length} user(s) to BannedIPs.`);
     } else {
       console.log('No expired users found.');
-    }*/
+    }
   } catch (err) {
     console.error('Error during cleanup:', err);
   } finally {
     connection.end();
   }
+}
+
+runCleanup();*/
+
+require('dotenv').config({ path: '../.env' }); // path to your .env file
+const mysql = require('mysql2/promise');
+
+console.log({
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB,
+});
+
+async function runCleanup() {
+  const connection = await mysql.createConnection({
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB,
+  });
+
+  console.log('Connected!');
+  await connection.end();
 }
 
 runCleanup();
