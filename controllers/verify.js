@@ -12,7 +12,7 @@ router.get('/:token', async function(req, res) {
 	const token = req.params.token;
 	const pendingUser = await PendingUser.findOne({where: { token }});
 	const rawIp = req.ip || req.connection.remoteAddress;
-	const cleanIp = rawIp.replace('^::ffff:/','');
+	const cleanIp = rawIp.replace(/^::ffff:/,'');
 	let ipv4 = null;
 	let ipv6 = null;
 	if (cleanIp.includes('.')) {
