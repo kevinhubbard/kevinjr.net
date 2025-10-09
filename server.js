@@ -99,7 +99,8 @@ app.use(session({
 app.use(logVisitor);
 app.use((req, res, next) => {
 	const bannedIPs = ['34.11.229.204', '48.218.182.166'];
-	if (bannedIPs.includes(req.ip)) {
+	const ip = req.headers['cf-connecting-ip'] || req.ip;
+	if (bannedIPs.includes(ip)) {
 		return res.status(403).send('Access denied');
 	}
 	next();
