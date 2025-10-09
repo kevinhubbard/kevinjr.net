@@ -7,6 +7,7 @@ const bodyParser = require('body-parser');
 const session = require('express-session');
 const { Op } = require('sequelize');
 const BannedIP = require('./models/bannedIPs.js');
+const logVisitor = require('./scripts/logger.js');
 
 // DEFINES APP METHOD
 const app = express();
@@ -94,6 +95,8 @@ app.use(session({
 		maxAge: 1000 * 60 * 60 * 24
 	}
 }));
+
+app.use(logVisitor);
 
 // BANNED CATCH
 app.use(async function (req, res, next) {
