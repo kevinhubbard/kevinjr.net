@@ -10,7 +10,7 @@ async function cleanPendingUsers() {
 	});
 
 	try {
-		const res = await conn.query('SELECT * FROM PendingUsers WHERE expiredAt < NOW()');
+		const res = await conn.query('SELECT * FROM PendingUsers WHERE expiresAt < NOW()');
 		console.log(res);
 	} catch (error) {
 		console.error("Error during cleanup: ", error);
