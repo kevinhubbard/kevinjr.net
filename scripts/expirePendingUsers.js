@@ -9,15 +9,13 @@ async function runCleanup() {
     database: process.env.DB,
   });
 
-  console.log(connection);
-
   try {
     // 1. Select expired users
     const [expiredUsers] = await connection.execute(
       'SELECT ipAddress FROM PendingUsers WHERE expiresAt < NOW()'
     );
 
-    console.log(expiredUsers);
+    console.log(expiredUsers[]);
 
     /*if (expiredUsers.length > 0) {
       // 2. Insert into BannedIPs
