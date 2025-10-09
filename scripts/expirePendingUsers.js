@@ -10,15 +10,12 @@ async function cleanPendingUsers() {
 	});
 
 	try {
-		connection.query(queryString, function(error, results, fields) {
-			if (error) throw error;
-			console.log(results);
-			console.log(fields);
-		});
+		const res = await conn.query('SELECT * FROM PendingUsers WHERE expiredAt < NOW()');
+		console.log(res);
 	} catch (error) {
 		console.error("Error during cleanup: ", error);
 	} finally {
-		connection.destroy();
+		conn.end();
 	}
 }
 cleanPendingUsers();
