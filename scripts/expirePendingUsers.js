@@ -1,39 +1,43 @@
-const db = require('../database/dbConnection.js');
-const PendingUser = require('../models/pendingUser.js');
-const SusUser = require('../models/suspusiousUsers.js');
-const { Op } = require('sequelize');
+// cleanup.js
+require('dotenv').config();
+const mysql = require('mysql2/promise');
 
-async function purgeExpiredUsers() {
-	try {
-		const expiredUsers = await PendingUser.findAll({
-			where: {
-				expiresAt: {
-					[Op.lt]: new Date()
-				}
-			}
-		});
-		for (let i = 0; i < expiredUsers.length; i++) {
+async function runCleanup() {
+  const connection = await mysql.createConnection({
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB,
+  });
 
-			console.log('\nEmail: ' + expiredUsers[i].email);
-			console.log('name: ' + expiredUsers[i].name);
-			console.log('ipAddress: ' + expiredUsers[i].ipAddress + '\n');
+  try {
+    // 1. Select expired users
+    const [expiredUsers] = await connection.execute(
+      'SELECT ipAddress FROM PendingUsers WHERE expiresAt < NOW()'
+    );
 
-			try {
-				const susUser = await SusUser.create({
-					ipAddress: expiredUsers[i].ipAddress,
-					attemptCount: 1,
-					created_at: new Date(),
-					updated_at: new Date()
-				});
+    /*if (expiredUsers.length > 0) {
+      // 2. Insert into BannedIPs
+      const values = expiredUsers.map(user => [user.ipAddress]);
+      await connection.query(
+        'INSERT IGNORE INTO BannedIPs (ip) VALUES ?',
+        [values]
+      );
 
-			} catch (err) {
-				console.log('Error creating suspicious user.', err);
-			}
-			await expiredUsers[i].destroy();
-		}
-	} catch (err) {
-		console.log('Error: ', err);
-	}
+      // 3. Delete from PendingUsers
+      await connection.query(
+        'DELETE FROM PendingUsers WHERE expiresAt < NOW()'
+      );
+
+      console.log(`Moved ${expiredUsers.length} user(s) to BannedIPs.`);
+    } else {
+      console.log('No expired users found.');
+    }*/
+  } catch (err) {
+    console.error('Error during cleanup:', err);
+  } finally {
+    connection.end();
+  }
 }
 
-purgeExpiredUsers();
+runCleanup();
