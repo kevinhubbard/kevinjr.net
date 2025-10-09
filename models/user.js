@@ -27,21 +27,25 @@ const User = sequelize.define('User', {
 		defaultValue: 'user',
 		allowNull: false
 	},
+	registeredIp: {
+		type: DataTypes.STRING(45),
+		allowNull: false
+	},
 	ipv4Initial: {
 		type: DataTypes.STRING(15),
-		allowNull: false
+		allowNull: true
 	},
 	ipv6Initial: {
 		type: DataTypes.STRING(60),
-		allowNull: false
+		allowNull: true
 	},
 	ipv4Current: {
 		type: DataTypes.STRING(15),
-		allowNull: false
+		allowNull: true
 	},
 	ipv6Current: {
 		type: DataTypes.STRING(60),
-		allowNull: false
+		allowNull: true
 	},
 	createdAt: {
 		type: DataTypes.DATE,

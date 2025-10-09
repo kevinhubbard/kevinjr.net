@@ -195,4 +195,4 @@ User.hasMany(RoundParticipant, { foreignKey: 'userID' });
 RoundParticipant.belongsTo(Round, { foreignKey: 'roundID' });
 Round.hasMany(RoundParticipant, { foreignKey: 'roundID' });
 
-module.exports = {Course, Round, Hole, RoundParticipant}
+module.exports = {Course, Round, Hole, RoundParticipant};
