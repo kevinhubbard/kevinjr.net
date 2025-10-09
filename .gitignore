@@ -4,3 +4,4 @@ config
 config.js
 .env
 .dev.log
+.logs
