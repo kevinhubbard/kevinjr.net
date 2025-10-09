@@ -2,6 +2,13 @@
 require('dotenv').config();
 const mysql = require('mysql2/promise');
 
+console.log({
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB,
+});
+
 async function runCleanup() {
   const connection = await mysql.createConnection({
     host: process.env.DB_HOST,
@@ -14,7 +21,7 @@ async function runCleanup() {
 
   try {
     // 1. Select expired users
-    const [expiredUsers] = await connection.query(
+    const [expiredUsers] = await connection.execute(
       'SELECT ipAddress FROM PendingUsers WHERE expiresAt < NOW()'
     );
 
