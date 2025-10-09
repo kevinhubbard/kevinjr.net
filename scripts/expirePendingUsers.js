@@ -15,7 +15,7 @@ async function runCleanup() {
       'SELECT ipAddress FROM PendingUsers WHERE expiresAt < NOW()'
     );
 
-    console.log(expiredUsers[]);
+    console.log(expiredUsers[0]);
 
     /*if (expiredUsers.length > 0) {
       // 2. Insert into BannedIPs
