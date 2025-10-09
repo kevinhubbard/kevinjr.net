@@ -1,20 +1,20 @@
 const {Sequelize, DataTypes, QueryTypes} = require('sequelize');
 var sequelize = require('../database/dbConnection');
 
-const PendingUser = sequelize.define('PendingUse2r', { 
+const PendingUser = sequelize.define('PendingUser', { 
 	publicID: {
 		type: DataTypes.STRING(36),
 		primaryKey: true,
 		unique: true,
 		allowNull: false
 	},
+	name: {
+		type: DataTypes.STRING(30),
+		allowNull: false
+	},
 	email: {
 		type: DataTypes.STRING(45),
 		unique: true,
-		allowNull: false
-	},
-	name: {
-		type: DataTypes.STRING(30),
 		allowNull: false
 	}, 
 	password: {
@@ -27,6 +27,10 @@ const PendingUser = sequelize.define('PendingUse2r', {
 		defaultValue: 'user',
 		allowNull: false
 	},
+	ipAddress: {
+		type: DataTypes.STRING(45),
+		allowNull: false
+	},
 	token: {
 		type: DataTypes.STRING(64),
 		allowNull: false
@@ -35,15 +39,19 @@ const PendingUser = sequelize.define('PendingUse2r', {
 		type: DataTypes.DATE,
 		allowNull: false
 	},
-	ipAddress: {
-		type: DataTypes.STRING(45),
+	createdAt: {
+		type: DataTypes.DATE,
+		allowNull: false
+	},
+	updatedAt: {
+		type: DataTypes.DATE,
 		allowNull: false
 	}
 }, {
-	tableName: 'PendingUser2s',
-	timestamps: false,
-	createdAt: false,
-	updatedAt: false
+	tableName: 'PendingUsers',
+	timestamps: true,
+	createdAt: true,
+	updatedAt: true
 });
 
 module.exports = PendingUser;

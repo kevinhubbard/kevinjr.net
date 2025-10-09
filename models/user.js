@@ -8,15 +8,15 @@ const User = sequelize.define('User', {
 		unique: true,
 		allowNull: false
 	},
+	name: {
+		type: DataTypes.STRING(60),
+		allowNull: false
+	},
 	email: {
 		type: DataTypes.STRING(60),
 		unique: true,
 		allowNull: false
 	},
-	name: {
-		type: DataTypes.STRING(60),
-		allowNull: false
-	}, 
 	password: {
 		type: DataTypes.STRING(60),
 		allowNull: false
@@ -26,12 +26,36 @@ const User = sequelize.define('User', {
 		values: ['admin', 'editor', 'user'],
 		defaultValue: 'user',
 		allowNull: false
+	},
+	ipv4Initial: {
+		type: DataTypes.STRING(15),
+		allowNull: false
+	},
+	ipv6Initial: {
+		type: DataTypes.STRING(60),
+		allowNull: false
+	},
+	ipv4Current: {
+		type: DataTypes.STRING(15),
+		allowNull: false
+	},
+	ipv6Current: {
+		type: DataTypes.STRING(60),
+		allowNull: false
+	},
+	createdAt: {
+		type: DataTypes.DATE,
+		allowNull: false
+	},
+	updatedAt: {
+		type: DataTypes.DATE,
+		allowNull: false
 	}
 }, {
 	tableName: 'Users',
-	timestamps: false,
-	createdAt: false,
-	updatedAt: false
+	timestamps: true,
+	createdAt: true,
+	updatedAt: true
 });
 
 module.exports = User;
