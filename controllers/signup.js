@@ -25,6 +25,7 @@ router.post('/', async function (req, res) {
 
 	const ip = req.ip || req.connection.remoteAddress;
 
+
 	if (!recaptchaToken) {
 		return res.render('signup', {
 			message: "Please complete the reCAPTCHA.",
@@ -91,12 +92,14 @@ router.post('/', async function (req, res) {
 
 			await PendingUser.create({
 				publicID: uuid,
-				email: req.body.userEmail,
 				name: req.body.userName,
+				email: req.body.userEmail,
 				password: hashedPassword,
+				ipAddress: ip,
 				token: token,
 				expiresAt: expires,
-				ipAddress: ip
+				createdAt: new Date(Date.now()),
+				updatedAt: new Date(Date.now())
 			});
 
 

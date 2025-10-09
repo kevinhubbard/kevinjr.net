@@ -11,6 +11,16 @@ router.get('/:token', async function(req, res) {
 	//console.log(" Verification hit with token:", req.params.token);
 	const token = req.params.token;
 	const pendingUser = await PendingUser.findOne({where: { token }});
+	const rawIp = req.ip || req.connection.remoteAddress;
+	const cleanIp = rawIp.replace('^::ffff:/','');
+	let ipv4 = null;
+	let ipv6 = null;
+	if (cleanIp.includes('.')) {
+		ipv4 = cleanIp;
+	} else {
+		ipv6 = rawIp;
+	}
+
 
 	if (!pendingUser) {
 		return res.render('index', {
@@ -33,10 +43,16 @@ router.get('/:token', async function(req, res) {
 
 	await User.create({
 		publicID: pendingUser.publicID,
-		email: pendingUser.email,
 		name: pendingUser.name,
+		email: pendingUser.email,
 		password: pendingUser.password,
-		role: pendingUser.role
+		role: pendingUser.role,
+		registeredIp: pendingUser.ipAddress,
+		ipv4Initial: ipv4,
+		ipv6Initial: ipv6,
+		ipv4Current: ipv4,
+		ipv6Current: ipv6
+
 	});
 
 	await pendingUser.destroy();
