@@ -8,6 +8,7 @@ const session = require('express-session');
 const { Op } = require('sequelize');
 const BannedIP = require('./models/bannedIPs.js');
 const logVisitor = require('./scripts/logger.js');
+const fs = require('fs');
 
 // DEFINES APP METHOD
 const app = express();
@@ -96,13 +97,26 @@ app.use(session({
 	}
 }));
 
+let bannedIPs = [];
+fs.readFile('./bannedIPs.txt', 'utf8', (err, data) => {
+	if (err) {
+		console.error("error reading file: ", err);
+		return;
+	}
+	data.split(/\r?\n/).forEach(line => {
+   	bannedIPs.push(line);
+	});
+});
+
 app.use(logVisitor);
 app.use((req, res, next) => {
-	const bannedIPs = ['34.11.229.204', '48.218.182.166'];
 	const ip = req.headers['cf-connecting-ip'] || req.ip;
-	if (bannedIPs.includes(ip)) {
-		return res.status(403).send('Access denied');
+	for (let i = 0; i < bannedIPs.length; i++) {
+		if (bannedIPs[i] === ip) {
+			return res.status(403).send('Access denied');
+		}
 	}
+
 	next();
 });
 
