@@ -71,6 +71,7 @@ app.engine('handlebars', exphbs.engine({
 	}
 }));
 app.set('view engine', 'handlebars');
+app.set('trust proxy', 'loopback, linklocal, uniquelocal');
 app.set('trust proxy', true);
 
 // ROBOTS.TXT MIDDLEWARE
@@ -107,6 +108,21 @@ fs.readFile('./bannedIPs.txt', 'utf8', (err, data) => {
    	bannedIPs.push(line);
 	});
 });
+
+
+app.use((req, res, next) => {
+	console.log('IP Debug: ', {
+		req_ip: req.ip,
+		cf_ip: req.headers['cf-connecting-ip'],
+		x_forwarded_for: req.headers['x-forwarded-for'],
+		remoteAddress: req.connection.remoteAddress
+	});
+	next();
+});
+
+
+
+
 
 app.use(logVisitor);
 app.use((req, res, next) => {
