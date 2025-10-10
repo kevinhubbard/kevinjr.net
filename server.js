@@ -110,7 +110,7 @@ fs.readFile('./bannedIPs.txt', 'utf8', (err, data) => {
 });
 
 
-app.use((req, res, next) => {
+/*app.use((req, res, next) => {
 	console.log('IP Debug: ', {
 		req_ip: req.ip,
 		cf_ip: req.headers['cf-connecting-ip'],
@@ -119,7 +119,7 @@ app.use((req, res, next) => {
 	});
 	next();
 });
-
+*/
 
 
 
@@ -155,23 +155,6 @@ app.use(async function (req, res, next) {
 		console.log("error fetching banned ip's", err);
 	}
 });
-
-
-
-
-app.get('/myip', (req, res) => {
-  res.json({
-    cf_ip: req.headers['cf-connecting-ip'],
-    req_ip: req.ip,
-    x_forwarded_for: req.headers['x-forwarded-for'],
-    remoteAddress: req.connection.remoteAddress
-  });
-});
-
-
-
-
-
 
 // ROUTES
 app.use('/', require('./controllers/index'));
