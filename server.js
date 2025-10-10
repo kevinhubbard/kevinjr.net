@@ -156,6 +156,23 @@ app.use(async function (req, res, next) {
 	}
 });
 
+
+
+
+app.get('/myip', (req, res) => {
+  res.json({
+    cf_ip: req.headers['cf-connecting-ip'],
+    req_ip: req.ip,
+    x_forwarded_for: req.headers['x-forwarded-for'],
+    remoteAddress: req.connection.remoteAddress
+  });
+});
+
+
+
+
+
+
 // ROUTES
 app.use('/', require('./controllers/index'));
 app.use('/admin', require('./controllers/admin'));
