@@ -44,6 +44,29 @@ io.on('connection', (socket) => {
 	});
 });
 
+let bannedIPs = [];
+fs.readFile('./bannedIPs.txt', 'utf8', (err, data) => {
+	if (err) {
+		console.error("error reading file: ", err);
+		return;
+	}
+	data.split(/\r?\n/).forEach(line => {
+   	bannedIPs.push(line);
+	});
+});
+
+app.use(logVisitor);
+app.use((req, res, next) => {
+	const ip = req.headers['cf-connecting-ip'] || req.ip;
+	for (let i = 0; i < bannedIPs.length; i++) {
+		if (bannedIPs[i] === ip) {
+			return res.status(403).send('Access denied');
+		}
+	}
+
+	next();
+});
+
 // LETS EXPRESS USE STATIC FILES
 app.use(express.static('node_modules'));
 app.use(express.static(path.join(__dirname, 'assets')));
@@ -71,7 +94,6 @@ app.engine('handlebars', exphbs.engine({
 	}
 }));
 app.set('view engine', 'handlebars');
-app.set('trust proxy', 'loopback, linklocal, uniquelocal');
 app.set('trust proxy', true);
 
 // ROBOTS.TXT MIDDLEWARE
@@ -98,63 +120,6 @@ app.use(session({
 	}
 }));
 
-let bannedIPs = [];
-fs.readFile('./bannedIPs.txt', 'utf8', (err, data) => {
-	if (err) {
-		console.error("error reading file: ", err);
-		return;
-	}
-	data.split(/\r?\n/).forEach(line => {
-   	bannedIPs.push(line);
-	});
-});
-
-
-/*app.use((req, res, next) => {
-	console.log('IP Debug: ', {
-		req_ip: req.ip,
-		cf_ip: req.headers['cf-connecting-ip'],
-		x_forwarded_for: req.headers['x-forwarded-for'],
-		remoteAddress: req.connection.remoteAddress
-	});
-	next();
-});
-*/
-
-
-
-
-app.use(logVisitor);
-app.use((req, res, next) => {
-	const ip = req.headers['cf-connecting-ip'] || req.ip;
-	for (let i = 0; i < bannedIPs.length; i++) {
-		if (bannedIPs[i] === ip) {
-			return res.status(403).send('Access denied');
-		}
-	}
-
-	next();
-});
-
-// BANNED CATCH
-app.use(async function (req, res, next) {
-	const ip = req.ip || req.connection.remoteAddress;
-
-	try {
-		const banned = await BannedIP.findAll({where:{banType:{[Op.ne]: 'unbanned'}}});
-		for (let i = 0; i < banned.length; i++) {
-			if (banned[i].ipAddress === ip) {
-			    return res.status(403).render('banned', {
-			  	message: 'Acess denied. Your IP has been temporarily banned.',
-			  	css: ['style.css'],
-			  });
-			}
-		}
-		next();
-	} catch (err) {
-		console.log("error fetching banned ip's", err);
-	}
-});
 
 // ROUTES
 app.use('/', require('./controllers/index'));
