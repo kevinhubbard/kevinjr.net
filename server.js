@@ -9,6 +9,7 @@ const { Op } = require('sequelize');
 const BannedIP = require('./models/bannedIPs.js');
 const logVisitor = require('./scripts/logger.js');
 const fs = require('fs');
+const banCheck = require('simple-ip-block');
 
 // DEFINES APP METHOD
 const app = express();
@@ -44,28 +45,9 @@ io.on('connection', (socket) => {
 	});
 });
 
-let bannedIPs = [];
-fs.readFile('./bannedIPs.txt', 'utf8', (err, data) => {
-	if (err) {
-		console.error("error reading file: ", err);
-		return;
-	}
-	data.split(/\r?\n/).forEach(line => {
-   	bannedIPs.push(line);
-	});
-});
-
+// LOG VISITORS AND CHECK FOR BANNED IP'S
 app.use(logVisitor);
-app.use((req, res, next) => {
-	const ip = req.headers['cf-connecting-ip'] || req.ip;
-	for (let i = 0; i < bannedIPs.length; i++) {
-		if (bannedIPs[i] === ip) {
-			return res.status(403).send('Access denied');
-		}
-	}
-
-	next();
-});
+app.use(banCheck({source: './bannedIP.txt'}));
 
 // LETS EXPRESS USE STATIC FILES
 app.use(express.static('node_modules'));
@@ -99,8 +81,8 @@ app.set('trust proxy', true);
 // ROBOTS.TXT MIDDLEWARE
 const robotsMiddleware = expressRobotsMiddleware([{
 	UserAgent: '*',
-	Disallow: ['/admin','/thankyou', '/profile'],
-	Allow: ['/', '/blog', '/contact', '/portfolio', '/resume'],
+	Disallow: ['/admin','/thankyou', '/profile', '/verify'],
+	Allow: ['/', '/blog', '/contact', '/portfolio', '/resume', '/golfcard'],
 	CrawlDelay: '5'
 }]);
 
