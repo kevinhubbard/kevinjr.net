@@ -5,4 +5,4 @@ config.js
 .env
 .dev.log
 logs
-bannedIPs.txt
+bannedIP.txt
