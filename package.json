@@ -46,6 +46,7 @@
     "mysql2": "^3.4.3",
     "nodemailer": "^7.0.5",
     "sequelize": "^6.32.1",
+    "simple-ip-block": "^1.0.0",
     "socket.io": "^4.8.1"
   },
   "devDependencies": {
