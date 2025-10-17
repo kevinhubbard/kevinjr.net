@@ -9,7 +9,7 @@ const { Op } = require('sequelize');
 const BannedIP = require('./models/bannedIPs.js');
 const logVisitor = require('./scripts/logger.js');
 const fs = require('fs');
-const banCheck = require('simple-ip-block');
+//const banCheck = require('simple-ip-block');
 
 // DEFINES APP METHOD
 const app = express();
@@ -47,7 +47,7 @@ io.on('connection', (socket) => {
 
 // LOG VISITORS AND CHECK FOR BANNED IP'S
 app.use(logVisitor);
-app.use(banCheck({source: './bannedIP.txt'}));
+//app.use(banCheck({source: './bannedIP.txt'}));
 
 // LETS EXPRESS USE STATIC FILES
 app.use(express.static('node_modules'));
