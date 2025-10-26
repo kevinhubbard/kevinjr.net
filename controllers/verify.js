@@ -3,12 +3,8 @@ const express = require('express');
 const router = express.Router();
 const User = require('../models/user.js');
 const PendingUser = require('../models/pendingUser.js');
-const bcrypt = require('bcrypt');
-const crypto = require('crypto');
-console.log(" Verify controller loaded");
 
 router.get('/:token', async function(req, res) {
-	//console.log(" Verification hit with token:", req.params.token);
 	const token = req.params.token;
 	const pendingUser = await PendingUser.findOne({where: { token }});
 	const rawIp = req.ip || req.connection.remoteAddress;
@@ -56,13 +52,6 @@ router.get('/:token', async function(req, res) {
 	});
 
 	await pendingUser.destroy();
-
-	/*return res.render('index', {
-		message: 'Your email has been validated! You can now login.',
-		success: true,
-		css: ['style.css', 'index.css'],
-		js: ['menu.js', 'createUser.js', 'loginScript.js']
-	});*/
 
 	req.session.flash = {
 		message: 'Your email has been validated! You can now login.',

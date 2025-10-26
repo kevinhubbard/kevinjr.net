@@ -4,11 +4,6 @@ const User = require('../models/user.js');
 const BannedIP = require('../models/bannedIPs.js');
 const SusUser = require('../models/suspusiousUsers.js');
 const bcrypt = require('bcrypt');
-// const fs = require('fs');
-// const path = require('path');
-// const logPath = process.env.LOG_PATH;
-//const logStream = fs.createWriteStream(logPath, {flags: 'a'});
-
 
 //GETS INDEX ROUTE
 router.get('/', function(req, res){
@@ -45,7 +40,6 @@ router.post('/', async function(req, res) {
 		//LOG FAILED TO FIND USER ATTEMPT
 		if (!user) {
 			let attempts;
-			//logStream.write(`[${new Date().toISOString()}] ${ip} - Failed login: user not found - ${email}\n`);
 			// IF YOU ENTER 3 UNFOUND USER EMAILS ADDRESSES TEMPORARLY BAN IP ADDRESS
 			try {
 				const susUsr = await SusUser.findOne({where:{ipAddress: ip}});
@@ -101,14 +95,8 @@ router.post('/', async function(req, res) {
 		}
 
 		const isValidPassword = await bcrypt.compare(req.body.psw, user.password);
-		//LOG FAILED TO ENTER PASSWORD
 		if (!isValidPassword) {
-			//logStream.write(`[${new Date().toISOString()}] ${ip} - Failed login: wrong password - ${email}\n`);
 			// IF YOU ENTER A PASSWORD INCORRECTLY 5 TIMES TEMPORARLY BAN IP ADDRESS
-
-
-
-			// IF IP 
 
 			return res.status(401).json({message: 'Invalid Password'});
 		}
@@ -117,12 +105,8 @@ router.post('/', async function(req, res) {
 		req.session.userName = user.name;
 		res.redirect(`/profile/${user.publicID}`);
 	} catch (error) {
-		//logStream.write(`[${new Date().toISOString()}] ${ip} - Server error: ${error.message}\n`);
 		res.status(500).json({error: 'Something went wrong.'});
 	}
 });
 
 module.exports = router;
-
-
-
