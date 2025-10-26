@@ -1,14 +1,12 @@
 require('dotenv').config();
+const path = require('path');
+const fs = require('fs');
 const express = require('express');
 const exphbs = require('express-handlebars');
 const expressRobotsMiddleware = require('express-robots-middleware');
-const path = require('path');
 const bodyParser = require('body-parser');
 const session = require('express-session');
-const { Op } = require('sequelize');
-const BannedIP = require('./models/bannedIPs.js');
 const logVisitor = require('./scripts/logger.js');
-const fs = require('fs');
 const banCheck = require('simple-ip-block');
 
 // DEFINES APP METHOD
@@ -46,6 +44,7 @@ io.on('connection', (socket) => {
 });
 
 // LOG VISITORS AND CHECK FOR BANNED IP'S
+app.set('trust proxy', true);
 app.use(logVisitor);
 app.use(banCheck({source: './bannedIP.txt'}));
 
@@ -76,14 +75,11 @@ app.engine('handlebars', exphbs.engine({
 	}
 }));
 app.set('view engine', 'handlebars');
-app.set('trust proxy', true);
 
 // ROBOTS.TXT MIDDLEWARE
 const robotsMiddleware = expressRobotsMiddleware([{
-	UserAgent: '*',
-	Disallow: ['/admin','/thankyou', '/profile', '/verify'],
-	Allow: ['/', '/blog', '/contact', '/portfolio', '/resume', '/golfcard'],
-	CrawlDelay: '5'
+		UserAgent: '*',
+		Disallow: ['/*']
 }]);
 
 // ROBOTS.TXT ROUTE
@@ -102,7 +98,6 @@ app.use(session({
 	}
 }));
 
-
 // ROUTES
 app.use('/', require('./controllers/index'));
 app.use('/admin', require('./controllers/admin'));
@@ -119,8 +114,6 @@ app.use('/signup', require('./controllers/signup'));
 app.use('/verify', require('./controllers/verify'));
 app.use('/profile', require('./controllers/profile'));
 app.use('/card-games', require('./controllers/cardGames'));
-
-
 
 // 404 CATCH
 app.use(function (req, res, next) {
