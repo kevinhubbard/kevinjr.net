@@ -78,43 +78,36 @@ router.post('/', async function (req, res) {
 			}
 		});
 
-		(async () => {
-			const token = crypto.randomBytes(32).toString('hex');
-			let baseURL;
-			if (process.env.NODE_ENV === 'development') {
-				baseURL = `http://localhost:${process.env.PORT}`;
-			} else {
+		const token = crypto.randomBytes(32).toString('hex');
+		let baseURL;
+		if (process.env.NODE_ENV === 'development') {
+			baseURL = `http://localhost:${process.env.PORT}`;
+		} else {
 				baseURL = process.env.BASE_URL;
-			}
-			const verificationLink = `${baseURL}/verify/${token}`;
-			const hashedPassword = await bcrypt.hash(req.body.userPassword, 10);
-			const expires = new Date(Date.now() + 1000 * 60 * 5);
+		}
+		const verificationLink = `${baseURL}/verify/${token}`;
+		const hashedPassword = await bcrypt.hash(req.body.userPassword, 10);
+		const expires = new Date(Date.now() + 1000 * 60 * 5);
 
-			await PendingUser.create({
-				publicID: uuid,
-				name: req.body.userName,
-				email: req.body.userEmail,
-				password: hashedPassword,
-				ipAddress: ip,
-				token: token,
-				expiresAt: expires,
-				createdAt: new Date(Date.now()),
-				updatedAt: new Date(Date.now())
-			});
-
-
-			const info = await mailTransport.sendMail({
-				from: `"Kevin Jr" <${process.env.MAIL_ADMIN}>`,
-				to: email,
-				subject: 'Email Verification',
-				text: `Thank you for registering with my website. To protect against bot accounts I please ask to verify your email one time by clicking this link. ${verificationLink} \n(This link creates a user [you] in my database and expires after 5 minutes.)`,
-			});
-
-			console.log("Message send:", info.messageId);
-		})();
-		
+		await PendingUser.create({
+			publicID: uuid,
+			name: req.body.userName,
+			email: req.body.userEmail,
+			password: hashedPassword,
+			ipAddress: ip,
+			token: token,
+			expiresAt: expires,
+			createdAt: new Date(Date.now()),
+			updatedAt: new Date(Date.now())
+		});
 
 
+		const info = await mailTransport.sendMail({
+			from: `"Kevin Jr" <${process.env.MAIL_ADMIN}>`,
+			to: email,
+			subject: 'Email Verification',
+			text: `Thank you for registering with my website. To protect against bot accounts I please ask to verify your email one time by clicking this link. ${verificationLink} \n(This link creates a user [you] in my database and expires after 5 minutes.)`,
+		});
 		
 		return res.render('signup', {
 			message: 'Temporary Registration! A verification link has been sent to the email you provided. This is done to protect against bot accounts. Click the link to verify your account!',
