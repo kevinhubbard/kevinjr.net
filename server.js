@@ -1,10 +1,9 @@
 require('dotenv').config();
 const path = require('path');
-const fs = require('fs');
+const http = require('http');
 const express = require('express');
 const exphbs = require('express-handlebars');
 const expressRobotsMiddleware = require('express-robots-middleware');
-const bodyParser = require('body-parser');
 const session = require('express-session');
 const logVisitor = require('./scripts/logger.js');
 const banCheck = require('simple-ip-block');
@@ -12,36 +11,12 @@ const banCheck = require('simple-ip-block');
 // DEFINES APP METHOD
 const app = express();
 
-// REALTIME UPDATES
-const http = require('http');
+// REALTIME UPDATES FOR GOLFCARD
 const socketio = require('socket.io');
 const server = http.createServer(app);
 const io = socketio(server);
 app.set('io', io);
-
-io.on('connection', (socket) => {
-	console.log('New Client Connected');
-
-	socket.on('joinRoom', (roomName) => {
-		socket.join(roomName);
-		console.log(`Socket joined room: ${roomName}`);
-	});
-
-	socket.on('startRound', ({roundID}) => {
-		io.to(`round-${roundID}`).emit('roundStarted', {roundID});
-	});
-
-  socket.on('holeFinished', ({ roundID, userID, holeNum, strokes }) => {
-    console.log(`[server] holeFinished: user ${userID}, hole ${holeNum}, strokes: ${strokes}`);
-    console.log('update should fire');
-    io.to(`round-${roundID}`).emit('updateScore', { userID, holeNum, strokes });
-    console.log('after update');
-  });
-
-	socket.on('disconnect', () => {
-		console.log('client disconnected.');
-	});
-});
+require('./scripts/golfcardSockets.js')(io);
 
 // LOG VISITORS AND CHECK FOR BANNED IP'S
 app.set('trust proxy', true);
