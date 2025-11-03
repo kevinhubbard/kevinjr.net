@@ -27,7 +27,7 @@ router.post('/', async function (req, res) {
 
 
 	if (!recaptchaToken) {
-		return res.render('signup', {
+		return res.status(400).render('signup', {
 			message: "Please complete the reCAPTCHA.",
 			success: false,
 			css: ['style.css'],
@@ -49,7 +49,7 @@ router.post('/', async function (req, res) {
 
 		const recaptchaRes = await verifyRecaptcha(secretKey, recaptchaToken);
 		if (!recaptchaRes.success) {
-			return res.render('signup', {
+			return res.status(403).render('signup', {
 				message: 'reCAPTCHA verification failed. Please try again.',
 				success: false,
 				css: ['style.css'],
@@ -59,7 +59,7 @@ router.post('/', async function (req, res) {
 
 		const user = await User.findOne({where:{email}});
 		if (user) {
-			return res.render('signup', {
+			return res.status(409).render('signup', {
 				message: 'Email Already in use!',
 				success: false,
 				css: ['style.css'],
@@ -109,7 +109,7 @@ router.post('/', async function (req, res) {
 			text: `Thank you for registering with my website. To protect against bot accounts I please ask to verify your email one time by clicking this link. ${verificationLink} \n(This link creates a user [you] in my database and expires after 5 minutes.)`,
 		});
 		
-		return res.render('signup', {
+		return res.status(200).render('signup', {
 			message: 'Temporary Registration! A verification link has been sent to the email you provided. This is done to protect against bot accounts. Click the link to verify your account!',
 			success: true,
 			css: ['style.css'],
@@ -117,7 +117,7 @@ router.post('/', async function (req, res) {
 		});
 	} catch (error) {
 		console.error('Server Error:', error);
-    	return res.render('signup', { 
+    	return res.status(500).render('signup', { 
      		message: 'An unexpected error occurred. Please try again.', 
       		success: false,
     		css: ['style.css'],
