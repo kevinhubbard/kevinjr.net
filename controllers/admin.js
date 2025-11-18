@@ -1,9 +1,9 @@
 require('dotenv').config();
 const express = require('express');
 const router = express.Router();
-//const ADMIN_ID = require('../config').ADMIN_ID;
 const User = require('../models/user');
 const Post = require('../models/blog');
+const Contact = require('../models/contact.js');
 const path = require('path');
 const multer = require('multer');
 
@@ -46,6 +46,37 @@ router.get('/', async function(req, res) {
 		css: ['style.css', 'admin.css'],
 		js: ['menu.js', 'loginScript.js', 'admin.js']
 	});
+});
+
+// GET ADMIN MESSAGES
+router.get('/messages', async function(req, res) {
+	// Make sure user is logged in
+	if (!req.session.userId) {
+		return res.status(401).send("Please login first");
+	}
+	//Make sure User is an ADMIN
+	if (req.session.userId !== process.env.ADMIN_ID) {
+		return res.status(403).send("Access-Denied");
+	}
+	const messages = await Contact.findAll();
+	const user = await User.findOne({where:{publicID: req.session.userId}});
+	res.render('messages', {
+		user: user.toJSON(),
+		msg: messages,
+		css: ['style.css', 'messages.css'],
+		js: ['menu.js', 'loginScript.js', 'messages.js']
+	});
+});
+
+router.delete('/messages/:id', async function(req,res) {
+	const resourceId = req.params.id;
+	console.log(`Delete ${resourceId}`);
+	await Contact.destroy({
+		where: {
+			messageID: resourceId
+		}
+	});
+	res.json({success:true});
 });
 
 
