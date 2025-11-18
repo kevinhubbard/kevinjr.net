@@ -5,9 +5,9 @@ const Contact = require('../models/contact.js');
 //message route
 router.get('/', async function(req, res){
 	const messages = await Contact.findAll();
-	res.status(200).render('messages',{
+	res.status(200).render('temp',{
 		css: ['style.css', 'messages.css'],
-		js: ['menu.js', 'loginScript.js', 'messages.js'],
+		js: ['menu.js', 'loginScript.js'],
 		msg: messages
 	});
 });
