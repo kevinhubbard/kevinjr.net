@@ -1,0 +1,15 @@
+#header {
+	text-align: center;
+	text-decoration: underline;
+}
+.msg {
+	border: 2px solid black;
+	display: block;
+	width: 75%;
+	margin: 0 auto;
+	margin-bottom: 10px;
+}
+
+#adminMessages {
+	margin-bottom: 100px;
+}
