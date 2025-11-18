@@ -7,7 +7,7 @@ router.get('/', async function(req, res){
 	const messages = await Contact.findAll();
 	res.status(200).render('messages',{
 		css: ['style.css', 'messages.css'],
-		js: ['menu.js', 'loginScript.js'],
+		js: ['menu.js', 'loginScript.js', 'messages.js'],
 		msg: messages
 	});
 });
