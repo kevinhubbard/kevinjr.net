@@ -2,6 +2,7 @@
 	<h1>Welcome to the Admin Panel, {{user.name}}!</h1>
 	<p>Here's your top-secret dashboard content.</p>
 	<a href="/profile/{{user.publicID}}">My Profile</a>
+	<a href="/admin/messages">Messages</a>
 
 	<div id="blogPanel">
 		<form id="blogForm" action="/admin/blog-post" method="post" enctype="multipart/form-data">
