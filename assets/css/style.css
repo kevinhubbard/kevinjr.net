@@ -55,7 +55,7 @@ body {
 }
 
 #log{
-  margin-bottom: 70%;
+  margin-bottom: 40%;
 }
 
 .headline{
@@ -110,39 +110,23 @@ footer {
   height: 100px;
 }
 
-#loginModel {
-  display: none;
-
-  position: absolute;
-    left: 35%;
-  top: 35%;
-  z-index: 5;
-  background-color: black;
-    width: 500px;
-  height: 500px;
+#loginModel h1 {
+  text-align: center;
 }
 
+#loginModel button {
+  width: 100%;
+}
 
+.checkbox {
+  text-align: center;
+}
 
 #loginForm {
-
+  padding: 25px 25px 25px 25px;
   display: block;
   background-color: white;
 }
-
-#closeLogin {
-  display: block;
-  float: right;
-  font-size: 24px;
-  margin: 0px 10px 0px 0px;
-  padding: 0px 10px 0px 10px;
-  border: 1px solid black;
-}
-
-#closeLogin:hover {
-  cursor: pointer;
-}
-
 
 #signupForm {
   margin: 0 auto;
@@ -150,7 +134,6 @@ footer {
   width: 500px;
   height: 500px;
 }
-
 
 #profile {
   margin: 0 auto;
@@ -160,4 +143,40 @@ footer {
 #admin {
   margin: 0 auto;
   background-color: white;
+}
+
+
+#overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.6);
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity .3s ease;
+    z-index: 998;
+}
+
+#overlay.active {
+    visibility: visible;
+    opacity: 1;
+}
+
+#loginModel {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 999;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity .3s ease;
+}
+
+#loginModel.active {
+    visibility: visible;
+    opacity: 1;
+    width: 400px;
 }
