@@ -1,130 +1,28 @@
-<!-- Begin page content -->
-{{!-- <canvas id="backCanvas"></canvas>
-<canvas id="frontCanvas"></canvas> --}}
-
 <span id="logo" style="color:#00FF00; font-family: monospace;">kevinjr@dev:~ $ <span class="cursor">|</span></span>
-
 <div class="container">
-{{!-- 	<div class="row">
-		<div class="col-md-8">
-			<img id="portPic" src="/images/portfolioPic.png" alt="portfolio picture">
-			<p id="about">Hello and welcome to my site! My name is Kevin Hubbard, an aspiring software engineer living in Central Jersey. I love building web apps and learning how the Internet works. I graduated from Mercer County Community College with an Associates in Computer Science and Business Administration. I also received a certificate of completion from Rutgers Coding Bootcamp. My intention is to continue my education in Computer Science/Software Development while I look for employment as a full stack developer. The goal of this portfolio is to showcase <a href="/portfolio">projects</a> I have worked on and to connect with other like-minded individuals. If you would like me to take on your web-based project or would like me to join your team; please don't hesitate to <a href="/contact">message</a> me. I look forward to speaking with you and thanks for viewing my site!</p>
-		</div>
-		<div id="connect" class="col-md-4">
-			<h1 class="headline">Connect With Me</h1>
-				<a href="https://www.linkedin.com/in/kevin-hubbard-jr/" target="_blank"><img src="/images/linkedIn.png" alt="linkedIn icon"></a>
-				<a href="https://github.com/kevinhubbard" target="_blank"><img src="/images/gitHub.png" alt="gitHub icon"></a>
-				<a href="http://stackoverflow.com/users/7270795/kevin-hubbard" target="_blank"><img src="/images/stackOverflow.png" alt="stackOverflow icon"></a>
-				<a href="https://www.chess.com/member/hubbadubs" target="_blank"><img src="/images/chess.png" alt="chess icon"></a>
-		</div>
-  	</div>
-
-
-	<div class="row skills">
-			<div class="col-md-12">
-				<h2 class="headline">My Toolbox</h2>
-			</div>
-			<div class="col-md-3">
-				<h3 class="headline">Programming Languages</h3>
-					<div class="card">
-						<div class="front">
-							<img src="/images/js.png" alt="js icon front">
-						</div>
-						<div class="back">
-							<img src="/images/jsBack.png" alt="js icon back">
-						</div>
-					</div>
-				
-			</div>
-			<div class="col-md-3">
-				<h3 class="headline">Front-End</h3>
-
-					<div class="card">
-						<div class="front">
-							<img src="/images/html5.png" alt="html icon front">
-						</div>
-						<div class="back">
-							<img src="/images/htmlBack.png" alt="html icon back">
-						</div>
-					</div>
-
-					<div class="card">
-						<div class="front">
-							<img src="/images/css3.png" alt="css icon front">
-						</div>
-						<div class="back">
-							<img src="/images/css3Back.png" alt="css icon back">
-						</div>
-					</div>
-					<div class="card">
-						<div class="front">
-							<img src="/images/jquery.png" alt="jquery icon front">
-						</div>
-						<div class="back">
-							<img src="/images/jqueryBack.png" alt="jquery icon back">
-						</div>
-					</div>
-					<div class="card">
-						<div class="front">
-							<img src="/images/bootstrap.png" alt="bootstrap icon front">
-						</div>
-						<div class="back">
-							<img src="/images/bootstrapBack.png" alt="bootstrap icon back">
-						</div>
-					</div>	
-			</div>
-
-
-
-			<div class="col-md-3">
-				<h3 class="headline">Back-End</h3>
-					<div id="card" class="card">
-						<div class="front">
-							<img src="/images/node.png" alt="node icon front">
-						</div>
-						<div class="back">
-							<img src="/images/nodeBack.png" alt="node icon back">
-						</div>
-					</div>
-				
-			</div>
-
-
-
-			<div class="col-md-3">
-				<h3 class="headline">Infrastructure</h3>
-				<img src="/images/git.png" alt="git icon">
-				<img src="/images/cl.png" alt="command line icon">
-				<img src="/images/mysql.png" alt="mysql icon">
-				<img src="/images/mongo.png" alt='mongodb icon'>
-				<img src="/images/gimp.png" alt="gimp icon">
-			</div>
-	</div> --}}
 	{{#if message}}
     	<div style="color: {{#if success}}green{{else}}red{{/if}};">
       		{{message}}
     	</div>
   	{{/if}}
-
 	<div class="row">
 		<div class="col-md-7">
-			
 			<div class="row">
-				<div class="col-md-6">
-					<img id="portPic" src="/images/portfolioPic.png" alt="portfolio picture">
-					<a href="https://www.linkedin.com/in/kevin-hubbard-jr/" target="_blank"><img class="cim" src="/images/linkedIn.png" alt="linkedIn icon"></a>
-					<a href="https://github.com/kevinhubbard" target="_blank"><img class="cim" src="/images/gitHub.png" alt="gitHub icon"></a>
-					<a href="http://stackoverflow.com/users/7270795/kevin-hubbard" target="_blank"><img class="cim" src="/images/stackOverflow.png" alt="stackOverflow icon"></a>
-					<a href="https://www.chess.com/member/hubbadubs" target="_blank"><img class="cim" src="/images/chess.png" alt="chess icon"></a>
+				<div id="picBlock" class="col-md-6">
+					<img id="portPic" src="/images/portfolioPic.png"  alt="portfolio picture">
+					<div id="links">
+						<a href="https://www.linkedin.com/in/kevin-hubbard-jr/" target="_blank"><img class="cim" src="/images/linkedIn.png" alt="linkedIn icon"></a>
+						<a href="https://github.com/kevinhubbard" target="_blank"><img class="cim" src="/images/gitHub.png" alt="gitHub icon"></a>
+						<a href="http://stackoverflow.com/users/7270795/kevin-hubbard" target="_blank"><img class="cim" src="/images/stackOverflow.png" alt="stackOverflow icon"></a>
+						<a href="https://www.chess.com/member/hubbadubs" target="_blank"><img class="cim" src="/images/chess.png" alt="chess icon"></a>
+					</div>
 				</div>
-				<div class="col-md-6">
+				<div id="ab" class="col-md-6">
 					<p id="about">Welcome to my site! I'm an aspiring software engineer living in central Jersey. I love building web apps and learning how the Internet works. I'm currently a senior at <a href="https://www.rider.edu">Rider</a> University, persuing a Bachlor's degree in Computer Science with a concentration in Cyber Security. I have received  Associate Degrees in Business Administration and Computer Science, as well as a full stack developer certificate from <a href="https://techcareers.professional.rutgers.edu/">Rutgers</a> University. My intention is to continue my education in Computer Science while I look for employment as a full stack developer or cyber security professional. The goal of this portfolio is to showcase <a href="/portfolio">projects</a> I have worked on and to connect with other like-minded individuals. If you would like me to take on your web-based project or would like me to join your team; please don't hesitate to <a href="/contact">message</a> me. I look forward to speaking with you and thanks for viewing my site!</p>
 				</div>
 			</div>
-			
 		</div>
-
-		<div class="col-md-5 sTest">
+		<div class="col-md-4 sTest">
 			<h2 class="headline">My Toolbox</h2>
 			<div>
 				<h3 class="headline">Programming/Scripting Languages</h3>
@@ -166,7 +64,6 @@
 						<img class="tim" src="/images/node.png" alt="node icon front">
 					</div>
 			</div>
-
 			<div>
 				<h3 class="headline">Infrastructure</h3>
 					<div class="hcont">
@@ -190,7 +87,6 @@
 						<img class="tim" src="/images/heroku-original.svg" alt="heroku icon">
 					</div>
 			</div>
-
 			<div>
 				<h3 class="headline">OS</h3>
 					<div class="hcont">
@@ -203,26 +99,5 @@
 					</div>
 			</div>
 		</div>
-		
   	</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 </div>
-
-{{!-- <div class="col-md-9 sTest">
-					<h1 class="headline">Connect With Me</h1>
-					
-				</div> --}}
