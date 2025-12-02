@@ -90,7 +90,6 @@ app.use('/verify', require('./controllers/verify'));
 app.use('/profile', require('./controllers/profile'));
 app.use('/card-games', require('./controllers/cardGames'));
 app.use('/messages', require('./controllers/admin'));
-app.use('/msg', require('./controllers/message'));
 
 // 404 CATCH
 app.use(function (req, res, next) {
