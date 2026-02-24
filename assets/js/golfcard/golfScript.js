@@ -171,13 +171,19 @@ window.addEventListener("DOMContentLoaded", function(event) {
 	}
 
 	function updateScoreCard(holeNum, par, holeStrokes) {
+
 		const newHoleRow = document.createElement("TD");
 		newHoleRow.innerText = holeNum;
-		document.getElementById('holeRow').appendChild(newHoleRow);
-
 		const newParRow = document.createElement("TD");
 		newParRow.innerText = par;
-		document.getElementById('parRow').appendChild(newParRow);
+
+		if (holeNum <= 9) {
+			document.getElementById('holeRowFront').appendChild(newHoleRow);
+			document.getElementById('parRowFront').appendChild(newParRow);
+		} else {
+			document.getElementById('holeRowBack').appendChild(newHoleRow);
+			document.getElementById('parRowBack').appendChild(newParRow);
+		}
 
 		const newStrokeRow = document.createElement("TD");
 		newStrokeRow.style.width = '25px';
@@ -199,7 +205,11 @@ window.addEventListener("DOMContentLoaded", function(event) {
 				newStrokeRow.style.border = '1px solid black';
 			}
 		}
-		document.getElementById('scoreRow').appendChild(newStrokeRow);
+		if (holeNum <= 9) {
+			document.getElementById('scoreRowFront').appendChild(newStrokeRow);
+		} else {
+			document.getElementById('scoreRowBack').appendChild(newStrokeRow);
+		}
 	}
 
 	function resetHole() {
