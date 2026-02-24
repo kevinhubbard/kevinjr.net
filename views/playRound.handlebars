@@ -67,7 +67,7 @@ if (participants.some(p => p.userID === userID)) {
     document.getElementById('current-strokes').textContent = 0;
     document.getElementById('finish-hole').disabled = true;
 
-    // ✅ Update hole info
+    // Update hole info
     const nextHole = holes[holeNum - 1];
     if (nextHole) {
       document.getElementById('holePar').textContent = `Par: ${nextHole.par}`;

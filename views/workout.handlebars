@@ -1,14 +1,14 @@
 <div id="main">
 	<div id="appSelection">
 		<button id="progress">View Progress</button>
-		<button id="load">Load Routine</button>
+		<button id="workout">Workout</button>
 		<button id="create">Create Routine</button>
 	</div>
 
 	<div id="progressView">
 	</div>
 
-	<div id="loadView">
+	<div id="workoutView">
 		
 	</div>
 
@@ -23,17 +23,19 @@
 
 		</select>
 		<select id="muscle"></select>
-		<select id="workout"></select>
+		<select id="routine"></select>
 		<button id="addWrkt">Add Workout</button>
 		<div id="workoutList"></div>
-		<button id="createRoutine">Create Routine</button>
+		<button id="createRoutine">Save Routine</button>
 		<button id="removeWorkout" class="btn danger">Remove Workout</button>
 		<div id="myModal" class="modal">
 			<span class="close">&times;</span>
 			<div class="modal-content">
-				<p>Enter Name for Workout: <input id="routineName" placeholder="ie: Monday Back/Chest"></input></p>
+				<form action='/workout/create' method="POST">
+					<p>Enter Name for Workout: <input type="text" id="routineName" name="workoutName" placeholder="ie: Monday Back/Chest"></input></p>
+					<input id="submitRoutine" type="submit" value="Save">
+				</form>
 			</div>
-			<button id="submitRoutine">Create</button>
 		</div>
 	</div>
 </div>
