@@ -1,0 +1,369 @@
+*,html{
+	margin: 0;
+	padding: 0;
+}
+
+@media only screen and (min-width: 800px) {
+	#title {
+		background-color: lightblue;
+		text-align: center;
+		width: 65%;
+		height: 10vh;
+		margin: 0 auto;
+		margin-top: 2.5%;
+	}
+
+	#courseInfo {
+		margin: auto;
+		padding-top: 50px;
+		display: block;
+		background-color: lightgreen;
+		height: 100%;
+		width: 65%;
+		box-sizing: border-box;
+	}
+
+	#options {
+		margin: 0 auto;
+		padding-top: 50px;
+		display: flex;
+		justify-content: center;
+		background-color: yellow;
+		width: 65%;
+		height: 100%;
+		font-size: 0;
+		box-sizing: border-box;
+		margin-bottom: 50px;
+	}
+
+	#options button{
+		margin: 0 auto;
+		display: inline-block;
+		margin-bottom: 20px;
+		width: 375px;
+		height: 150px;
+	}
+
+	.optBtnImg {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+	}
+
+	#courses {
+		margin: auto;
+		margin-top: 5px;
+		margin-bottom: 5px;
+		display: block;
+		text-align: center;
+		width: 175px;
+		height: 75px;
+	}
+
+	#newRound {
+		margin-top: 20px;
+		width: 100%;
+		transition: transform .3s ease-in-out;
+	}
+	#newRound:hover {
+		text-decoration: underline;
+		text-underline-offset: 3px;
+		transform: scale(1.1);
+	}
+
+	#loadRound {
+		margin-top: 20px;
+		width: 100%;
+		transition: transform .3s ease-in-out;
+	}
+	#loadRound:hover {
+		text-decoration: underline;
+		text-underline-offset: 3px;
+		transform: scale(1.1);
+	}
+
+	#activeRounds {
+		width: 100%;
+		margin-top: 20px;
+		transition: transform .3s ease-in-out;
+	}
+	#activeRounds:hover {
+		text-decoration: underline;
+		text-underline-offset: 3px;
+		transform: scale(1.1);
+	}
+
+	#selectHoles {
+		display: block;
+		margin: auto;
+		width: 200px;
+		height: 75px;
+		text-align: center;
+	}
+	#start {
+		width: 200px;
+		height: 75px;
+		display: block;
+		margin: auto;
+	}
+
+	#courses {
+		display: block;
+		margin: auto;
+		width: 200px;
+		height: 75px;
+		text-align: center;
+		margin-top: 25px;
+		margin-bottom: 25px;
+	}
+
+	#app {
+		background-color: lightgreen;
+		text-align: center;
+		width: 65%;
+		height: 100%;
+		margin: 0 auto;
+	}
+
+
+	#score {
+		font-size: 72px;
+	}
+
+	#holeCss {
+		display: inline;
+	}
+
+	#stroke {
+		margin: auto;
+		margin-top: 10px;
+		width: 90%;
+		height: 100px;
+	}
+
+	#nextHole {
+		margin: auto;
+		margin-top: 10px;
+		margin-bottom: 10px;
+		width: 90%;
+		height: 100px;
+	}
+
+	#scoreCard {
+		width: 100%;
+	}
+
+	table {
+		display: block;
+		overflow-x: auto;
+		white-space: nowrap;
+		table-layout: fixed;
+	}
+
+	td {
+		min-width: 25px;
+		min-height: 25px;
+	}
+	#loadedInfo p{
+		display: inline;
+	}
+
+	
+	#lcourseName {
+		text-decoration: underline;
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media only screen and (max-width: 750px) {
+
+	#title {
+		text-align: center;
+		width: 100%;
+		margin-top: 25px;
+		margin-bottom: 25px;
+	}
+	#tit {
+		font-size: 56px;
+	}
+
+/*	#courseInfo {
+		margin: auto;
+		padding-top: 50px;
+		display: block;
+		background-color: lightgreen;
+		height: 85vh;
+		width: 100%;
+		box-sizing: border-box;
+	}*/
+
+	#options {
+		margin: 0 auto;
+		padding-top: 50px;
+		display: block;
+		/*background-color: yellow;*/
+		height: 85vh;
+		width: 100%;
+		font-size: 0;
+		box-sizing: border-box;
+	}
+
+	#options button{
+		margin: 0 auto;
+		display: block;
+		width: 65%;
+		margin-bottom: 50px;
+		height: 150px;
+		color: white;
+	}
+
+	.optBtnImg {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+	}
+
+/*	#courses {
+		margin: auto;
+		margin-top: 5px;
+		margin-bottom: 5px;
+		display: block;
+		text-align: center;
+		width: 175px;
+		height: 75px;
+	}*/
+
+	#newRound {
+
+		margin-top: 20px;
+		width: 75%;
+	}
+	#newRound:hover {
+
+	}
+
+	#loadRound {
+
+		margin-top: 20px;
+		width: 75%;
+	}
+
+	#loadRound:hover {
+
+	}
+	#activeRounds {
+
+		margin-top: 20px;
+		width: 75%;
+	}
+	#activeRounds:hover {
+
+	}
+
+/*	#selectHoles {
+		display: block;
+		margin: auto;
+		width: 200px;
+		height: 75px;
+		text-align: center;
+	}
+	#start {
+		width: 200px;
+		height: 75px;
+		display: block;
+		margin: auto;
+	}
+
+	#courses {
+		display: block;
+		margin: auto;
+		width: 200px;
+		height: 75px;
+		text-align: center;
+		margin-top: 25px;
+		margin-bottom: 25px;
+	}
+
+	#app {
+		background-color: lightgreen;
+		height: 85vh;
+		text-align: center;
+	}
+
+
+	#score {
+		font-size: 72px;
+	}
+
+	#holeCss {
+		display: inline;
+	}
+
+	#stroke {
+		margin: auto;
+		margin-top: 10px;
+		width: 90%;
+		height: 100px;
+	}
+
+	#nextHole {
+		margin: auto;
+		margin-top: 10px;
+		margin-bottom: 10px;
+		width: 90%;
+		height: 100px;
+	}
+
+	#scoreCard {
+		width: 100%;
+	}
+
+	table {
+		display: block;
+		overflow-x: auto;
+		white-space: nowrap;
+		table-layout: fixed;
+	}
+
+	td {
+		min-width: 25px;
+		min-height: 25px;
+	}
+
+	#loadedInfo p{
+		display: inline;
+	}
+
+	
+	#lcourseName {
+		text-decoration: underline;
+	}
+
+	.oneLine{
+		display: inline;
+	}
+
+	*/
+}
