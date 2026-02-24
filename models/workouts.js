@@ -19,13 +19,13 @@ const MuscleGroup = sequelize.define('MuscleGroup', {
 	updatedAt: false
 });
 
-const Workout = sequelize.define('Workout', {
-	workoutID: {
+const Exercise = sequelize.define('Exercise', {
+	exerciseID: {
 		type: DataTypes.SMALLINT,
 		autoIncrement: true,
 		primaryKey: true
 	},
-	workoutName: {
+	exerciseName: {
 		type: DataTypes.STRING(75),
 		unique: true,
 		allowNull: false
@@ -39,11 +39,33 @@ const Workout = sequelize.define('Workout', {
 		allowNull: false
 	}
 }, {
+	tableName: 'Exercises',
+	timestamps: false,
+	createdAt: false,
+	updatedAt: false
+});
+
+const Workout = sequelize.define('Workout', {
+	workoutID: {
+		type: DataTypes.SMALLINT,
+		autoIncrement: true,
+		primaryKey: true
+	},
+	workoutName: {
+		type: DataTypes.STRING(255),
+		allowNull: false
+	},
+	createdBy: {
+		type: DataTypes.STRING(36),
+		allowNull: true
+	}
+}, {
 	tableName: 'Workouts',
 	timestamps: false,
 	createdAt: false,
 	updatedAt: false
 });
+
 
 const Muscle = sequelize.define('Muscle', {
 	muscleID: {
@@ -67,4 +89,4 @@ const Muscle = sequelize.define('Muscle', {
 	updatedAt: false
 });
 
-module.exports = {MuscleGroup, Workout, Muscle}
+module.exports = {MuscleGroup, Exercise, Muscle, Workout}
