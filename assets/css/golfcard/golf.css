@@ -340,7 +340,7 @@
 		border: 1px solid black;
 		display: flex;
 		flex-direction: column;
-		gap: 10px;
+		/*gap: 10px;*/
 		width: 90%;
 		margin: 0 auto;
 		margin-bottom: 10px;
@@ -352,13 +352,19 @@
 		white-space: nowrap;
 		table-layout: fixed;
 		border-collapse: separate;
-		border-spacing: 8px;
+		border-spacing: 5px;
 	}
 
 	td {
 		min-width: 25px;
 		min-height: 25px;
 
+	}
+
+	hr {
+		margin-top: 0px;
+		margin-bottom: 0px;
+		padding: 0;
 	}
 
 	#loadedInfo p{
