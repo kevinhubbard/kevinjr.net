@@ -49,14 +49,26 @@
 	<button id="stroke">Stroke: <span id="strokes">0</span></button>
 	<button id="nextHole">Next Hole</button>
     <div id="scoreCard">
-		<table>
-			<tr id="holeRow">
+		<table id="front9" class="nine front9">
+			<tr id="holeRowFront" class="holeRow">
 				<th>Hole</th>
 			</tr>
-			<tr id="parRow">
+			<tr id="parRowFront" class="parRow">
 				<th>Par</th>
 			</tr>
-			<tr id="scoreRow">
+			<tr id="scoreRowFront" class="scoreRow">
+				<th>Strokes</th>
+			</tr>
+		</table>
+		<hr>
+		<table id="back9" class="nine back9">
+			<tr id="holeRowBack" class="holeRow">
+				<th>Hole</th>
+			</tr>
+			<tr id="parRowBack" class="parRow">
+				<th>Par</th>
+			</tr>
+			<tr id="scoreRowBack" class="scoreRow">
 				<th>Strokes</th>
 			</tr>
 		</table>
