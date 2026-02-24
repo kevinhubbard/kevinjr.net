@@ -8,8 +8,8 @@ router.get('/', async function(req, res){
 	const crs = await Course.findAll();
 
 	res.render('golfcard', {
-		css: ['style.css', 'golf.css'],
-		js: ['golfScript.js', 'menu.js', 'loginScript.js'],
+		css: ['style.css', 'golfcard/golf.css'],
+		js: ['golfcard/golfScript.js', 'menu.js', 'loginScript.js'],
 		crs: crs
 	});
 });
@@ -77,8 +77,8 @@ router.get('/rounds/create', async function(req, res) {
 	const host = req.session.userName;
 	console.log(host);
 	res.render('createRound', {
-		css: ['style.css', 'golf.css', 'createRound.css'],
-		js: ['golfScript.js', 'menu.js', 'loginScript.js', 'createRound.js'],
+		css: ['style.css', 'golfcard/golf.css', 'golfcard/createRound.css'],
+		js: ['golfcard/golfScript.js', 'menu.js', 'loginScript.js', 'golfcard/createRound.js'],
 		crs: crs,
 		usr: host,
 		pid: req.session.userId
@@ -125,8 +125,8 @@ router.get('/rounds/:id/waiting', async function(req, res) {
 		});
 		//console.log(participants);
 		res.render('waitingRoom', {
-			css: ['style.css', 'waiting.css'],
-			js: ['golfScript.js', 'newGolfer.js'],
+			css: ['style.css', 'golfcard/waiting.css'],
+			js: ['golfcard/golfScript.js', 'golfcard/newGolfer.js'],
 			round: round,
 			participants: participants,
 			isHost: req.session.userId === round.hostID
@@ -144,8 +144,8 @@ router.get('/rounds/active', async function(req, res) {
 	});
 	
 	res.render('activeRound', {
-		css: ['style.css', 'golf.css', 'activeRound.css'],
-		js: ['golfScript.js', 'menu.js', 'loginScript.js', 'newGolfer.js'],
+		css: ['style.css', 'golfcard/golf.css', 'golfcard/activeRound.css'],
+		js: ['golfcard/golfScript.js', 'menu.js', 'loginScript.js', 'golfcard/newGolfer.js'],
 		rounds: activeRounds
 	});
 });
@@ -194,8 +194,8 @@ router.get('/play/:id', async function(req, res) {
 		players,
 		userId: req.session.userId,
 		holes,
-		css: ['style.css', /*'golf.css',*/ 'activeRound.css', 'play.css'],
-		js: [/*'golfScript.js',*/ 'menu.js', 'loginScript.js', 'newGolfer.js'],
+		css: ['style.css', /*'golfcard/golf.css',*/ 'golfcard/activeRound.css', 'golfcard/play.css'],
+		js: [/*'golfScript.js',*/ 'menu.js', 'loginScript.js', 'golfcard/newGolfer.js'],
 	});
 });
 

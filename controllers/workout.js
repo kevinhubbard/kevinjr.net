@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var {MuscleGroup, Workout, Muscle} = require('../models/workouts.js');
+var {MuscleGroup, Exercise, Muscle, Workout} = require('../models/workouts.js');
 const { QueryTypes } = require('sequelize');
 
 router.get('/', async function(req, res) {
@@ -15,6 +15,14 @@ router.get('/', async function(req, res) {
 router.get('/wapi', async function(req, res) {
 	const wrkt = await Workout.findAll();
 	res.json(wrkt);
+});
+
+router.post('/create', async function(req, res) {
+	const workoutRoutine = await Workout.create({workoutName: req.body.workoutName});
+	return res.status(201).json({
+		message:"success",
+		data: req.body
+	});
 });
 
 module.exports = router;
