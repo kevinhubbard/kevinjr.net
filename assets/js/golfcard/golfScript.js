@@ -15,10 +15,10 @@ window.addEventListener("DOMContentLoaded", function(event) {
 	if (mainApp) {
 		mainApp.style.display = 'block';
 	}
-	//document.getElementById('app').style.display = 'none';
+	document.getElementById('app').style.display = 'none';
 	document.getElementById('courseInfo').style.display = 'none';
 
-	const activeRounds = document.getElementById('activeRounds');
+	let activeRounds = document.getElementById('activeRounds');
 	activeRounds.addEventListener('click', function() {
 		window.location.href='/golfcard/rounds/active';
 	})
@@ -38,7 +38,7 @@ window.addEventListener("DOMContentLoaded", function(event) {
 	let loadRound = document.getElementById('loadRound');
 	loadRound.addEventListener("click", function() {
 		//load golfcard/rounds
-		window.location.href = '/golfcard/rounds';
+		//window.location.href = '/golfcard/rounds';
 	});
 	
 	let nextHole = document.getElementById('nextHole');

@@ -81,9 +81,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
 		document.getElementById('progressView').style.display = 'inline-block';
 	});
 
-	document.getElementById('load').addEventListener('click', function() {
+	document.getElementById('workout').addEventListener('click', function() {
 		hideAppSelection();
-		document.getElementById('loadView').style.display = 'inline-block';
+		document.getElementById('workoutView').style.display = 'inline-block';
 	});
 
 	document.getElementById('create').addEventListener('click', function() {
@@ -91,13 +91,18 @@ window.addEventListener('DOMContentLoaded', (event) => {
 		document.getElementById('createView').style.display = 'inline-block';
 	});
 
+/*	document.getElementById('submitRoutine').addEventListener('click', function() {
+		const wName = document.getElementById('routineName').value;
+		
+	});
+*/
 	document.getElementById('muscleGroup').addEventListener('click', function(event) {
 		let selection = parseInt(event.target.value);
 		console.log(selection);
 		switch (selection) {
 		case 1:
 			document.getElementById('muscle').replaceChildren();
-			document.getElementById('workout').replaceChildren();
+			document.getElementById('routine').replaceChildren();
 			for (var i = 0; i < abs.length; i++) {
 				const newOpt = document.createElement('option');
 				const textNode = document.createTextNode(abs[i]);
@@ -107,7 +112,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
 			break;
 		case 2:
 			document.getElementById('muscle').replaceChildren();
-			document.getElementById('workout').replaceChildren();
+			document.getElementById('routine').replaceChildren();
 			for (var i = 0; i < arms.length; i++) {
 				const newOpt = document.createElement('option');
 				const textNode = document.createTextNode(arms[i]);
@@ -117,7 +122,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
 			break;
 		case 3:
 			document.getElementById('muscle').replaceChildren();
-			document.getElementById('workout').replaceChildren();
+			document.getElementById('routine').replaceChildren();
 			for (var i = 0; i < back.length; i++) {
 				const newOpt = document.createElement('option');
 				const textNode = document.createTextNode(back[i]);
@@ -127,7 +132,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
 			break;
 		case 4:
 			document.getElementById('muscle').replaceChildren();
-			document.getElementById('workout').replaceChildren();
+			document.getElementById('routine').replaceChildren();
 			for (var i = 0; i < chest.length; i++) {
 				const newOpt = document.createElement('option');
 				const textNode = document.createTextNode(chest[i]);
@@ -140,7 +145,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
 			break;
 		case 5:
 			document.getElementById('muscle').replaceChildren();
-			document.getElementById('workout').replaceChildren();
+			document.getElementById('routine').replaceChildren();
 			for (var i = 0; i < legs.length; i++) {
 				const newOpt = document.createElement('option');
 				const textNode = document.createTextNode(legs[i]);
@@ -150,7 +155,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
 			break;
 		case 6:
 			document.getElementById('muscle').replaceChildren();
-			document.getElementById('workout').replaceChildren();
+			document.getElementById('routine').replaceChildren();
 			for (var i = 0; i < shldrs.length; i++) {
 				const newOpt = document.createElement('option');
 				const textNode = document.createTextNode(shldrs[i]);
@@ -175,7 +180,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
 			if (muscles[i].name == e.target.value) {
 				console.log(muscles[i].workouts);
-				document.getElementById('workout').replaceChildren();
+				document.getElementById('routine').replaceChildren();
 				for (let j = 0; j < muscles[i].workouts.length; j++) {
 					const newOpt = document.createElement('option');
 					newOpt.className = 'wrop';
@@ -185,7 +190,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
 					});
 					const textNode = document.createTextNode(muscles[i].workouts[j]);
 					newOpt.appendChild(textNode);
-					document.getElementById('workout').appendChild(newOpt);
+					document.getElementById('routine').appendChild(newOpt);
 				}
 			}
 		}
@@ -194,7 +199,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
 	document.getElementById('addWrkt').addEventListener('click', function(e) {
 		document.getElementById('workoutList').display = 'inline-block';
-		console.log(document.getElementById('workout').value);
+		console.log(document.getElementById('routine').value);
 		document.getElementById('addWrkt').disabled = true;
 		let card = createWorkoutCard();
 
@@ -230,7 +235,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
 			let mn = document.createElement('h5');
 			let mg = document.createElement('p');
 
-			mn.innerText = document.getElementById('workout').value;
+			mn.innerText = document.getElementById('routine').value;
 			mg.innerText = document.getElementById('muscle').value;
 
 			card.appendChild(img);
@@ -270,20 +275,20 @@ window.addEventListener('DOMContentLoaded', (event) => {
 		selectedCard.remove();
 	});
 
-	document.getElementById('submitRoutine').addEventListener('click', function (e) {
-		e.preventDefault();
-		if (document.getElementById('routineName').value == "") {
-			alert("Routine must have a name...");
-		} else {
-			let rName = document.getElementById('routineName').value;
-			let x = document.getElementsByClassName('workoutCard');
+	// document.getElementById('submitRoutine').addEventListener('click', function (e) {
+	// 	e.preventDefault();
+	// 	if (document.getElementById('routineName').value == "") {
+	// 		alert("Routine must have a name...");
+	// 	} else {
+	// 		let rName = document.getElementById('routineName').value;
+	// 		let x = document.getElementsByClassName('workoutCard');
 
-			for (let i = 0; i < x.length; i++) {
-				console.log(x[i].lastChild.firstChild.textContent);
-			}
+	// 		for (let i = 0; i < x.length; i++) {
+	// 			console.log(x[i].lastChild.firstChild.textContent);
+	// 		}
 
 
-		}
+	// 	}
 		
-	})
+	// })
 });
