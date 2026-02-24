@@ -150,7 +150,7 @@
 	}
 
 	#scoreCard {
-		width: 100%;
+		flex-direction: row;
 	}
 
 	table {
@@ -202,26 +202,25 @@
 	#title {
 		text-align: center;
 		width: 100%;
-		margin-top: 25px;
-		margin-bottom: 25px;
 	}
 	#tit {
 		font-size: 56px;
 	}
 
-/*	#courseInfo {
+	#courseInfo {
 		margin: auto;
 		padding-top: 50px;
 		display: block;
 		background-color: lightgreen;
-		height: 85vh;
-		width: 100%;
+		height: auto;
+		width: 75%;
 		box-sizing: border-box;
-	}*/
+		text-align: center;
+	}
 
 	#options {
 		margin: 0 auto;
-		padding-top: 50px;
+		padding-top: 25px;
 		display: block;
 		/*background-color: yellow;*/
 		height: 85vh;
@@ -257,7 +256,7 @@
 
 	#newRound {
 
-		margin-top: 20px;
+		/*margin-top: 20px;*/
 		width: 75%;
 	}
 	#newRound:hover {
@@ -282,7 +281,7 @@
 
 	}
 
-/*	#selectHoles {
+	#selectHoles {
 		display: block;
 		margin: auto;
 		width: 200px;
@@ -308,8 +307,9 @@
 
 	#app {
 		background-color: lightgreen;
-		height: 85vh;
+		height: auto;
 		text-align: center;
+		margin-bottom: 75px;
 	}
 
 
@@ -337,7 +337,13 @@
 	}
 
 	#scoreCard {
-		width: 100%;
+		border: 1px solid black;
+		display: flex;
+		flex-direction: column;
+		gap: 10px;
+		width: 85%;
+		margin: 0 auto;
+		margin-bottom: 10px;
 	}
 
 	table {
@@ -345,11 +351,18 @@
 		overflow-x: auto;
 		white-space: nowrap;
 		table-layout: fixed;
+		border-collapse: separate;
+		border-spacing: 8px;
 	}
 
 	td {
 		min-width: 25px;
 		min-height: 25px;
+
+	}
+
+	th {
+		padding-right: 25px;
 	}
 
 	#loadedInfo p{
@@ -365,5 +378,16 @@
 		display: inline;
 	}
 
-	*/
+	
+}
+
+
+
+
+
+
+@media only screen and (max-width: 450px) {
+	th {
+		padding-right: 0px;
+	}
 }
