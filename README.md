@@ -22,3 +22,4 @@ Follows the MVC architecture.
 * Make golfapp multiuser
 * Update profile pages
 * Make site banner
+* Update from Debian Laptop
