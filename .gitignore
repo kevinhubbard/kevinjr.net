@@ -6,3 +6,5 @@ config.js
 .dev.log
 logs
 bannedIP.txt
+assets/images/photos/thumbs
+assets/images/photos/full
