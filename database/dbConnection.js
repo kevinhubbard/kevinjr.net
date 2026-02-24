@@ -27,7 +27,7 @@ const connection = new Sequelize(
   	{
     	host: process.env.DB_HOST,
     	dialect: 'mysql',
-   		logging: !isProd,
+   		logging: false,
     	pool: poolConfig
   	}
 );
