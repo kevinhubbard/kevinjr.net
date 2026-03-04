@@ -11,7 +11,7 @@ router.get('/api', async function (req, res) {
 
 router.get('/', async function(req, res) {
 	const ingredientList = await Ingredient.findAll();
-	res.render('meals', {
+	res.render('apps/meals', {
 		css: ['style.css', 'cal-counter.css'],
 		js: ['mealList.js', 'menu.js'],
 		iList: ingredientList
@@ -52,7 +52,7 @@ router.post('/', async function(req, res) {
 	});
 
 	const ingredientList = await Ingredient.findAll();
-	res.render('meals', {
+	res.render('apps/meals', {
 		css: ['style.css', 'cal-counter.css'],
 		js: ['mealList.js'],
 		iList: ingredientList

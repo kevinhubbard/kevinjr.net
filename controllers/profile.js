@@ -14,7 +14,7 @@ router.get('/:id', async function(req, res) {
 		}
 		res.render('profile', {
 			user: user.toJSON(),
-			css: ['style.css'],
+			css: ['style.css', 'admin.css'],
 			js: ['menu.js', 'loginScript.js']
 		});
 	} catch (error) {

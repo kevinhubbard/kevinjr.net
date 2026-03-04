@@ -7,7 +7,7 @@ const { QueryTypes } = require('sequelize');
 router.get('/', async function(req, res){
 	const crs = await Course.findAll();
 
-	res.render('golfcard', {
+	res.render('golfcard/golfcard', {
 		css: ['style.css', 'golfcard/golf.css'],
 		js: ['golfcard/golfScript.js', 'menu.js', 'loginScript.js'],
 		crs: crs
@@ -68,6 +68,8 @@ router.post('/rounds', async function(req, res){
 	}
 });
 
+
+// USER CAN CREATE A NEW GOLF ROUND JOINABLE BY OTHERS
 router.get('/rounds/create', async function(req, res) {
 
 	if (!req.session.userId) {
@@ -75,8 +77,8 @@ router.get('/rounds/create', async function(req, res) {
 	}
 	const crs = await Course.findAll();
 	const host = req.session.userName;
-	console.log(host);
-	res.render('createRound', {
+	//console.log(host);
+	res.render('golfcard/createRound', {
 		css: ['style.css', 'golfcard/golf.css', 'golfcard/createRound.css'],
 		js: ['golfcard/golfScript.js', 'menu.js', 'loginScript.js', 'golfcard/createRound.js'],
 		crs: crs,
@@ -111,6 +113,7 @@ router.post('/rounds/create', async function(req, res) {
 	}
 });
 
+// WAITING ROOM FOR USERS BEFORE ROUND BEGINS
 router.get('/rounds/:id/waiting', async function(req, res) {
 	const roundID = req.params.id;
 
@@ -124,7 +127,7 @@ router.get('/rounds/:id/waiting', async function(req, res) {
 			include: [User]
 		});
 		//console.log(participants);
-		res.render('waitingRoom', {
+		res.render('golfcard/waitingRoom', {
 			css: ['style.css', 'golfcard/waiting.css'],
 			js: ['golfcard/golfScript.js', 'golfcard/newGolfer.js'],
 			round: round,
@@ -143,7 +146,7 @@ router.get('/rounds/active', async function(req, res) {
 		include: [Course]
 	});
 	
-	res.render('activeRound', {
+	res.render('golfcard/activeRound', {
 		css: ['style.css', 'golfcard/golf.css', 'golfcard/activeRound.css'],
 		js: ['golfcard/golfScript.js', 'menu.js', 'loginScript.js', 'golfcard/newGolfer.js'],
 		rounds: activeRounds
@@ -167,6 +170,11 @@ router.get('/rounds/:id/join', async function(req, res) {
 	res.redirect(`/golfcard/rounds/${roundID}/waiting`);
 });
 
+
+
+
+
+// HOST STARTED ROUND
 router.get('/play/:id', async function(req, res) {
 	const roundID = req.params.id;
 	const currentRound = await Round.findByPk(roundID, {
@@ -187,15 +195,15 @@ router.get('/play/:id', async function(req, res) {
 
 	//console.log(holes);
 	console.log("session.userId:", req.session.userId);
-	res.render('playRound', {
+	res.render('golfcard/playRound', {
 		roundID,
 		currentRound,
 		course: currentRound.Course,
 		players,
 		userId: req.session.userId,
 		holes,
-		css: ['style.css', /*'golfcard/golf.css',*/ 'golfcard/activeRound.css', 'golfcard/play.css'],
-		js: [/*'golfScript.js',*/ 'menu.js', 'loginScript.js', 'golfcard/newGolfer.js'],
+		css: ['style.css', 'golfcard/golf.css', 'golfcard/activeRound.css'],
+		js: ['golfScript.js', 'menu.js', 'loginScript.js', 'golfcard/newGolfer.js'],
 	});
 });
 

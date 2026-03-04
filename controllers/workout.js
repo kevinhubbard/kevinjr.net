@@ -6,7 +6,7 @@ const { QueryTypes } = require('sequelize');
 router.get('/', async function(req, res) {
 	//const group = await MuscleGroup.findAll();
 
-	res.render('workout', {
+	res.render('apps/workout', {
 		css: ['style.css', 'workout.css'],
 		js: ['menu.js', 'workout.js']
 	});

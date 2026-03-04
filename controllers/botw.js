@@ -3,7 +3,7 @@ var router = express.Router();
 const Ingredient = require('../models/botw.js');
 
 router.get('/', function(req,res){
-	res.render('botw', {
+	res.render('apps/botw', {
 		css: ['style.css', 'botw.css'],
 		js: ['botw.js', 'menu.js']
 	});
@@ -24,7 +24,7 @@ router.post('/', function(req, res){
 		ingredientDescription: req.body.desc
 	});
 
-	res.render('botw',{
+	res.render('apps/botw',{
 		css: ['style.css', 'botw.css'],
 		js: ['botw.js']
 	});
