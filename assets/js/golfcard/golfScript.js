@@ -9,18 +9,27 @@ window.addEventListener("DOMContentLoaded", function(event) {
 	let round = {};
 	let holesData;
 	let courseData;
-
-
+	
 	const mainApp = document.getElementById('app');
 	if (mainApp) {
 		mainApp.style.display = 'block';
 	}
 	document.getElementById('app').style.display = 'none';
 	document.getElementById('courseInfo').style.display = 'none';
+	document.getElementById('groupPlay').style.display = 'none';
+
+	document.getElementById('createRoom').addEventListener("click", function() {
+		window.location.href='/golfcard/rounds/create';
+	});
+
+	document.getElementById('joinRoom').addEventListener("click", function() {
+		window.location.href='/golfcard/rounds/active';
+	});
 
 	let activeRounds = document.getElementById('activeRounds');
 	activeRounds.addEventListener('click', function() {
-		window.location.href='/golfcard/rounds/active';
+		document.getElementById('options').style.display = 'none';
+		document.getElementById('groupPlay').style.display = 'block';
 	})
 
 	let newRound = document.getElementById('newRound');
@@ -29,21 +38,13 @@ window.addEventListener("DOMContentLoaded", function(event) {
 		document.getElementById('courseInfo').style.display = 'block';
 	});
 
-/*	let courses = document.getElementById('courses');
-		courses.addEventListener("click", function() {
-		//load golfcard/rounds
-		window.location.href = '/golfcard/courses';
-	});*/
-
 	let loadRound = document.getElementById('loadRound');
 	loadRound.addEventListener("click", function() {
-		//load golfcard/rounds
 		//window.location.href = '/golfcard/rounds';
 	});
 	
 	let nextHole = document.getElementById('nextHole');
 	nextHole.addEventListener("click", function() {
-		
 		strokes += holeStrokes;	
 		let par = document.getElementById('par').innerText;
 		score += (holeStrokes - par);
@@ -84,7 +85,7 @@ window.addEventListener("DOMContentLoaded", function(event) {
 	let startRound = document.getElementById('start');
 	startRound.addEventListener("click", async function() {
 		nextHole.disabled = true;
-		//document.getElementById('hole').innerText = holeNum;
+		document.getElementById('title').style.display = 'none';
 		document.getElementById('courseInfo').style.display = 'none';
 		document.getElementById('app').style.display = 'block';
 
@@ -249,19 +250,8 @@ window.addEventListener("DOMContentLoaded", function(event) {
 		}
 		return summary;
 	}
-
-
-
-
-
-
-
-	
-
-
-	
 });
 
 window.addEventListener('beforeunload', (event) => {
-  event.returnValue = `Are you sure you want to leave?`;
+	event.returnValue = `Are you sure you want to leave?`;
 });
