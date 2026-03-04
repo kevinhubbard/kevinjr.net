@@ -1,0 +1,13 @@
+
+<div id="allRounds">
+	{{#each rounds}}
+	<div class="iRound">
+		<ul>
+			<li>Course: {{this.dataValues.Course.dataValues.courseName}}</li>
+			<li>Host: {{this.dataValues.hostID}}</li>
+			<li>Status: {{this.dataValues.status}}</li>
+			<li><a href="/golfcard/rounds/{{this.dataValues.roundID}}/join">Join Round</a></li>
+		</ul>
+	</div>
+	{{/each}}
+</div>

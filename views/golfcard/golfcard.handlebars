@@ -1,0 +1,79 @@
+<div id="title"><h1 id="tit"><a href="/golfcard">golfcard</a></h1></div>
+
+<div id="options">
+	<button id="newRound">
+		<img class="optBtnImg" src="images/play.jpg">
+		<h3>Solo Play</h3>
+	</button>
+	<button id="loadRound">
+		<img class="optBtnImg" src="images/score.jpg">
+		<h3>Load Scores</h3>
+	</button>
+	<button id="activeRounds">
+		<img class="optBtnImg" src="images/golfGroup.jpg">
+		<h3>Group Play</h3>
+	</button>
+</div>
+
+<div id="courseInfo">
+		<select id="courses">
+			{{#each crs}}
+			<option value="{{this.dataValues.courseID}}">{{this.dataValues.courseName}}</option>
+			{{/each}}
+		</select>
+		<button id="start">Start Round</button>
+</div>
+
+<div id="groupPlay">
+	<button id="createRoom">Create</button>
+	<button id="joinRoom">Join</button>
+</div>
+
+<div id="app">
+	<div id="loadedInfo">
+		<p><span id="lcourseName"></span></p>
+		<div id="subInfo">
+			<p>Par: <span id="lcoursePar"></span></p>
+			<p>Yards: <span id="lcourseYards"></span></p>
+		</div>
+	</div>
+	<p id="score">E</p>
+
+	<div id="holeInfo">
+		<p class="oneLine">Hole: <span id="hole"></span></p>
+		<p class="oneLine">Par: <span id="par"></span></p>
+		<p>Yards: <span id="yards"></span></p>
+	</div>
+
+	<input class="inp" type="checkbox" id="fir" name="fir" value="fir">
+	<label class="inp" for="fir">Fairway in Regulation</label>
+	<input class="inp" type="checkbox" id="gir" name="gir" value="gir">
+	<label class="inp" for="gir">Green in Regulation</label>
+	<button id="stroke">Stroke: <span id="strokes">0</span></button>
+	<button id="nextHole">Next Hole</button>
+    <div id="scoreCard">
+		<table id="front9" class="nine front9">
+			<tr id="holeRowFront" class="holeRow">
+				<th>Hole</th>
+			</tr>
+			<tr id="parRowFront" class="parRow">
+				<th>Par</th>
+			</tr>
+			<tr id="scoreRowFront" class="scoreRow">
+				<th>Strokes</th>
+			</tr>
+		</table>
+		<hr>
+		<table id="back9" class="nine back9">
+			<tr id="holeRowBack" class="holeRow">
+				<th>Hole</th>
+			</tr>
+			<tr id="parRowBack" class="parRow">
+				<th>Par</th>
+			</tr>
+			<tr id="scoreRowBack" class="scoreRow">
+				<th>Strokes</th>
+			</tr>
+		</table>
+	</div>
+</div>
