@@ -1,7 +1,7 @@
 #admin {
 	margin: 0 auto;
-	width: 75%;
-	height: 125%;
+	width: 90%;
+	height: auto;
 	background-color: white;
 }
 
@@ -9,4 +9,11 @@
 	width: 500px;
 	height: 500px;
 	border: 1px solid black;
+}
+
+#profile {
+	background-color: pink;
+	margin-top: 100px;
+	width: 85%;
+	height: auto;
 }

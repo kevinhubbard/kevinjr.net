@@ -13,16 +13,6 @@
 		margin-top: 2.5%;
 	}
 
-	#courseInfo {
-		margin: auto;
-		padding-top: 50px;
-		display: block;
-		background-color: lightgreen;
-		height: 100%;
-		width: 65%;
-		box-sizing: border-box;
-	}
-
 	#options {
 		margin: 0 auto;
 		padding-top: 50px;
@@ -39,7 +29,7 @@
 	#options button{
 		margin: 0 auto;
 		display: inline-block;
-		margin-bottom: 20px;
+		/*margin-bottom: 20px;*/
 		width: 375px;
 		height: 150px;
 	}
@@ -48,16 +38,6 @@
 		width: 100%;
 		height: 100%;
 		object-fit: cover;
-	}
-
-	#courses {
-		margin: auto;
-		margin-top: 5px;
-		margin-bottom: 5px;
-		display: block;
-		text-align: center;
-		width: 175px;
-		height: 75px;
 	}
 
 	#newRound {
@@ -93,18 +73,14 @@
 		transform: scale(1.1);
 	}
 
-	#selectHoles {
-		display: block;
+	#courseInfo {
 		margin: auto;
-		width: 200px;
-		height: 75px;
-		text-align: center;
-	}
-	#start {
-		width: 200px;
-		height: 75px;
+
 		display: block;
-		margin: auto;
+		background-color: lightgreen;
+		height: 100%;
+		width: 65%;
+		box-sizing: border-box;
 	}
 
 	#courses {
@@ -116,6 +92,17 @@
 		margin-top: 25px;
 		margin-bottom: 25px;
 	}
+
+	#start {
+		width: 200px;
+		height: 75px;
+		display: block;
+		margin: auto;
+		margin-top: 25px;
+		margin-bottom: 25px;
+	}
+
+
 
 	#app {
 		background-color: lightgreen;
@@ -207,22 +194,12 @@
 		font-size: 56px;
 	}
 
-	#courseInfo {
-		margin: auto;
-		padding-top: 50px;
-		display: block;
-		background-color: lightgreen;
-		height: auto;
-		width: 75%;
-		box-sizing: border-box;
-		text-align: center;
-	}
+	
 
 	#options {
 		margin: 0 auto;
 		padding-top: 25px;
 		display: block;
-		/*background-color: yellow;*/
 		height: 85vh;
 		width: 100%;
 		font-size: 0;
@@ -244,19 +221,8 @@
 		object-fit: cover;
 	}
 
-/*	#courses {
-		margin: auto;
-		margin-top: 5px;
-		margin-bottom: 5px;
-		display: block;
-		text-align: center;
-		width: 175px;
-		height: 75px;
-	}*/
 
 	#newRound {
-
-		/*margin-top: 20px;*/
 		width: 75%;
 	}
 	#newRound:hover {
@@ -281,18 +247,25 @@
 
 	}
 
-	#selectHoles {
-		display: block;
-		margin: auto;
-		width: 200px;
-		height: 75px;
+	#groupPlay {
+		width: 75%;
+		height: auto;
+		margin: 0 auto;
 		text-align: center;
+		margin-top: 25px;
 	}
-	#start {
-		width: 200px;
-		height: 75px;
-		display: block;
+
+
+
+
+	#courseInfo {
 		margin: auto;
+		display: block;
+		background-color: lightgreen;
+		height: auto;
+		width: 70%;
+		box-sizing: border-box;
+		text-align: center;
 	}
 
 	#courses {
@@ -305,6 +278,19 @@
 		margin-bottom: 25px;
 	}
 
+	#start {
+		width: 200px;
+		height: 75px;
+		display: block;
+		margin: auto;
+		margin-top: 25px;
+		margin-bottom: 25px;
+	}
+
+
+
+
+
 	#app {
 		background-color: lightgreen;
 		height: auto;
@@ -315,6 +301,7 @@
 
 	#score {
 		font-size: 72px;
+		margin-bottom: 0px;
 	}
 
 	#holeCss {
