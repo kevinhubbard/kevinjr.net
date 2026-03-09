@@ -12,22 +12,6 @@ const Course = sequelize.define('Course', {
 			type: DataTypes.STRING(50),
 			unique: true
 		},
-		par: {
-			type: DataTypes.TINYINT.UNSIGNED,
-			allowNull: false
-		},
-		yards: {
-			type: DataTypes.SMALLINT.UNSIGNED,
-			allowNull: true
-		},
-		rating: {
-			type: DataTypes.DECIMAL(3,1),
-			allowNull: true
-		},
-		slope: {
-			type: DataTypes.TINYINT.UNSIGNED,
-			allowNull: true
-		},
 		township: {
 			type: DataTypes.STRING(50),
 			allowNull: true
@@ -43,9 +27,42 @@ const Course = sequelize.define('Course', {
 	updatedAt: false
 });
 
+const Teebox = sequelize.define('Teebox', {
+	teeBoxID: {
+		type: DataTypes.INTEGER,
+		autoIncrement: true,
+		primaryKey: true
+	},
+	courseID: {
+		type: DataTypes.SMALLINT,
+		allowNull: false
+	},
+	teeName: {
+		type: DataTypes.STRING(20),
+		allowNull: false
+	},
+	totalYards: {
+		type: DataTypes.SMALLINT,
+		allowNull: false
+	},
+	rating: {
+		type: DataTypes.DECIMAL(3,1),
+		allowNull: true
+	},
+	slope: {
+		type: DataTypes.TINYINT.UNSIGNED,
+		allowNull: true
+	}
+}, {
+	tableName: 'TeeBoxes',
+	timestamps: false,
+	createdAt: false,
+	updatedAt: false
+});
+
 const Round = sequelize.define('Round', {
 	roundID: {
-		type: DataTypes.SMALLINT,
+		type: DataTypes.INTEGER,
 		autoIncrement: true,
 		primaryKey: true
 	},
@@ -61,58 +78,30 @@ const Round = sequelize.define('Round', {
 				msg: 'Please enter course ID'
 			}
 		}
-	}, 
-	status: {
-		type: DataTypes.STRING,
-		allowNull: false
-	}/*,
-	strokes: {
-		type: DataTypes.INTEGER,
-		allowNull: false,
-		validate: {
-			notNull: {
-				msg: 'Please enter number of strokes'
-			},
-			validStrokes(value) {
-				if (value < 18) {
-					throw new Error("Strokes must be more than 18")
-				}
-			}
-		}
 	},
-	score: {
+	teeBoxID: {
 		type: DataTypes.INTEGER,
+		allowNull: false
+	},
+	status: {
+		type: DataTypes.ENUM('waiting', 'active', 'finished'),
 		allowNull: false,
-		validate: {
-			notNull: {
-				msg: 'Please enter a score'
-			},
-			validScore(value) {
-				if (value < -50 || value > 50) {
-					throw new Error("Score must be between -50 and 50")
-				}
-			}
-		}
-	}*/
+		defaultValue: 'waiting'
+	}
 }, {
 	tableName: 'Rounds',
-	timestamps: false,
+	timestamps: true,
 	createdAt: true,
 	updatedAt: false
 });
 
-const RoundScore = sequelize.define('RoundScore', {
-	scoreID: {
-		type: DataTypes.INTEGER,
-		primaryKey: true,
-		autoIncrement: true
-	},
+const Score = sequelize.define('Score', {
 	roundID: {
-		type: DataTypes.SMALLINT,
+		type: DataTypes.INTEGER,
 		allowNull: false
 	},
 	userID: {
-		type: DataTypes.SMALLINT,
+		type: DataTypes.STRING(36),
 		allowNull: false
 	},
 	holeNumber: {
@@ -120,11 +109,19 @@ const RoundScore = sequelize.define('RoundScore', {
 		allowNull: false
 	},
 	strokes: {
-		type: DataTypes.TINYINT.UNSIGNED,
+		type: DataTypes.TINYINT,
 		allowNull: false
+	},
+	fairwayHit: {
+		type: DataTypes.BOOLEAN,
+		defaultValue: null
+	},
+	greenInReg: {
+		type: DataTypes.BOOLEAN,
+		defaultValue: null
 	}
 }, {
-	tableName: 'RoundScores',
+	tableName: 'Scores',
 	timestamps: false,
 	createdAt: false,
 	updatedAt: false
@@ -136,16 +133,16 @@ const Hole = sequelize.define('Hole', {
 		autoIncrement: true,
 		primaryKey: true
 	},
-	courseID: {
-		type: DataTypes.SMALLINT,
+	teeBoxID: {
+		type: DataTypes.INTEGER,
 		allowNull: false
 	},
 	holeNumber: {
-		type: DataTypes.SMALLINT,
+		type: DataTypes.TINYINT,
 		allowNull: false
 	},
 	par: {
-		type: DataTypes.SMALLINT,
+		type: DataTypes.TINYINT,
 		allowNull: false
 	},
 	yards: {
@@ -161,7 +158,7 @@ const Hole = sequelize.define('Hole', {
 
 const RoundParticipant = sequelize.define('RoundParticipants', {
 	roundID: {
-		type: DataTypes.SMALLINT,
+		type: DataTypes.INTEGER,
 		allowNull: false,
 		primaryKey: true,
 		references: {
@@ -195,4 +192,6 @@ User.hasMany(RoundParticipant, { foreignKey: 'userID' });
 RoundParticipant.belongsTo(Round, { foreignKey: 'roundID' });
 Round.hasMany(RoundParticipant, { foreignKey: 'roundID' });
 
-module.exports = {Course, Round, Hole, RoundParticipant};
+Teebox.belongsTo(Course, {foreignKey: 'courseID'});
+
+module.exports = {Course, Teebox, Round, Hole, RoundParticipant};
