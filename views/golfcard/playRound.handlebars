@@ -52,7 +52,6 @@ if (participants.some(p => p.userID === userID)) {
   });
 
   document.getElementById('finish-hole').addEventListener('click', () => {
-  	console.log('shit was clicked yo.');
     socket.emit('holeFinished', {
       roundID,
       userID,
