@@ -27,6 +27,8 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   socket.on('roundStarted', data => {
+
+    //update round status to active
     console.log('Received roundStarted', data);
     window.location.href = `/golfcard/play/${data.roundID}`;
   });
@@ -37,7 +39,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-
+async function activateRound(roundid) {
+  try {
+    const update = await Round.
+  }
+}
 
 
 

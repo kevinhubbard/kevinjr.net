@@ -98,6 +98,7 @@ window.addEventListener("DOMContentLoaded", function(event) {
 		updatePageWithHoleInfo(0);
 	});
 
+
 	async function fetchCourseInfo(cID) {
 		try {
 			const response = await fetch(`/golfcard/courses?courseID=${cID}`);
@@ -243,15 +244,15 @@ window.addEventListener("DOMContentLoaded", function(event) {
 		this.score = score;
 	}
 
-	Round.prototype.toString = function() {
+	/*Round.prototype.toString = function() {
 		let summary = holesData.length + " holes played at " + courseData[0].courseID + "\nStrokes: " + this.strokes + "\n";
 		for (i = 0; i < hole.length; i++) {
 			summary += "Hole: " + hole[i].holeNumber + ", Par: " + hole[i].par + ", Strokes: " + hole[i].strokes + "\n";
 		}
 		return summary;
-	}
+	}*/
 });
 
-window.addEventListener('beforeunload', (event) => {
-	event.returnValue = `Are you sure you want to leave?`;
-});
+// window.addEventListener('beforeunload', (event) => {
+// 	event.returnValue = `Are you sure you want to leave?`;
+// });
