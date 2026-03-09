@@ -1,0 +1,45 @@
+<div id="golfcardAdmin">
+	<h1>golfcard admin page</h1>
+	<div class="test" id="course">
+		<h3>Add Course</h3>
+		<form action="/golfcard/admin/course" method="POST">
+			<label for="cName">Course Name:</label><br>
+			<input type="text" id="cName" name="cName"><br>
+			<label for="tName">Township Name:</label><br>
+			<input type="text" id="tName" name="tName"><br>
+			<label for="sName">State Name:</label><br>
+			<input type="text" id="sName" name="sName"><br><br>
+			<input type="submit" value="Submit">	
+		</form>
+	</div>
+	<div class="test" id="teebox">
+		<h3>Add TeeBox</h3>
+		<form action="/golfcard/admin/teebox" method="POST">
+			<label for="courseid">Course ID:</label><br>
+			<input type="text" id="courseid" name="courseid"><br>
+			<label for="tboxName">Teebox Color:</label><br>
+			<input type="text" id="tboxName" name="tboxName"><br>
+			<label for="totalYards">Yards:</label><br>
+			<input type="text" id="totalYards" name="totalYards"><br><br>
+			<label for="rating">Rating:</label><br>
+			<input type="text" id="rating" name="rating"><br>
+			<label for="slope">Slope:</label><br>
+			<input type="text" id="slope" name="slope"><br><br>
+			<input type="submit" value="Submit">	
+		</form>
+	</div>
+	<div class="test" id="holeData">
+		<h3>Add Hole Data</h3>
+		<form action="/golfcard/admin/hole" method="POST">
+			<label for="teeboxid">Teebox ID:</label><br>
+			<input type="text" id="teeboxid" name="teeboxid"><br>
+			<label for="holeNum">Hole Number:</label><br>
+			<input type="text" id="holeNum" name="holeNum"><br>
+			<label for="par">Par:</label><br>
+			<input type="text" id="par" name="par"><br>
+			<label for="yards">Yards:</label><br>
+			<input type="text" id="yards" name="yards"><br><br>
+			<input type="submit" value="Submit">
+		</form>
+	</div>
+</div>
