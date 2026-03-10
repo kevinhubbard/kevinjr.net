@@ -89,7 +89,11 @@ router.get('/admin', function(req, res) {
 });
 
 router.post('/admin/course', async function(req, res) {
-	const course = await Course.create({ courseName: req.body.cName, township: req.body.tName, state: req.body.sName});
+	const course = await Course.create({ 
+		courseName: req.body.cName, 
+		township: req.body.tName, 
+		state: req.body.sName
+	});
 	res.redirect('/golfcard/admin');
 });
 
@@ -104,7 +108,10 @@ await Teebox.create({
   rating: rating,
   slope: slope
 });
-	res.redirect('/golfcard/admin');
+	res.render('golfcard/admin', {
+		css: ['style.css', 'golfcard/golf.css', 'golfcard/createRound.css', 'golfcard/admin.css'],
+		js: ['golfcard/golfScript.js', 'menu.js', 'loginScript.js', 'golfcard/createRound.js', 'golfcard/admin/tfocus.js']
+	});
 });
 
 
@@ -116,7 +123,10 @@ await Hole.create({
   par: req.body.par,
   yards: req.body.yards
 });
-	res.redirect('/golfcard/admin');
+	res.render('golfcard/admin', {
+		css: ['style.css', 'golfcard/golf.css', 'golfcard/createRound.css', 'golfcard/admin.css'],
+		js: ['golfcard/golfScript.js', 'menu.js', 'loginScript.js', 'golfcard/createRound.js', 'golfcard/admin/hf.js']
+	});
 });
 
 
