@@ -72,9 +72,6 @@ router.get('/', async function(req, res){
 
 
 
-
-
-
 // ADMIN VIEW TO CREATE COURSES AND HOLES
 
 router.get('/admin', function(req, res) {
@@ -102,11 +99,11 @@ const rating = req.body.rating || null;
 const slope = req.body.slope || null;
 
 await Teebox.create({
-  courseID: req.body.courseid,
-  teeName: req.body.tboxName,
-  totalYards: req.body.totalYards,
-  rating: rating,
-  slope: slope
+	courseID: req.body.courseid,
+	teeName: req.body.tboxName,
+	totalYards: req.body.totalYards,
+	rating: rating,
+	slope: slope
 });
 	res.render('golfcard/admin', {
 		css: ['style.css', 'golfcard/golf.css', 'golfcard/createRound.css', 'golfcard/admin.css'],
@@ -118,10 +115,10 @@ await Teebox.create({
 router.post('/admin/hole', async function(req, res) {
 
 await Hole.create({
-  teeBoxID: req.body.teeboxid,
-  holeNumber: req.body.holeNum,
-  par: req.body.par,
-  yards: req.body.yards
+	teeBoxID: req.body.teeboxid,
+	holeNumber: req.body.holeNum,
+	par: req.body.par,
+	yards: req.body.yards
 });
 	res.render('golfcard/admin', {
 		css: ['style.css', 'golfcard/golf.css', 'golfcard/createRound.css', 'golfcard/admin.css'],
@@ -138,12 +135,14 @@ router.get('/rounds/create', async function(req, res) {
 	}
 	const crs = await Course.findAll();
 	const host = req.session.userName;
-	//console.log(host);
+	const teeBoxes = await Teebox.findAll();
+	
 	res.render('golfcard/createRound', {
 		css: ['style.css', 'golfcard/golf.css', 'golfcard/createRound.css'],
 		js: ['golfcard/golfScript.js', 'menu.js', 'loginScript.js', 'golfcard/createRound.js'],
 		crs: crs,
 		usr: host,
+		teeBoxes: teeBoxes,
 		pid: req.session.userId
 	});
 });
@@ -153,12 +152,13 @@ router.post('/rounds/create', async function(req, res) {
 		return res.status(401).send("please login first");
 	}
 
-	const {course} = req.body;
+	const {course, teeBoxID} = req.body;
 
 	try {
 		const newRound = await Round.create({
-			courseID: course,
 			hostID: req.session.userId,
+			courseID: course,
+			teeBoxID: teeBoxID,
 			status: 'waiting'
 		});
 
@@ -190,7 +190,7 @@ router.get('/rounds/:id/waiting', async function(req, res) {
 		//console.log(participants);
 		res.render('golfcard/waitingRoom', {
 			css: ['style.css', 'golfcard/waiting.css'],
-			js: ['golfcard/golfScript.js', 'golfcard/newGolfer.js'],
+			js: ['golfcard/golfScript.js', 'golfcard/newGolfer.js', 'menu.js', 'loginScript.js'],
 			round: round,
 			participants: participants,
 			isHost: req.session.userId === round.hostID
@@ -238,10 +238,17 @@ router.get('/rounds/:id/join', async function(req, res) {
 // HOST STARTED ROUND
 router.get('/play/:id', async function(req, res) {
 	const roundID = req.params.id;
+	try {
+		const round = await Round.update({status: 'active'}, {
+			where: { roundID: roundID }
+		});
+	} catch (error) {
+		console.error("Error during database update: " , error.message);
+	}
+	
 	const currentRound = await Round.findByPk(roundID, {
 		include: [Course]
 	});
-	//console.log(currentRound);
 
 	const players = await RoundParticipant.findAll({
 		where: {roundID},
@@ -250,12 +257,12 @@ router.get('/play/:id', async function(req, res) {
 
 	const holes = await Hole.findAll({
 		where: {
-			courseID: currentRound.courseID
+			teeBoxID: currentRound.teeBoxID
 		}
 	});
 
-	//console.log(holes);
-	console.log("session.userId:", req.session.userId);
+	// console.log(`Holes: ${JSON.stringify(holes)}`);
+	// console.log("session.userId:", req.session.userId);
 	res.render('golfcard/playRound', {
 		roundID,
 		currentRound,
@@ -267,22 +274,6 @@ router.get('/play/:id', async function(req, res) {
 		js: ['golfScript.js', 'menu.js', 'loginScript.js', 'golfcard/newGolfer.js'],
 	});
 });
-
-// UPDATE STATUS OF ROUND FROM WAITING TO ACTIVE
-router.post('/activate', async function(req, res) {
-	const activeRnd = await RoundfindByBk(roundID, {
-
-	})
-});
-
-router.post('/rounds/:id/scores', async function(req, res) {
-
-});
-
-router.get('/rounds/:id/scores', async function(req, res) {
-
-});
-
 
 
 module.exports = router;
