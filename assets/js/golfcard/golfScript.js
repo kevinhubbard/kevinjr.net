@@ -10,10 +10,10 @@ window.addEventListener("DOMContentLoaded", function(event) {
 	let holesData;
 	let courseData;
 	
-	const mainApp = document.getElementById('app');
-	if (mainApp) {
-		mainApp.style.display = 'block';
-	}
+	// const mainApp = document.getElementById('app');
+	// if (mainApp) {
+	// 	mainApp.style.display = 'block';
+	// }
 	document.getElementById('app').style.display = 'none';
 	document.getElementById('courseInfo').style.display = 'none';
 	document.getElementById('groupPlay').style.display = 'none';

@@ -159,6 +159,18 @@
 	#lcourseName {
 		text-decoration: underline;
 	}
+
+	#ci {
+		width: 75%;
+		height: auto;
+		background-color: white;
+		margin: 0 auto;
+	}
+
+
+
+
+
 }
 
 

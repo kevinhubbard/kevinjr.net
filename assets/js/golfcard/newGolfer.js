@@ -38,20 +38,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-
-async function activateRound(roundid) {
-  try {
-    const update = await Round.
-  }
-}
-
-
-
-
-
-
-
-
 });
 
 
