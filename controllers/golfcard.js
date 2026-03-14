@@ -1,7 +1,7 @@
 require('dotenv').config();
 var express = require('express');
 var router = express.Router();
-var {Course, Teebox, Round, Hole, RoundParticipant} = require('../models/golfcard.js');
+var {Course, Teebox, Round, Hole, RoundParticipant, Score} = require('../models/golfcard.js');
 var User = require('../models/user.js');
 const { QueryTypes } = require('sequelize');
 
@@ -190,7 +190,7 @@ router.get('/rounds/:id/waiting', async function(req, res) {
 		//console.log(participants);
 		res.render('golfcard/waitingRoom', {
 			css: ['style.css', 'golfcard/waiting.css'],
-			js: ['golfcard/golfScript.js', 'golfcard/newGolfer.js', 'menu.js', 'loginScript.js'],
+			js: ['golfcard/newGolfer.js', 'menu.js', 'loginScript.js'], // 'golfcard/golfScript.js',
 			round: round,
 			participants: participants,
 			isHost: req.session.userId === round.hostID
@@ -247,7 +247,7 @@ router.get('/play/:id', async function(req, res) {
 	}
 	
 	const currentRound = await Round.findByPk(roundID, {
-		include: [Course]
+		include: [Course, Teebox]
 	});
 
 	const players = await RoundParticipant.findAll({
@@ -267,12 +267,25 @@ router.get('/play/:id', async function(req, res) {
 		roundID,
 		currentRound,
 		course: currentRound.Course,
+
 		players,
 		userId: req.session.userId,
 		holes,
 		css: ['style.css', 'golfcard/golf.css', 'golfcard/activeRound.css'],
-		js: ['golfScript.js', 'menu.js', 'loginScript.js', 'golfcard/newGolfer.js'],
+		js: ['menu.js', 'loginScript.js'], // 'golfScript.js', , 'golfcard/newGolfer.js'
 	});
+});
+
+
+//GET ROUND SCORES
+router.get('/rounds/:id/scores', async function(req, res) {
+	const scores = await db.query(`
+		SELECT userID, holeNum, strokes
+		FROM Scores
+		WHERE roundID = ?
+		ORDER BY userID, holeNum
+	`, [req.params.id]);
+	res.json(scores);
 });
 
 
