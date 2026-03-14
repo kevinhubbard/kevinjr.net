@@ -108,8 +108,20 @@
 		background-color: lightgreen;
 		text-align: center;
 		width: 65%;
-		height: 100%;
+		height: auto;
 		margin: 0 auto;
+		margin-bottom: 25px;
+		padding-bottom: 25px;
+	}
+
+
+	#scoreboards {
+		background-color: white;
+		width: 50%;
+		text-align: center;
+		margin: 0 auto;
+		padding-bottom: 15px;
+		margin-bottom: 20px;
 	}
 
 
@@ -161,10 +173,12 @@
 	}
 
 	#ci {
-		width: 75%;
+		width: fit-content;
+		padding: 0px 10px 0px 10px;
 		height: auto;
 		background-color: white;
 		margin: 0 auto;
+		text-align: center;
 	}
 
 
