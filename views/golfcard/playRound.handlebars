@@ -1,24 +1,39 @@
 <script>
+const socket = io();
+const roundID = {{roundID}};
+const userID = "{{userId}}";
+const participants = {{{json players}}};
+const courseInfo = {{{json currentRound}}};
+const holes = {{{json holes}}};
+
+socket.on('connect', () => {
+	refreshScores(roundID);
+});
+
+document.addEventListener("visibilitychange", () => {
+	if (!document.hidden) {
+		refreshScores(roundID);
+	}
+});
+
 document.addEventListener('DOMContentLoaded', () => {
-	const socket = io();
-	const roundID = {{roundID}};
 	socket.emit('joinRoom', `round-${roundID}`);
-	const userID = "{{userId}}";
-	const participants = {{{json players}}};
-	const courseInfo = {{{json currentRound}}};
-	const holes = {{{json holes}}};
+
   	//console.log(`[socket] joining round room: round-${roundID}`);
-	//console.log(courseInfo);
-
+	// console.log(courseInfo);
+	// console.log(holes);
+	let par = 0;
+	for (let i = 0; i < holes.length; i++) {
+		par += holes[i].par;
+	}
 	document.getElementById('courseName').textContent = courseInfo.Course.courseName;
-	document.getElementById('coursePar').textContent = `Par: ${courseInfo.Course.par}`;
-	document.getElementById('courseYards').textContent = `Yards: ${courseInfo.Course.yards}`;
+	document.getElementById('coursePar').textContent = `Par: ${par}`;
+	document.getElementById('courseYards').textContent = `Yards: ${courseInfo.Teebox.totalYards}`;
 
-
-	participants.forEach(p => {
+	participants.forEach(golfer => {
 		const div = document.createElement('div');
-		div.id = `scoreboard-${p.userID}`;
-		div.innerHTML = `<h2>${p.User.name}</h2><ul id="score-list-${p.userID}"></ul>`;
+		div.id = `scoreboard-${golfer.userID}`;
+		div.innerHTML = `<h2>${golfer.User.name}</h2><ul id="score-list-${golfer.userID}"></ul>`;
 		document.getElementById('scoreboards').appendChild(div);
 	});
 
@@ -29,65 +44,95 @@ document.addEventListener('DOMContentLoaded', () => {
 	if (participants.some(p => p.userID === userID)) {
   		const inputDiv = document.getElementById('playerInputArea');
  		inputDiv.innerHTML = `
-		<p>Hole: <span id="current-hole">1</span></p>
 		<p>Strokes: <span id="current-strokes">0</span></p>
+ 		<input type="checkbox" id="fir" class="check" name="fir">
+ 		<label for="fir">Fairway in Regulation</label><br>
+ 		<input type="checkbox" id="gir" class="check" name="gir">
+ 		<label for="gir">Green in Regulation</label><br>
 		<button id="add-stroke">Add Stroke</button>
 		<button id="finish-hole" disabled>Finish Hole</button>`;
 
-  let holeStrokes = 0;
-  let holeNum = 1;
+		let holeStrokes = 0;
+		let holeNum = 1;
 
-  // Display first hole info
-  const currentHole = holes[holeNum - 1];
-  document.getElementById('holePar').textContent = `Par: ${currentHole.par}`;
-  document.getElementById('holeYards').textContent = `Yards: ${currentHole.yards}`;
+	 	// Display first hole info
+		document.getElementById('current-hole').textContent = `Hole: ${holeNum}`;
+		document.getElementById('holePar').textContent = `Par: ${holes[holeNum - 1].par}`;
+		document.getElementById('holeYards').textContent = `Yards: ${holes[holeNum - 1].yards}`;
+		// Add stroke listener
+		document.getElementById('add-stroke').addEventListener('click', () => {
+			holeStrokes++;
+			document.getElementById('current-strokes').textContent = holeStrokes;
+			document.getElementById('finish-hole').disabled = false;
+		});
+		// Finish hole listener
+		document.getElementById('finish-hole').addEventListener('click', () => {
+			socket.emit('holeFinished', {
+				roundID,
+			  	userID,
+			  	holeNumber: holeNum,
+			  	strokes: holeStrokes,
+			  	fairwayHit: document.getElementById('fir').checked,
+			  	greenInReg: document.getElementById('gir').checked
+			});
+			// Reset UI for next hole
+			holeNum++;
+			holeStrokes = 0;
+			document.getElementById('current-strokes').textContent = 0;
+			document.getElementById('finish-hole').disabled = true;
 
-  document.getElementById('add-stroke').addEventListener('click', () => {
-	holeStrokes++;
-	document.getElementById('current-strokes').textContent = holeStrokes;
-	document.getElementById('finish-hole').disabled = false;
-  });
+			// Update hole info
+			if (holeNum <= 18) {
+				document.getElementById('current-hole').textContent = `Hole: ${holeNum}`;
+			  	document.getElementById('holePar').textContent = `Par: ${holes[holeNum - 1].par}`;
+			  	document.getElementById('holeYards').textContent = `Yards: ${holes[holeNum - 1].yards}`;
+				document.querySelectorAll('input[type="checkbox"]').forEach(cb => {
+			  		cb.checked = false;
+			  	});
+			} else {
+				document.getElementById('add-stroke').disabled = true;
+				alert('Round over do you want to save?');
+			}
+		});
+	}
 
-  document.getElementById('finish-hole').addEventListener('click', () => {
-	socket.emit('holeFinished', {
-	  roundID,
-	  userID,
-	  holeNum,
-	  strokes: holeStrokes,
+	socket.on('updatedScore', ({ roundID }) => {
+		// console.log('update clicked');
+	  	// console.log(`[updateScore] received for user ${userID} - hole ${holeNum} - strokes: ${strokes}`);
+
+	  // const ul = document.getElementById(`score-list-${userID}`);
+	  // if (!ul) {
+	// 	console.warn(`[updateScore] Missing score list element for userID ${userID}`);
+	// 	return;
+	  // }
+
+	  // const li = document.createElement('li');
+	  // li.textContent = `Hole ${holeNum}: ${strokes} strokes`;
+	  // ul.appendChild(li);
+		refreshScores(roundID);
 	});
 
-	// Reset UI for next hole
-	holeNum++;
-	holeStrokes = 0;
-	document.getElementById('current-hole').textContent = holeNum;
-	document.getElementById('current-strokes').textContent = 0;
-	document.getElementById('finish-hole').disabled = true;
+});
 
-	// Update hole info
-	const nextHole = holes[holeNum - 1];
-	if (nextHole) {
-	  document.getElementById('holePar').textContent = `Par: ${nextHole.par}`;
-	  document.getElementById('holeYards').textContent = `Yards: ${nextHole.yards}`;
-	}
-  });
+async function refreshScores(roundID) {
+	const res = await fetch(`/rounds/${roundID}/scores`);
+	const scores = await res.json();
+
+	renderScoreboard(scores);
 }
 
-socket.on('updateScore', ({ userID, holeNum, strokes }) => {
-	// console.log('update clicked');
-  	// console.log(`[updateScore] received for user ${userID} - hole ${holeNum} - strokes: ${strokes}`);
+function renderScoreboard(scores) {
+	document.querySelectorAll('[id^="score-list-"]').forEach(el => {
+		el.innerHTML = '';
+	});
 
-  const ul = document.getElementById(`score-list-${userID}`);
-  if (!ul) {
-	console.warn(`[updateScore] Missing score list element for userID ${userID}`);
-	return;
-  }
-
-  const li = document.createElement('li');
-  li.textContent = `Hole ${holeNum}: ${strokes} strokes`;
-  ul.appendChild(li);
-});
-
-});
+	scores.forEach(score => {
+		const ul = document.getElementById(`score-list-${score.userID}`);
+		const li = document.createElement('li');
+		li.textContent = `Hole ${score.holeNum}: ${score.strokes}`;
+		ul.appendChild(li);
+	});
+}
 
 
 </script>
@@ -100,6 +145,7 @@ socket.on('updateScore', ({ userID, holeNum, strokes }) => {
 	</div>
 	<div id="app">
 		<div id="holeDetails">
+			<p id="current-hole"></p>
 			<p id="holePar"></p>
 			<p id="holeYards"></p>
 		</div>
