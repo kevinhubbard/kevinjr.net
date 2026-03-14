@@ -183,15 +183,22 @@ const RoundParticipant = sequelize.define('RoundParticipants', {
 	freezeTableName: true
 });
 
-Round.belongsTo(Course, { foreignKey: 'courseID' });
+// COURSE RELATIONS
+Course.hasMany(Teebox, { foreignKey: 'courseID' });
+Teebox.belongsTo(Course, { foreignKey: 'courseID' });
+
 Course.hasMany(Round, { foreignKey: 'courseID' });
+Round.belongsTo(Course, { foreignKey: 'courseID' });
 
-RoundParticipant.belongsTo(User, { foreignKey: 'userID' });
-User.hasMany(RoundParticipant, { foreignKey: 'userID' });
+// TEEBOX RELATIONS
+Teebox.hasMany(Round, { foreignKey: 'teeBoxID' });
+Round.belongsTo(Teebox, { foreignKey: 'teeBoxID' });
 
-RoundParticipant.belongsTo(Round, { foreignKey: 'roundID' });
+// ROUND PARTICIPANTS
 Round.hasMany(RoundParticipant, { foreignKey: 'roundID' });
+RoundParticipant.belongsTo(Round, { foreignKey: 'roundID' });
 
-Teebox.belongsTo(Course, {foreignKey: 'courseID'});
+User.hasMany(RoundParticipant, { foreignKey: 'userID' });
+RoundParticipant.belongsTo(User, { foreignKey: 'userID' });
 
-module.exports = {Course, Teebox, Round, Hole, RoundParticipant};
+module.exports = {Course, Teebox, Round, Hole, RoundParticipant, Score};
