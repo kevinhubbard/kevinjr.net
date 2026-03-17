@@ -19,7 +19,7 @@ module.exports = (io) => {
 	    	// console.log(`[server] holeFinished: user ${userID}, hole ${holeNum}, strokes: ${strokes}`);
 	    	// console.log('update should fire');
 	  		try {
-	  			await Score.create({
+	  			await Score.upsert({
 	  				roundID: roundID,
 	  				userID: userID,
 	  				holeNumber: holeNumber,
