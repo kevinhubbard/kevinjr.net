@@ -7,7 +7,6 @@ const { QueryTypes } = require('sequelize');
 
 router.get('/', async function(req, res){
 	const crs = await Course.findAll();
-
 	res.render('golfcard/golfcard', {
 		css: ['style.css', 'golfcard/golf.css'],
 		js: ['golfcard/golfScript.js', 'menu.js', 'loginScript.js'],
@@ -15,65 +14,7 @@ router.get('/', async function(req, res){
 	});
 });
 
-// router.get('/courses', async function(req, res){
-// 	try {
-// 		const { courseID } = req.query;
-
-// 		let where = {};
-// 		if (courseID) {
-// 			where.courseID = courseID;
-// 		}
-
-// 		const crs = await Course.findAll({where});
-// 		res.json(crs);
-// 	} catch (error) {
-// 		console.error('Error fetching courses: ', error);
-// 		res.status(500).json({error: 'Something went wrong.'});
-// 	}
-// });
-
-// router.get('/hls', async function(req, res) {
-// 	try {
-// 		const { courseID } = req.query;
-
-// 		let where = {};
-// 		if (courseID) {
-// 			where.courseID = courseID;
-// 		}
-
-// 		const hls = await Hole.findAll({where});
-// 		res.json(hls);
-// 	} catch (error) {
-// 		console.error('Error fetching holes: ', error);
-// 		res.status(500).json({error: 'Something went wrong.'});
-// 	}
-// });
-
-// router.get('/rounds', async function(req, res) {
-// 	const rounds = await Round.findAll();
-// 	res.json(rounds);
-// });
-
-// router.post('/rounds', async function(req, res){
-// 	try {
-// 		const {courseID, strokes, score} = req.body;
-// 		const newRound = await Round.create({
-// 			courseID: courseID,
-// 			strokes: strokes,
-// 			score: score
-// 		});
-// 		res.json({message: 'Round Saved!', roundID: newRound.roundID});
-// 	} catch (err) {
-// 		console.error(err);
-// 		res.status(500).json({error:'failed to save round'});
-// 	}
-// });
-
-
-
-
 // ADMIN VIEW TO CREATE COURSES AND HOLES
-
 router.get('/admin', function(req, res) {
 	if (req.session.userId != process.env.ADMIN_ID) {
 		return res.status(401).send("you must be an admin to view that page.");
@@ -84,7 +25,6 @@ router.get('/admin', function(req, res) {
 		js: ['golfcard/golfScript.js', 'menu.js', 'loginScript.js', 'golfcard/createRound.js']
 	});
 });
-
 router.post('/admin/course', async function(req, res) {
 	const course = await Course.create({ 
 		courseName: req.body.cName, 
@@ -93,33 +33,28 @@ router.post('/admin/course', async function(req, res) {
 	});
 	res.redirect('/golfcard/admin');
 });
-
 router.post('/admin/teebox', async function(req, res) {
-const rating = req.body.rating || null;
-const slope = req.body.slope || null;
-
-await Teebox.create({
-	courseID: req.body.courseid,
-	teeName: req.body.tboxName,
-	totalYards: req.body.totalYards,
-	rating: rating,
-	slope: slope
-});
+	const rating = req.body.rating || null;
+	const slope = req.body.slope || null;
+	await Teebox.create({
+		courseID: req.body.courseid,
+		teeName: req.body.tboxName,
+		totalYards: req.body.totalYards,
+		rating: rating,
+		slope: slope
+	});
 	res.render('golfcard/admin', {
 		css: ['style.css', 'golfcard/golf.css', 'golfcard/createRound.css', 'golfcard/admin.css'],
 		js: ['golfcard/golfScript.js', 'menu.js', 'loginScript.js', 'golfcard/createRound.js', 'golfcard/admin/tfocus.js']
 	});
 });
-
-
 router.post('/admin/hole', async function(req, res) {
-
-await Hole.create({
-	teeBoxID: req.body.teeboxid,
-	holeNumber: req.body.holeNum,
-	par: req.body.par,
-	yards: req.body.yards
-});
+	await Hole.create({
+		teeBoxID: req.body.teeboxid,
+		holeNumber: req.body.holeNum,
+		par: req.body.par,
+		yards: req.body.yards
+	});
 	res.render('golfcard/admin', {
 		css: ['style.css', 'golfcard/golf.css', 'golfcard/createRound.css', 'golfcard/admin.css'],
 		js: ['golfcard/golfScript.js', 'menu.js', 'loginScript.js', 'golfcard/createRound.js', 'golfcard/admin/hf.js']
@@ -151,9 +86,7 @@ router.post('/rounds/create', async function(req, res) {
 	if (!req.session.userId) {
 		return res.status(401).send("please login first");
 	}
-
 	const {course, teeBoxID} = req.body;
-
 	try {
 		const newRound = await Round.create({
 			hostID: req.session.userId,
@@ -166,7 +99,7 @@ router.post('/rounds/create', async function(req, res) {
 			roundID: newRound.roundID,
 			userID: req.session.userId
 		});
-		// redirect user to the current "active round room they created"
+		// redirect user to the current active round room they created
 		res.redirect(`/golfcard/rounds/${newRound.roundID}/waiting`);
 	} catch (err) {
 		console.error(err);
@@ -177,7 +110,6 @@ router.post('/rounds/create', async function(req, res) {
 // WAITING ROOM FOR USERS BEFORE ROUND BEGINS
 router.get('/rounds/:id/waiting', async function(req, res) {
 	const roundID = req.params.id;
-
 	try {
 		const round = await Round.findByPk(roundID, {
 			include: [Course]
@@ -187,10 +119,10 @@ router.get('/rounds/:id/waiting', async function(req, res) {
 			where: {roundID},
 			include: [User]
 		});
-		//console.log(participants);
+
 		res.render('golfcard/waitingRoom', {
 			css: ['style.css', 'golfcard/waiting.css'],
-			js: ['golfcard/newGolfer.js', 'menu.js', 'loginScript.js'], // 'golfcard/golfScript.js',
+			js: ['golfcard/newGolfer.js', 'menu.js', 'loginScript.js'],
 			round: round,
 			participants: participants,
 			isHost: req.session.userId === round.hostID
@@ -261,8 +193,6 @@ router.get('/play/:id', async function(req, res) {
 		}
 	});
 
-	// console.log(`Holes: ${JSON.stringify(holes)}`);
-	// console.log("session.userId:", req.session.userId);
 	res.render('golfcard/playRound', {
 		roundID,
 		currentRound,
@@ -272,19 +202,17 @@ router.get('/play/:id', async function(req, res) {
 		userId: req.session.userId,
 		holes,
 		css: ['style.css', 'golfcard/golf.css', 'golfcard/activeRound.css'],
-		js: ['menu.js', 'loginScript.js'], // 'golfScript.js', , 'golfcard/newGolfer.js'
+		js: ['menu.js', 'loginScript.js'],
 	});
 });
 
 
 //GET ROUND SCORES
 router.get('/rounds/:id/scores', async function(req, res) {
-	const scores = await db.query(`
-		SELECT userID, holeNum, strokes
-		FROM Scores
-		WHERE roundID = ?
-		ORDER BY userID, holeNum
-	`, [req.params.id]);
+	const scores = await Score.findAll({
+		attributes: ['userID', 'holeNumber', 'strokes'],
+		where: { roundID: req.params.id }
+	});
 	res.json(scores);
 });
 
