@@ -98,15 +98,18 @@ const Round = sequelize.define('Round', {
 const Score = sequelize.define('Score', {
 	roundID: {
 		type: DataTypes.INTEGER,
-		allowNull: false
+		allowNull: false,
+		primaryKey: true
 	},
 	userID: {
 		type: DataTypes.STRING(36),
-		allowNull: false
+		allowNull: false,
+		primaryKey: true
 	},
 	holeNumber: {
 		type: DataTypes.TINYINT,
-		allowNull: false
+		allowNull: false,
+		primaryKey: true
 	},
 	strokes: {
 		type: DataTypes.TINYINT,
@@ -114,17 +117,18 @@ const Score = sequelize.define('Score', {
 	},
 	fairwayHit: {
 		type: DataTypes.BOOLEAN,
-		defaultValue: null
+		defaultValue: null,
+		allowNull: true
 	},
 	greenInReg: {
 		type: DataTypes.BOOLEAN,
-		defaultValue: null
+		defaultValue: null,
+		allowNull: true
 	}
 }, {
 	tableName: 'Scores',
 	timestamps: false,
-	createdAt: false,
-	updatedAt: false
+	id: false
 });
 
 const Hole = sequelize.define('Hole', {
