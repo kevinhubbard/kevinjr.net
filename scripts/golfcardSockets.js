@@ -8,7 +8,7 @@ module.exports = (io) => {
 
 		socket.on('joinRoom', (roomName) => {
 			socket.join(roomName);
-			console.log(`Socket joined room: ${roomName}`);
+			console.log(`Socket ${socket.id} joined ${roomName}`);
 		});
 
 		socket.on('startRound', ({roundID}) => {
@@ -16,8 +16,6 @@ module.exports = (io) => {
 		});
 
 	  	socket.on('holeFinished', async ({ roundID, userID, holeNumber, strokes, fairwayHit, greenInReg }) => {
-	    	// console.log(`[server] holeFinished: user ${userID}, hole ${holeNum}, strokes: ${strokes}`);
-	    	// console.log('update should fire');
 	  		try {
 	  			await Score.upsert({
 	  				roundID: roundID,
@@ -28,38 +26,10 @@ module.exports = (io) => {
 	  				greenInReg: greenInReg
 	  			});
 
-
-	  			// await sequelize.query(`
-	  			// 	INSERT INTO Scores (roundID, userID, holeNum, strokes, fairwayHit, greenInReg)
-	  			// 	VALUES (?, ?, ?, ?)
-	  			// 	ON DUPLICATE KEY UPDATE strokes = ?
-	  			// 	`, [roundID, userID, holeNum, strokes, fairwayHit, greenInReg, strokes]);
-
 	   			io.to(`round-${roundID}`).emit('updatedScore', { roundID });
 	  		} catch (err) {
 	  			console.error(err);
 	  		}
 	 	});
-
-	  	//when phone reconnects, refresh score.
-	  	socket.on("connect", () => {
-	  		console.log("connected");
-	  		fetch(`/rounds/${roundID}/scores`)
-	  			.then(res => res.json())
-	  			.then(scores => {
-	  				updateScoreboard(scores);
-	  			});
-	  	});
-
-	  	socket.on("reconnect", () => {
-  			console.log("socket reconnected");
-  			fetch(`/rounds/${roundID}/scores`)
-    			.then(res => res.json())
-    			.then(scores => updateScoreboard(scores));
-		});
-
-		socket.on('disconnect', () => {
-			console.log('client disconnected.');
-		});
 	});
 };
