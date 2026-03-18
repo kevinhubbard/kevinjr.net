@@ -7,6 +7,7 @@ const courseInfo = {{{json currentRound}}};
 const holes = {{{json holes}}};
 
 socket.on('connect', () => {
+	socket.emit('joinRoom', `round-${roundID}`);
 	refreshScores(roundID);
 });
 
@@ -17,16 +18,19 @@ document.addEventListener("visibilitychange", () => {
 });
 
 document.addEventListener('DOMContentLoaded', () => {
-	socket.emit('joinRoom', `round-${roundID}`);
-
 	let par = 0;
+	let holeNum = 1;
+	let holeStrokes = 0;
+	let score = 0;
+
 	for (let i = 0; i < holes.length; i++) {
 		par += holes[i].par;
 	}
 
 	document.getElementById('courseName').textContent = courseInfo.Course.courseName;
 	document.getElementById('coursePar').textContent = `Par: ${par}`;
-	document.getElementById('courseYards').textContent = `Yards: ${courseInfo.Teebox.totalYards}`;
+	document.getElementById('courseYards').textContent = `Yards: ${courseInfo.Teebox.totalYards}  (${courseInfo.Teebox.teeName} tees)`;
+	document.getElementById('slopeRating').textContent = `Slope: ${courseInfo.Teebox.slope} Rating: ${courseInfo.Teebox.rating}`;
 
 	participants.forEach(golfer => {
 		const div = document.createElement('div');
@@ -52,19 +56,20 @@ document.addEventListener('DOMContentLoaded', () => {
 		<button id="add-stroke">Add Stroke</button>
 		<button id="finish-hole" disabled>Finish Hole</button>`;
 
-		let holeNum = 1;
-		let holeStrokes = 0;
-		let score = 0;
+
+
 	 	// Display first hole info
 		document.getElementById('current-hole').textContent = `Hole: ${holeNum}`;
 		document.getElementById('holePar').textContent = `Par: ${holes[holeNum - 1].par}`;
 		document.getElementById('holeYards').textContent = `Yards: ${holes[holeNum - 1].yards}`;
+
 		// Add stroke listener
 		document.getElementById('add-stroke').addEventListener('click', () => {
 			holeStrokes++;
 			document.getElementById('current-strokes').textContent = holeStrokes;
 			document.getElementById('finish-hole').disabled = false;
 		});
+
 		// Finish hole listener
 		document.getElementById('finish-hole').addEventListener('click', () => {
 			socket.emit('holeFinished', {
@@ -91,27 +96,14 @@ document.addEventListener('DOMContentLoaded', () => {
 			  	});
 			} else {
 				document.getElementById('add-stroke').disabled = true;
-				alert('Round over do you want to save?');
+				//alert('Round over do you want to save?');
 			}
 		});
 	}
-
 	socket.on('updatedScore', ({ roundID }) => {
-		// console.log('update clicked');
-	  	// console.log(`[updateScore] received for user ${userID} - hole ${holeNum} - strokes: ${strokes}`);
-
-	  // const ul = document.getElementById(`score-list-${userID}`);
-	  // if (!ul) {
-	// 	console.warn(`[updateScore] Missing score list element for userID ${userID}`);
-	// 	return;
-	  // }
-
-	  // const li = document.createElement('li');
-	  // li.textContent = `Hole ${holeNum}: ${strokes} strokes`;
-	  // ul.appendChild(li);
+		console.log('received update');
 		refreshScores(roundID);
 	});
-
 });
 
 async function refreshScores(roundID) {
@@ -170,6 +162,7 @@ document.addEventListener('click', (e) => {
 		<h1 id="courseName"></h1>
 		<p id="coursePar"></p>
 		<p id="courseYards"></p>
+		<p id="slopeRating"></p>
 	</div>
 	<div id="app">
 		<div id="holeDetails">
@@ -179,7 +172,7 @@ document.addEventListener('click', (e) => {
 				<span id="holeYards" class="holeAttribute"></span>
 			</p>
 			<p>Strokes: <span id="current-strokes">0</span></p>
-			<p>Score: <span id="usrScore">0</span></p>
+			<p>Score: <span id="usrScore"></span></p>
 		</div>
 		<div id="playerInputArea"></div>
 	</div>
