@@ -171,7 +171,10 @@ router.get('/rounds/:id/join', async function(req, res) {
 router.get('/play/:id', async function(req, res) {
 	const roundID = req.params.id;
 	try {
-		const round = await Round.update({status: 'active'}, {
+		const round = await Round.update({
+			status: 'active',
+			startedAt: new Date()
+		}, { 
 			where: { roundID: roundID }
 		});
 	} catch (error) {
