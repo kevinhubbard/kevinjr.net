@@ -87,6 +87,14 @@ const Round = sequelize.define('Round', {
 		type: DataTypes.ENUM('waiting', 'active', 'finished'),
 		allowNull: false,
 		defaultValue: 'waiting'
+	},
+	startedAt: {
+		type: DataTypes.DATE,
+		allowNull: true
+	},
+	finishedAt: {
+		type: DataTypes.DATE,
+		allowNull: true
 	}
 }, {
 	tableName: 'Rounds',
