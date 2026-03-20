@@ -186,6 +186,10 @@ const RoundParticipant = sequelize.define('RoundParticipants', {
 			model: 'Users',
 			key: 'publicID'
 		}
+	},
+	isHost: {
+		type: DataTypes.BOOLEAN,
+		defaultValue: false
 	}
 }, {
 	tableName: 'RoundParticipants',
@@ -213,4 +217,7 @@ RoundParticipant.belongsTo(Round, { foreignKey: 'roundID' });
 User.hasMany(RoundParticipant, { foreignKey: 'userID' });
 RoundParticipant.belongsTo(User, { foreignKey: 'userID' });
 
-module.exports = {Course, Teebox, Round, Hole, RoundParticipant, Score};
+Round.belongsTo(User, { foreignKey: 'hostID'});
+User.hasMany(Round, {foreignKey: 'hostID'})
+
+module.exports = {sequelize, Course, Teebox, Round, Hole, RoundParticipant, Score};
