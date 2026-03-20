@@ -1,7 +1,7 @@
 require('dotenv').config();
 var express = require('express');
 var router = express.Router();
-var {Course, Teebox, Round, Hole, RoundParticipant, Score} = require('../models/golfcard.js');
+var {sequelize, Course, Teebox, Round, Hole, RoundParticipant, Score} = require('../models/golfcard.js');
 var User = require('../models/user.js');
 const { QueryTypes } = require('sequelize');
 
@@ -97,7 +97,8 @@ router.post('/rounds/create', async function(req, res) {
 
 		await RoundParticipant.create({
 			roundID: newRound.roundID,
-			userID: req.session.userId
+			userID: req.session.userId,
+			isHost: true
 		});
 		// redirect user to the current active round room they created
 		res.redirect(`/golfcard/rounds/${newRound.roundID}/waiting`);
@@ -136,13 +137,20 @@ router.get('/rounds/:id/waiting', async function(req, res) {
 router.get('/rounds/active', async function(req, res) {
 	const activeRounds = await Round.findAll({
 		where: {status: 'waiting'},
-		include: [Course]
+		include: [
+			{model: Course},
+			{model: Teebox},
+			{
+				model: RoundParticipant,
+				include: [{model: User}]
+			}
+		]
 	});
-	
+
 	res.render('golfcard/activeRound', {
 		css: ['style.css', 'golfcard/golf.css', 'golfcard/activeRound.css'],
 		js: ['golfcard/golfScript.js', 'menu.js', 'loginScript.js', 'golfcard/newGolfer.js'],
-		rounds: activeRounds
+		rounds: activeRounds.map(r => r.get({plain:true}))
 	});
 });
 
@@ -162,10 +170,6 @@ router.get('/rounds/:id/join', async function(req, res) {
 
 	res.redirect(`/golfcard/rounds/${roundID}/waiting`);
 });
-
-
-
-
 
 // HOST STARTED ROUND
 router.get('/play/:id', async function(req, res) {
@@ -200,7 +204,6 @@ router.get('/play/:id', async function(req, res) {
 		roundID,
 		currentRound,
 		course: currentRound.Course,
-
 		players,
 		userId: req.session.userId,
 		holes,
@@ -217,6 +220,55 @@ router.get('/rounds/:id/scores', async function(req, res) {
 		where: { roundID: req.params.id }
 	});
 	res.json(scores);
+});
+
+
+//LOAD USERS SCORES 
+router.get('/rounds/played', async function(req, res) {
+	if (!req.session.userId) {
+		return res.status(401).send("Please login first to view your rounds played!");
+	}
+
+	const rounds = await sequelize.query(`
+  		SELECT 
+	    	r.roundID,
+	   		r.createdAt,
+	    	c.courseName,
+    		SUM(s.strokes) AS totalStrokes,
+    		SUM(s.strokes - h.par) AS scoreToPar
+  		FROM Rounds r
+  		JOIN Scores s ON r.roundID = s.roundID
+		JOIN Holes h ON s.holeNumber = h.holeNumber AND h.teeBoxID = r.teeBoxID
+  		JOIN Courses c ON r.courseID = c.courseID
+  		WHERE s.userID = :userID
+  		GROUP BY r.roundID, c.courseName, r.createdAt
+  		ORDER BY r.createdAt DESC
+  		LIMIT 10
+	`, {
+  		replacements: { userID: req.session.userId },
+  		type: QueryTypes.SELECT
+	});
+
+	rounds.forEach(r => {
+		r.date = new Date(r.createdAt). toLocaleDateString('en-US', {
+			year: 'numeric',
+			month: 'short',
+			day: 'numeric'
+		});
+
+		if (r.scoreToPar > 0) {
+			r.scoreToPar = '+' + r.scoreToPar;
+		} else if (r.scoreToPar == 0) {
+			r.scoreToPar = 'E';
+		}
+	});
+
+
+	res.render('golfcard/myScores', {
+		rounds: rounds,
+		css: ['style.css', 'golfcard/userScores.css'],
+		js: ['menu.js', 'loginScript.js']
+	});
 });
 
 
