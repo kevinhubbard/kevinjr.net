@@ -1,0 +1,20 @@
+#usrScoreData {
+	width: 65%;
+	height: auto;
+	margin: 0 auto;
+	margin-top: 2%;
+	background-color: white;
+	text-align: center;
+}
+
+#roundTable {
+	margin: 0 auto;
+}
+
+td, th {
+	padding: 5px 15px 5px 15px;
+}
+
+h1 {
+	text-decoration: underline;
+}
