@@ -40,47 +40,47 @@ window.addEventListener("DOMContentLoaded", function(event) {
 
 	let loadRound = document.getElementById('loadRound');
 	loadRound.addEventListener("click", function() {
-		//window.location.href = '/golfcard/rounds';
+		window.location.href = '/golfcard/rounds/played';
 	});
 	
-	let nextHole = document.getElementById('nextHole');
-	nextHole.addEventListener("click", function() {
-		strokes += holeStrokes;	
-		let par = document.getElementById('par').innerText;
-		score += (holeStrokes - par);
-		document.getElementById('score').innerText = score;
-		checkScore(score);
-		updateScoreCard(holeNum, par, holeStrokes);
-		const newHole = new Hole(holeNum, par, holeStrokes);
-		hole.push(newHole);
-		resetHole();
-		if (finishGameCheck(holeNum, holesData.length)) {
-			document.getElementById('nextHole').disabled = true;
-			document.getElementById('stroke').disabled = true;
-			saveRound();
-		} else {
-			updatePageWithHoleInfo(holeNum - 1);
-		}
-	});
+	// let nextHole = document.getElementById('nextHole');
+	// nextHole.addEventListener("click", function() {
+	// 	strokes += holeStrokes;	
+	// 	let par = document.getElementById('par').innerText;
+	// 	score += (holeStrokes - par);
+	// 	document.getElementById('score').innerText = score;
+	// 	checkScore(score);
+	// 	updateScoreCard(holeNum, par, holeStrokes);
+	// 	const newHole = new Hole(holeNum, par, holeStrokes);
+	// 	hole.push(newHole);
+	// 	resetHole();
+	// 	if (finishGameCheck(holeNum, holesData.length)) {
+	// 		document.getElementById('nextHole').disabled = true;
+	// 		document.getElementById('stroke').disabled = true;
+	// 		saveRound();
+	// 	} else {
+	// 		updatePageWithHoleInfo(holeNum - 1);
+	// 	}
+	// });
 
-	function saveRound() {
-		round = new Roundr(courseData[0].courseID, strokes, score);
-		console.log(round);
-		fetch('/golfcard/rounds', {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json'
-			},
-			body: JSON.stringify(round)
-		})
-		.then(response => response.json())
-		.then(data => {
-			console.log('Round saved:', data);
-		})
-		.catch(error => {
-			console.error('Error saving round:', error);
-		});
-	}
+	// function saveRound() {
+	// 	round = new Roundr(courseData[0].courseID, strokes, score);
+	// 	console.log(round);
+	// 	fetch('/golfcard/rounds', {
+	// 		method: 'POST',
+	// 		headers: {
+	// 			'Content-Type': 'application/json'
+	// 		},
+	// 		body: JSON.stringify(round)
+	// 	})
+	// 	.then(response => response.json())
+	// 	.then(data => {
+	// 		console.log('Round saved:', data);
+	// 	})
+	// 	.catch(error => {
+	// 		console.error('Error saving round:', error);
+	// 	});
+	// }
 
 	let startRound = document.getElementById('start');
 	startRound.addEventListener("click", async function() {
@@ -151,14 +151,6 @@ window.addEventListener("DOMContentLoaded", function(event) {
 			return true;
 		}
 		return false;
-
-		/*if (currentHole>totalHoles) {
-			console.log('games over.');
-			document.getElementById('nextHole').disabled = true;
-			document.getElementById('stroke').disabled = true;
-			round = new Round(courseName, holesPlayed, score, strokes, hole);
-			console.log(round.toString());
-		}*/
 	}
 
 	function checkScore(s) {
@@ -243,16 +235,4 @@ window.addEventListener("DOMContentLoaded", function(event) {
 		this.strokes = strokes;
 		this.score = score;
 	}
-
-	/*Round.prototype.toString = function() {
-		let summary = holesData.length + " holes played at " + courseData[0].courseID + "\nStrokes: " + this.strokes + "\n";
-		for (i = 0; i < hole.length; i++) {
-			summary += "Hole: " + hole[i].holeNumber + ", Par: " + hole[i].par + ", Strokes: " + hole[i].strokes + "\n";
-		}
-		return summary;
-	}*/
 });
-
-// window.addEventListener('beforeunload', (event) => {
-// 	event.returnValue = `Are you sure you want to leave?`;
-// });
