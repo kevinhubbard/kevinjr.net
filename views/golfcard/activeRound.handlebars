@@ -1,13 +1,29 @@
-
 <div id="allRounds">
-	{{#each rounds}}
-	<div class="iRound">
-		<ul>
-			<li>Course: {{this.dataValues.Course.dataValues.courseName}}</li>
-			<li>Host: {{this.dataValues.hostID}}</li>
-			<li>Status: {{this.dataValues.status}}</li>
-			<li><a href="/golfcard/rounds/{{this.dataValues.roundID}}/join">Join Round</a></li>
-		</ul>
-	</div>
-	{{/each}}
+  {{#each rounds}}
+  <div class="iRound">
+    <ul class="waitInfo">
+      <li>Host: 
+        {{#each RoundParticipants}}
+          {{#if isHost}}
+            <strong>{{User.name}}</strong>
+          {{/if}}
+        {{/each}}
+        @ {{Course.courseName}}
+      </li>
+      <li>Teebox: {{Teebox.teeName}}</li>
+      <li>Status: {{status}}</li>
+    </ul>
+
+    <ul class="waitInfo" id="playersList">
+      <li><strong>Players:</strong></li>
+      {{#each RoundParticipants}}
+        {{#unless isHost}}
+          <li>{{User.name}}</li>
+        {{/unless}}
+      {{/each}}
+    </ul>
+
+    <a href="/golfcard/rounds/{{roundID}}/join">Join Round</a>
+  </div>
+  {{/each}}
 </div>

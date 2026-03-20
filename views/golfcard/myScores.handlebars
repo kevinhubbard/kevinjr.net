@@ -1,0 +1,25 @@
+<script>
+const rounds = {{{json rounds}}};
+ console.log(rounds);
+</script>
+<div id="usrScoreData">
+	<h1>My Rounds</h1>
+	<table id="roundTable">
+		<tr>
+			<th>Date</th>
+			<th>Course</th>
+			<th>Strokes</th>
+			<th>Score</th>
+		</tr>
+		{{#each rounds}}
+			<tr>
+				<td>{{date}}</td>
+				<td>{{courseName}}</td>
+				<td>{{totalStrokes}}</td>
+				<td>{{scoreToPar}}</td>
+				<td><button>View</button></td>
+			</tr>
+		{{/each}}
+	</table>
+	<button>View all Rounds</button>
+</div>
