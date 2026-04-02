@@ -91,6 +91,7 @@ app.use('/profile', require('./controllers/profile'));
 app.use('/card-games', require('./controllers/cardGames'));
 app.use('/messages', require('./controllers/admin'));
 app.use('/photography', require('./controllers/photos'));
+app.use('/temperature', require('./controllers/temperature'));
 
 // 404 CATCH
 app.use(function (req, res, next) {
