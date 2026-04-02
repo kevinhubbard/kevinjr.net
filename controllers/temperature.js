@@ -4,7 +4,7 @@ let latestTemp = null;
 
 router.get('/', function(req, res){
 	res.status(200).render('temperature',{
-		temp: latestTemp
+		temp: latestTemp,
 		css: ['style.css'],
 		js: ['menu.js', 'loginScript.js']
 	});
