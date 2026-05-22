@@ -1,3 +1,16 @@
+<script>
+
+	let hid;
+
+if (hid != null) {
+	document.getElementById('holeNum').value = hid;
+}
+
+	document.getElementById('subID').addEventListener('click', function(e) {
+		hid = document.getElementById('holeNum').value;
+	});
+</script>
+
 <div id="golfcardAdmin">
 	<h1>golfcard admin page</h1>
 	<div class="test" id="course">
@@ -39,7 +52,21 @@
 			<input type="text" id="par" name="par"><br>
 			<label for="yards">Yards:</label><br>
 			<input type="text" id="yards" name="yards"><br><br>
-			<input type="submit" value="Submit">
+			<input id="subID" type="submit" value="Submit">
+		</form>
+	</div>
+	<div class="test" id="bulkHoleData">
+		<h3><strong>BULK</strong> Add Hole Data</h3>
+		<form action="/golfcard/admin/bulkhole" method="POST">
+			<label for="bulkteeboxid">Teebox ID's:</label><br>
+			<input type="text" id="bulkteeboxid" name="bulkteeboxid" placeholder="1,2,3,4,5..."><br>
+			<label for="bulkholeNum">Hole Number's:</label><br>
+			<input type="radio" id="9Hole" name="numOfHoles" value="9"><label for="9Hole">9 Holes</label><input type="radio" id="18Hole" name="numOfHoles" value="18"><label for="18Hole">18 Holes</label><br>
+			<label for="bulkpar">Par:</label><br>
+			<input type="text" id="bulkpar" name="bulkpar" placeholder="4,4,5,3,4,..."><br>
+			<label for="bulkyards">Yards:</label><br>
+			<input type="text" id="bulkyards" name="bulkyards" placeholder="3,4,5,...;5,4,3,...;4,4,5,..."><br><br>
+			<input id="subID" type="submit" value="Submit">
 		</form>
 	</div>
 </div>
