@@ -60,6 +60,87 @@ router.post('/admin/hole', async function(req, res) {
 		js: ['golfcard/golfScript.js', 'menu.js', 'loginScript.js', 'golfcard/createRound.js', 'golfcard/admin/hf.js']
 	});
 });
+router.post('/admin/bulkhole', async function(req, res) {
+	let teeBoxIDs = req.body.bulkteeboxid;
+	let tbArr = teeBoxIDs.split(',');
+
+	let numOfHoles = Number(req.body.numOfHoles);
+
+	let pars = req.body.bulkpar;
+	let parArr = pars.split(',');
+
+	let teeYards = req.body.bulkyards;
+	let teesArr = teeYards.split(';');
+
+	let yardMatrix = [];
+
+	for (let i = 0; i < teesArr.length; i++) {
+		let splitArr = teesArr[i].split(',');
+		yardMatrix.push(splitArr);
+	}
+
+	let holesToCreate = [];
+	let error = false;
+
+	if (tbArr.length != yardMatrix.length) {
+		error = true;
+		console.log(`number of teeboxes: '${tbArr.length}' does not equal the yard matrix: '${yardMatrix.length}' length`);		
+	}
+
+	if (numOfHoles != parArr.length) {
+		error = true;
+		console.log(`the number of pars: '${parArr.length}' must equal the number of holes: '${numOfHoles}'`);
+	}
+
+	for (let r = 0; r < yardMatrix.length; r++) {
+		if (yardMatrix[r].length != numOfHoles) {
+			error = true;
+			console.log(`row: '${r}' in yardMatrix array does not have the correct number of holes: '${numOfHoles}'`);
+		}
+	}
+
+	if (error) {
+		res.render('golfcard/admin/error', {
+			css: ['style.css', 'golfcard/golf.css', 'golfcard/createRound.css', 'golfcard/admin.css'],
+			js: ['golfcard/golfScript.js', 'menu.js', 'loginScript.js', 'golfcard/createRound.js', 'golfcard/admin/hf.js']
+		});
+		return;
+	}
+
+	for (let tb = 0; tb < tbArr.length; tb++) {
+		for (let hole = 0; hole < numOfHoles; hole++) {
+			let id = tbArr[tb];
+			let h = hole + 1;
+			let p = parArr[hole];
+			let y = yardMatrix[tb][hole];
+
+			holesToCreate.push({
+				teeboxID: id,
+				holeNumber: h,
+				par: p,
+				yards: y
+			});
+		}
+	}
+
+	for (let i = 0; i < holesToCreate.length; i++) {
+		try {
+			await Hole.create({
+				teeBoxID: holesToCreate[i].teeboxID,
+				holeNumber: holesToCreate[i].holeNumber,
+				par: holesToCreate[i].par,
+				yards: holesToCreate[i].yards
+			});
+		} catch (err) {
+			console.error("An error occurred: " + err.message);
+		}
+	}
+
+	res.render('golfcard/admin', {
+		css: ['style.css', 'golfcard/golf.css', 'golfcard/createRound.css', 'golfcard/admin.css'],
+		js: ['golfcard/golfScript.js', 'menu.js', 'loginScript.js', 'golfcard/createRound.js', 'golfcard/admin/hf.js']
+	});
+});
 
 
 // USER CAN CREATE A NEW GOLF ROUND JOINABLE BY OTHERS
@@ -215,10 +296,21 @@ router.get('/play/:id', async function(req, res) {
 
 //GET ROUND SCORES
 router.get('/rounds/:id/scores', async function(req, res) {
-	const scores = await Score.findAll({
-		attributes: ['userID', 'holeNumber', 'strokes'],
-		where: { roundID: req.params.id }
+	const scores = await sequelize.query(`
+		SELECT
+			userID,
+			holeNumber,
+			strokes,
+			par,
+			SUM(s.strokes - h.par) AS scoreRelativeToPar
+		FROM Scores s
+		JOIN Holes h ON s.holeNumber = h.holeNumber
+		WHERE roundID = :roundID
+	`, {
+		replacements: { roundID: req.params.id},
+		type: QueryTypes.SELECT
 	});
+
 	res.json(scores);
 });
 
