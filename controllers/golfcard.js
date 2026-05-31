@@ -298,14 +298,19 @@ router.get('/play/:id', async function(req, res) {
 router.get('/rounds/:id/scores', async function(req, res) {
 	const scores = await sequelize.query(`
 		SELECT
-			userID,
-			holeNumber,
-			strokes,
-			par,
-			SUM(s.strokes - h.par) AS scoreRelativeToPar
+			s.userID,
+			s.holeNumber,
+			s.strokes,
+			h.par,
+			(s.strokes - h.par) AS scoreRelativeToPar
 		FROM Scores s
-		JOIN Holes h ON s.holeNumber = h.holeNumber
-		WHERE roundID = :roundID
+		JOIN Rounds r
+			ON s.roundID = r.roundID
+		JOIN Holes h 
+			ON h.teeBoxID = r.teeBoxID
+			AND h.holeNumber = s.holeNumber
+		WHERE s.roundID = :roundID
+		ORDER BY s.userID, s.holeNumber
 	`, {
 		replacements: { roundID: req.params.id},
 		type: QueryTypes.SELECT
