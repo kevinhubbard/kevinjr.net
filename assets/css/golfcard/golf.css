@@ -104,7 +104,7 @@
 
 
 
-	#app {
+	#roundInformation {
 		background-color: lightgreen;
 		text-align: center;
 		width: 65%;
@@ -181,7 +181,7 @@
 		text-decoration: underline;
 	}
 
-	#ci {
+	#courseInformation {
 		width: fit-content;
 		padding: 0px 10px 0px 10px;
 		height: auto;
@@ -223,7 +223,7 @@
 
 
 
-@media only screen and (max-width: 750px) {
+@media only screen and (max-width: 850px) {
 
 	#title {
 		text-align: center;
@@ -294,19 +294,6 @@
 		margin-top: 25px;
 	}
 
-
-
-
-	#courseInfo {
-		margin: auto;
-		display: block;
-		background-color: lightgreen;
-		height: auto;
-		width: 70%;
-		box-sizing: border-box;
-		text-align: center;
-	}
-
 	#courses {
 		display: block;
 		margin: auto;
@@ -330,11 +317,15 @@
 
 
 
-	#app {
+
+/*	#courseInfo {
+		margin: auto;
+		display: block;
 		background-color: lightgreen;
 		height: auto;
+		width: 70%;
+		box-sizing: border-box;
 		text-align: center;
-		margin-bottom: 75px;
 	}
 
 
@@ -366,7 +357,7 @@
 		border: 1px solid black;
 		display: flex;
 		flex-direction: column;
-		/*gap: 10px;*/
+		gap: 10px;
 		width: 90%;
 		margin: 0 auto;
 		margin-bottom: 10px;
@@ -406,10 +397,9 @@
 		display: inline;
 	}
 
+*/
 
-
-
-	#ci {
+	#courseInformation {
 		width: fit-content;
 		padding: 0px 10px 0px 10px;
 		height: auto;
@@ -419,19 +409,50 @@
 		text-align: center;
 	}
 
-	
+
+	#roundInformation {
+		background-color: lightgreen;
+		height: auto;
+		text-align: center;
+		margin-bottom: ;
+	}
+
+/*	#regulationInput {
+		margin-bottom: 10px;
+	}*/
+
+	#firInput, #girInput{
+		margin: 0px 15px 0px 15px;
+	}
+
+	#fir, #gir {
+		position: relative;
+		top: -13px;
+	}
+
+	.regulationLabel {
+		width: 75px;
+	}
 
 
-		#scoreboards {
+	#add-stroke, #finish-hole {
+		width: 90%;
+		font-size: 28px;
+		padding: 12px;
+		margin: 5px 0px 5px 0px;
+
+	}
+
+	#scoreboards {
 		background-color: white;
 		width: 50%;
 		text-align: center;
 		margin: 0 auto;
-		margin-bottom: 20px;
 		display: flex;
 		gap: 10px;
 		justify-content: center;
 	}
+
 	.scoreboard {
 		width: 75px;
 		height: 75px;
