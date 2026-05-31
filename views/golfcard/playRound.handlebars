@@ -49,12 +49,13 @@ document.addEventListener('DOMContentLoaded', () => {
 	if (participants.some(p => p.userID === userID)) {
   		const inputDiv = document.getElementById('playerInputArea');
  		inputDiv.innerHTML = `
- 		<input type="checkbox" id="fir" class="check" name="fir">
- 		<label for="fir">Fairway in Regulation</label><br>
+ 		<div id="regulationInput"><span id="firInput">
+		<input type="checkbox" id="fir" class="check" name="fir">
+ 		<label class="regulationLabel" for="fir">Fairway in Regulation</label> </span><span id="girInput">
  		<input type="checkbox" id="gir" class="check" name="gir">
- 		<label for="gir">Green in Regulation</label><br>
-		<button id="add-stroke">Add Stroke</button>
-		<button id="finish-hole" disabled>Finish Hole</button>`;
+ 		<label class="regulationLabel" for="gir">Green in Regulation</label>   </span>  </div>
+		<button id="add-stroke">Add Stroke 🏌🏼‍</button>
+		<button id="finish-hole" disabled>Finish Hole ⛳</button>`;
 
 
 
@@ -109,7 +110,6 @@ document.addEventListener('DOMContentLoaded', () => {
 async function refreshScores(roundID) {
 	const res = await fetch(`/golfcard/rounds/${roundID}/scores`);
 	const scores = await res.json();
-
 	renderScoreboard(scores);
 }
 
@@ -121,7 +121,7 @@ function renderScoreboard(scores) {
 		if (!totals[score.userID]) {
 			totals[score.userID] = 0;
 		}
-		totals[score.userID] += score.strokes;
+		totals[score.userID] += Number(score.scoreRelativeToPar);
 	});
 
 	// update ui
@@ -132,8 +132,33 @@ function renderScoreboard(scores) {
 		const totalEl = div.querySelector('.total-score');
 		if (totalEl) {
 			totalEl.textContent = totals[userID];
+			if (totals[userID] === 0) {
+				totalEl.style.color = 'green';
+				totalEl.textContent = 'E';
+			} else if (totals[userID] < 0) {
+				totalEl.style.color = 'red';
+			} else if (totals[userID] > 0) {
+				totalEl.textContent = `+${totals[userID]}`;
+				totalEl.style.color = 'black';
+			}
 		}
 	});
+
+	const usrScore = document.getElementById('usrScore');
+
+	if (usrScore && totals[userID] !== undefined) {
+		let updateScore = totals[userID];
+		usrScore.textContent = updateScore;
+		if (updateScore === 0) {
+			usrScore.style.color = 'green';
+			usrScore.textContent = 'E';
+		} else if (updateScore < 0) {
+			usrScore.style.color = 'red';
+		} else if (updateScore > 0) {
+			usrScore.textContent = `+${updateScore}`;
+			usrScore.style.color = 'black'
+		}
+	}
 }
 
 document.addEventListener('click', (e) => {
@@ -158,23 +183,23 @@ document.addEventListener('click', (e) => {
 </script>
 
 <div id="mainApp">
-	<div id="ci">
+	<div id="courseInformation">
 		<h1 id="courseName"></h1>
 		<p id="coursePar"></p>
 		<p id="courseYards"></p>
 		<p id="slopeRating"></p>
 	</div>
-	<div id="app">
+	<div id="roundInformation">
 		<div id="holeDetails">
 			<p id="info">
 				<span id="current-hole" class="holeAttribute"></span>
-				<span id="holePar" class="holeAttribute"></span>
+				<span id="holePar" class="holeAttribute"></span><br>
 				<span id="holeYards" class="holeAttribute"></span>
 			</p>
-			<p>Strokes: <span id="current-strokes">0</span></p>
+			<p>Stroke: <span id="current-strokes">0</span></p>
 			<p>Score: <span id="usrScore"></span></p>
 		</div>
 		<div id="playerInputArea"></div>
-	</div>
+	</div><br>
 	<div id="scoreboards"></div>
 </div>
