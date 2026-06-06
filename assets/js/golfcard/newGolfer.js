@@ -19,9 +19,11 @@ document.addEventListener('DOMContentLoaded', () => {
     ul.appendChild(li);
   });
 
+  const teamPlay = document.getElementById('teamPlay');
   const startBtn = document.getElementById('start-round');
   if (startBtn) {
     startBtn.addEventListener('click', function() {
+      console.log(`teamPlay is: ` + teamPlay.checked);
       socket.emit('startRound', {roundID});
     });
   }
