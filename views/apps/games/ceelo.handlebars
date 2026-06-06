@@ -1,0 +1,82 @@
+<script>
+	document.addEventListener('DOMContentLoaded', function(e) {
+		let round = 0;
+		let startBtn = document.getElementById('startGame');
+		let rollDice = document.getElementById('rollDice');
+
+		startBtn.addEventListener('click', function(e) {
+			e.preventDefault();
+			let numOfBots = document.getElementById('botSelection').value;
+			let initPurse = document.getElementById('purseAmount').value;
+			createPlayerArea(numOfBots, initPurse);
+			startBtn.disabled = true;
+		});
+
+		rollDice.addEventListener('click', function(e) {
+			if (round === 0) {
+				
+			}
+		});
+
+
+	});
+
+	function createPlayerArea(numOfPlayers, startingPurse) {
+		for (let i = 0; i <= numOfPlayers; i++) {
+			let playerElement = document.createElement('div');
+			playerElement.className = 'player';
+			let playerName = document.createElement('p');
+
+
+			if (i === 0) {
+				playerElement.id = `player-${i+1}`;
+				playerName.textContent = 'Player 1';
+
+			} else {
+				playerElement.id = `bot-${i+1}`;
+				playerName.textContent = `Bot-${i+1}`;
+			}
+
+			let purse = document.createElement('p');
+			let roll = document.createElement('p');
+			roll.textContent = 'Rolled: ';
+			let rollOutput = document.createElement('span');
+			purse.textContent = `Purse: $ ${Number(startingPurse)}`;
+			roll.append(rollOutput);
+			playerElement.append(playerName);
+			playerElement.append(roll);
+			playerElement.append(purse);
+			document.getElementById('playingArea').append(playerElement);
+		}
+	}
+</script>
+
+<div id="ceeloMain">
+	<h1>Cee-Lo</h1>
+	<div id="game">
+		<label for="bots">Number of player bots:</label>
+		<select name="bots" id="botSelection">
+			<option value="1">1</option>
+			<option value="2">2</option>
+			<option value="3">3</option>
+			<option value="4">4</option>
+			<option value="5">5</option>
+		</select><br>
+
+		<label for="purse">Starting Purse:</label>
+		<select name="purse" id="purseAmount">
+			<option value="10">10</option>
+			<option value="25">25</option>
+			<option value="50">50</option>
+			<option value="100">100</option>
+			<option value="500">500</option>
+		</select><br>
+		<button id="startGame">Start</button>
+	</div>
+	<div id="playingArea"></div>
+	<div id="gameControls">
+		<button id="rollDice">Roll Dice</button>
+		<button id="incBet">Increase Bet</button>
+		<button id="decBet">Decrease Bet</button>
+	</div>
+</div>
