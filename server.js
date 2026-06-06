@@ -88,7 +88,7 @@ app.use('/blog', require('./controllers/blog'));
 app.use('/signup', require('./controllers/signup'));
 app.use('/verify', require('./controllers/verify'));
 app.use('/profile', require('./controllers/profile'));
-app.use('/card-games', require('./controllers/cardGames'));
+app.use('/games', require('./controllers/games'));
 app.use('/messages', require('./controllers/admin'));
 app.use('/photography', require('./controllers/photos'));
 app.use('/temperature', require('./controllers/temperature'));
