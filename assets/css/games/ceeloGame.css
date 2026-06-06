@@ -1,0 +1,21 @@
+#ceeloMain {
+	width: 65%;
+	background-color: pink;
+	margin: 0 auto;
+	margin-top: 25px;
+	text-align: center;
+}
+
+#game {
+	margin-bottom: 20px;
+}
+
+#playingArea {
+	display: inline;
+}
+
+.player {
+	width: 250px;
+	border: 3px solid black;
+	display: inline-block;
+}
