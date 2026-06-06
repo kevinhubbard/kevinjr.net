@@ -13,7 +13,12 @@
     {{/each}}
   </ul>
 
+
+
   {{#if isHost}}
+    <input type="checkbox" id="teamPlay" name="team">
+    <label for="teamPlay">Team Score</label><br>
     <button id="start-round">Start Round</button>
+    {{!-- let the host toggle a game type, [modified best ball, best ball, team play, individual or team match play] --}}
   {{/if}}
 </div>
